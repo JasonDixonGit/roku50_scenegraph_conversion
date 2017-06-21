@@ -1,3 +1,8 @@
+'**********************************************************
+'**  Video Player Example Application - URL Utilities 
+'**  November 2009
+'**  Copyright (c) 2009 Roku Inc. All Rights Reserved.
+'**********************************************************
 
 REM ******************************************************
 REM Constucts a URL Transfer object
@@ -140,7 +145,7 @@ Function http_get_to_string_with_retry() as String
             if type(event) = "roUrlEvent"
                 str = event.GetString()
                 exit while        
-            else if event = invalid
+            elseif event = invalid
                 m.Http.AsyncCancel()
                 REM reset the connection on timeouts
                 m.Http = CreateURLTransferObject(m.Http.GetUrl())
@@ -148,7 +153,7 @@ Function http_get_to_string_with_retry() as String
             else
                 print "roUrlTransfer::AsyncGetToString(): unknown event"
             endif
-        end if
+        endif
 
         num_retries% = num_retries% - 1
     end while
@@ -170,12 +175,12 @@ Function http_get_to_string_with_timeout(seconds as Integer) as String
         event = wait(timeout%, m.Http.GetPort())
         if type(event) = "roUrlEvent"
             str = event.GetString()
-        else if event = invalid
+        elseif event = invalid
             Dbg("AsyncGetToString timeout")
             m.Http.AsyncCancel()
         else
             Dbg("AsyncGetToString unknown event", event)
-        end if
+        endif
     endif
 
     return str
@@ -196,7 +201,7 @@ Function http_post_from_string_with_timeout(val As String, seconds as Integer) a
         if type(event) = "roUrlEvent"
 			print "1"
 			str = event.GetString()
-        else if event = invalid
+        elseif event = invalid
 			print "2"
             Dbg("AsyncPostFromString timeout")
             m.Http.AsyncCancel()
@@ -204,7 +209,7 @@ Function http_post_from_string_with_timeout(val As String, seconds as Integer) a
 			print "3"
             Dbg("AsyncPostFromString unknown event", event)
         endif
-    end if
+    endif
 
     return str
 End Function

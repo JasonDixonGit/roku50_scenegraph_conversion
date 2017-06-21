@@ -1,9 +1,9 @@
 Function GridRowFactory() as Object
     this = {
         
-        BuildGridRow:               BuildGridRow
-        GetGridRow:                 GetGridRow
-        GetProductDetail:           GetProductDetail
+        BuildRow:               BuildRow
+        GetRow:                 GetRow
+        SetGridscreenContent:   SetGridscreenContent
     }
     return this
 End Function
@@ -35,117 +35,129 @@ end function
 Function GetRow()
     url = CreateObject("roUrlTransfer")
 
-    'PrintAny(0, "", rsp.Results)
-'    if(rsp.Results = invalid) then
-'        ?"**** TIME OUT CAUGHT *******"
-'        ?"**** INFORM USER THAT THEIR NETWORK MAY BE SLOW ****"
-'    end if
-'    gridRow = createObject("RoSGNode","ContentNode")
-'    return GridRowFactory().BuildGridRow(gridRow)
 End Function
 
-Function GetProductDetail(content, origin, itemID)
-    'IF COMING FROM SEARCH SCREEN, GET CONTENT FROM GETPRODUCT()'
-    productDetail = createObject("roAssociativeArray")
 
-    productContent = GetGlobalAA().API.ProductDetailForSceneGraph(itemID)
+''    if(origin = "SearchScreen") then
+''        item = createObject("RoSGNode","ContentNode")
+''        item["id"] = productContent.BasicResponseGroup.id
+''        item["Title"] = productContent.BasicResponseGroup.title
+''        item["LENGTH"] = productContent.BasicResponseGroup.length
+''        item["HDPosterUrl"] = productContent.BasicResponseGroup.boxcover
+''        if(productContent.BasicResponseGroup.description = "No Description") then
+''            item["DESCRIPTION"] = " "
+''        else
+''            item["DESCRIPTION"] = productContent.BasicResponseGroup.description
+''        end if
+''        item["ReleaseDate"] = productContent.BasicResponseGroup.resleaseDate
+''        item["url"] = productContent.BasicResponseGroup.contentURL
+''        item["HDBackgroundImageUrl"] = productContent.BasicResponseGroup.backgroundUrl
+''        item["SDBackgroundImageUrl"] = productContent.BasicResponseGroup.backgroundUrl
+''        item["shortdescriptionline2"] = productContent.BasicResponseGroup.master_item_id_content
+''        'item["Actors"] = movie.BasicResponseGroup.actors
+''        item["STREAMFORMAT"] = "hls"
 
-    if(origin = "SearchScreen") then
-        item = createObject("RoSGNode","ContentNode")
-        item["id"] = productContent.BasicResponseGroup.id
-        item["Title"] = productContent.BasicResponseGroup.title
-        item["LENGTH"] = productContent.BasicResponseGroup.length
-        item["HDPosterUrl"] = productContent.BasicResponseGroup.boxcover
-        if(productContent.BasicResponseGroup.description = "No Description") then
-            item["DESCRIPTION"] = " "
-        else
-            item["DESCRIPTION"] = productContent.BasicResponseGroup.description
-        end if
-        item["ReleaseDate"] = productContent.BasicResponseGroup.resleaseDate
-        item["url"] = productContent.BasicResponseGroup.contentURL
-        item["HDBackgroundImageUrl"] = productContent.BasicResponseGroup.backgroundUrl
-        item["SDBackgroundImageUrl"] = productContent.BasicResponseGroup.backgroundUrl
-        item["shortdescriptionline2"] = productContent.BasicResponseGroup.master_item_id_content
-        'item["Actors"] = movie.BasicResponseGroup.actors
-        item["STREAMFORMAT"] = "hls"
 
-        productDetail.sceneList = productContent.BasicResponseGroup.scenes_list
-        productDetail.isWatchLater = productContent.FullResponseGroup.IsWatchLater
-
-        'jay, wtf you doing here?'
-        productContent = item
-        productDetail.content = item
-        'temID = productContent.BasicResponseGroup.id      
-
-        streams = []
-        streams = GetGlobalAA().API.ProductStreams(itemID, false, invalid)
-        'Print(streams)
-
-        'get either hls or mp4 trailer'
-        if(productContent.StarRating = 1) then
-            productDetail.previewURL = streams.hlstrailer
-            'Print(ds.previewURL)
-            productDetail.previewFormat = "hls"
-        else
-            previewStreams = GetGlobalAA().API.PreviewMovieStreams(productContent.shortdescriptionline2)
-            productDetail.previewURL = previewStreams[previewStreams.Count()-1].url
-            productDetail.previewFormat = "mp4"
-        end if
-
-        'movie bif files'
-        length = Str(productContent.length).Trim()
-        'we assign master_item_id_content to productContent.shortdescriptionline2'
-        strID  = ToString(productContent.shortdescriptionline2)
-
-        productDetail.HDBifurl = "http://" + "caps1cdn.adultempire.com" + "/0/" + length + "/30/" + "HD" + "/" + strID + ".bif"
-        productDetail.SDBifUrl = "http://" + "caps1cdn.adultempire.com" + "/0/" + length + "/30/" + "SD" + "/" + strID + ".bif"
-
-        productDetail.movieURL    = streams.hlsvod
-        productDetail.url         = streams.hlsvod  
-
-    else
-        productDetail.sceneList = productContent.BasicResponseGroup.scenes_list
-        productDetail.isWatchLater = productContent.FullResponseGroup.IsWatchLater
-
-        streams = []
-        streams = GetGlobalAA().API.ProductStreams(itemID, false, invalid)
-        'Print(streams)
-
-        'get either hls or mp4 trailer'
-        if(content.StarRating = 1) then
-            productDetail.previewURL = streams.hlstrailer
-            'Print(ds.previewURL)
-            productDetail.previewFormat = "hls"
-        else
-            previewStreams = GetGlobalAA().API.PreviewMovieStreams(content.shortdescriptionline2)
-            productDetail.previewURL = previewStreams[previewStreams.Count()-1].url
-            productDetail.previewFormat = "mp4"
-        end if
-
-        'movie bif files'
-        length = Str(content.length).Trim()
-        'we assign master_item_id_content to content.shortdescriptionline2'
-        strID  = ToString(content.shortdescriptionline2)
-
-        productDetail.HDBifurl = "http://" + "caps1cdn.adultempire.com" + "/0/" + length + "/30/" + "HD" + "/" + strID + ".bif"
-        productDetail.SDBifUrl = "http://" + "caps1cdn.adultempire.com" + "/0/" + length + "/30/" + "SD" + "/" + strID + ".bif"
-
-        productDetail.movieURL    = streams.hlsvod
-        productDetail.url         = streams.hlsvod
-        productDetail.title       = content.title
-    end if
-    return productDetail
+Function SetGridscreenContent()
+    
+    oneRow = GetApiArray()
+        list = [
+        {
+            Title:"Categories"
+            ContentList : oneRow
+        }]
+     return ParseXMLContent(list)
 end Function
+ ''   conn = InitCategoryFeedConnection()
+ ''   m.Categories = conn.LoadCategoryFeed(conn)
+    'm.CategoryNames = conn.GetCategoryNames(m.Categories)
+    'PrintAny(-0, "====================================================================", m.Categories)
+    'PrintAny(5, "CATEGORY NAMES ----->", m.CategoryNames)
+    
+''    for each k in m.Categories.kids
+''        item = createObject("RoSGNode","ContentNode")
+''
+''        item["id"] = productContent.BasicResponseGroup.id
+''        item["Title"] = productContent.BasicResponseGroup.title
+''        item["LENGTH"] = productContent.BasicResponseGroup.length
+''        item["HDPosterUrl"] = productContent.BasicResponseGroup.boxcover
+''        if(productContent.BasicResponseGroup.description = "No Description") then
+''            item["DESCRIPTION"] = " "
+''        else
+''            item["DESCRIPTION"] = productContent.BasicResponseGroup.description
+''        end if
+''        item["ReleaseDate"] = productContent.BasicResponseGroup.resleaseDate
+''        item["url"] = productContent.BasicResponseGroup.contentURL
+''        item["HDBackgroundImageUrl"] = ""
+''        item["SDBackgroundImageUrl"] = ""
+''        item["shortdescriptionline2"] = ""
+''        'item["Actors"] = movie.BasicResponseGroup.actors
+''        item["STREAMFORMAT"] = "mp4"
+''    next
+''    return m.Categories.kids
+'end Function
 
-Function SetGridscreenContent(list)
-    initCategoryList()
-    m.Categories = conn.LoadCategoryFeed(conn)
-    m.CategoryNames = conn.GetCategoryNames(m.Categories)
-    PrintAny(0, "", m.Categories)
-    ?"=============================================="
-    PrintAny(0, "", m.CategoryNames)
+Function ParseXMLContent(list As Object)
+    RowItems = createObject("RoSGNode","ContentNode")
+    
+    for each rowAA in list
+        row = createObject("RoSGNode","ContentNode")
+        row.Title = rowAA.Title
 
-end Function
+        for each itemAA in rowAA.ContentList
+            item = createObject("RoSGNode","ContentNode")
+            ' We don't use item.setFields(itemAA) as doesn't cast streamFormat to proper value
+            for each key in itemAA
+                item[key] = itemAA[key]
+            end for
+            row.appendChild(item)
+        end for
+        RowItems.appendChild(row)
+    end for
+
+    return RowItems
+End Function
+
+
+Function GetApiArray()
+    url = CreateObject("roUrlTransfer")
+
+    url.SetUrl("http://cs50.tv/?output=roku")
+    rsp = url.GetToString()
+    'rsp = GetGlobalAA().API.getRokuXMLCategories()
+    responseXML = ParseXML2(rsp)
+    'printAny(0, "", rsp)
+
+    'responseXML = rsp.GetChildElements()
+    responseArray = responseXML.GetChildElements()
+
+    result = []
+
+    for each xmlItem in responseArray
+        if xmlItem.getName() = "category"
+            itemAA = xmlItem.GetChildElements()
+            if itemAA <> invalid
+                ?"============= item ================"
+                item = {}
+                for each xmlItem in itemAA
+                    item[xmlItem.getName()] = xmlItem.getText()
+                    Print xmlItem.getAttributes().title, xmlItem.getAttributes().feed, xmlItem.getAttributes().hd_img
+                end for
+                result.push(item)
+            end if
+        end if
+    end for
+
+    return result
+End Function
+
+
+Function ParseXML2(str As String) As dynamic
+    if str = invalid return invalid
+    xml = CreateObject("roXMLElement")
+    if not xml.Parse(str) return invalid
+    return xml
+End Function
 '************************************************************
 '** initialize the category tree.  We fetch a category list
 '** from the server, parse it into a hierarchy of nodes and
@@ -153,14 +165,14 @@ end Function
 '** screen in the heirarchy. Each node terminates at a list
 '** of content for the sub-category describing individual videos
 '************************************************************
-Function initCategoryList() As Void
-
-    conn = InitCategoryFeedConnection()
-
-    m.Categories = conn.LoadCategoryFeed(conn)
-    m.CategoryNames = conn.GetCategoryNames(m.Categories)
-
-End Function
+'Function initCategoryList() As Void
+'
+'    conn = InitCategoryFeedConnection()
+'
+'    m.Categories = conn.LoadCategoryFeed(conn)
+'    m.CategoryNames = conn.GetCategoryNames(m.Categories)
+'
+'End Function
 
 '******************************************************
 ' Set up the category feed connection object
@@ -184,27 +196,6 @@ Function InitCategoryFeedConnection() As Object
 End Function
 
 
-
-'*********************************************************
-'** Create an array of names representing the children
-'** for the current list of categories. This is useful
-'** for filling in the filter banner with the names of
-'** all the categories at the next level in the hierarchy
-'*********************************************************
-Function get_category_names(categories As Object) As Dynamic
-
-    categoryNames = CreateObject("roArray", 100, true)
-
-    for each category in categories.kids
-        'print category.Title
-        categoryNames.Push(category.Title)
-    next
-
-    return categoryNames
-
-End Function
-
-
 '******************************************************************
 '** Given a connection object for a category feed, fetch,
 '** parse and build the tree for the feed.  the results are
@@ -219,7 +210,7 @@ Function load_category_feed(conn As Object) As Dynamic
 
     m.Timer.Mark()
     rsp = http.GetToStringWithRetry()
-    Dbg("Took: ", m.Timer)
+    'Dbg("Took: ", m.Timer)
 
     m.Timer.Mark()
     xml=CreateObject("roXMLElement")
@@ -227,7 +218,7 @@ Function load_category_feed(conn As Object) As Dynamic
          print "Can't parse feed"
         return invalid
     endif
-    Dbg("Parse Took: ", m.Timer)
+    'Dbg("Parse Took: ", m.Timer)
 
     m.Timer.Mark()
     if xml.category = invalid then
@@ -262,9 +253,28 @@ Function load_category_feed(conn As Object) As Dynamic
             print "parse returned no child node"
         endif
     next
-    Dbg("Traversing: ", m.Timer)
+    'Dbg("Traversing: ", m.Timer)
 
     return topNode
+
+End Function
+
+'*********************************************************
+'** Create an array of names representing the children
+'** for the current list of categories. This is useful
+'** for filling in the filter banner with the names of
+'** all the categories at the next level in the hierarchy
+'*********************************************************
+Function get_category_names(categories As Object) As Dynamic
+
+    categoryNames = CreateObject("roArray", 100, true)
+
+    for each category in categories.kids
+        'print category.Title
+        categoryNames.Push(category.Title)
+    next
+
+    return categoryNames
 
 End Function
 
@@ -289,7 +299,7 @@ Function ParseCategoryNode(xml As Object) As dynamic
     'parse the curent node to determine the type. everything except
     'special categories are considered normal, others have unique types 
     if xml.GetName() = "category" then
-        print "category: " + xml@title + " | " + xml@description
+        print "category: " + xml@title '+ " | " + xml@description
         o.Type = "normal"
         o.Title = xml@title
         o.Description = xml@Description
@@ -331,35 +341,39 @@ Function ParseCategoryNode(xml As Object) As dynamic
 
     'get the list of child nodes and recursed
     'through everything under the current node
-    for each e in xml.GetBody()
-        name = e.GetName()
-        if name = "category" then
-            print "category: " + e@title + " [" + e@description + "]"
-            kid = ParseCategoryNode(e)
-            kid.Title = e@title
-            kid.Description = e@Description
-            kid.ShortDescriptionLine1 = xml@Description
-            kid.SDPosterURL = xml@sd_img
-            kid.HDPosterURL = xml@hd_img
-            o.AddKid(kid)
-        else if name = "categoryLeaf" then
-            print "categoryLeaf: " + e@title + " [" + e@description + "]"
-            kid = ParseCategoryNode(e)
-            kid.Title = e@title
-            kid.Description = e@Description
-            kid.Feed = e@feed
-            o.AddKid(kid)
-        else if name = "specialCategory" then
-            print "specialCategory: " + e@title + " [" + e@description + "]"
-            kid = ParseCategoryNode(e)
-            kid.Title = e@title
-            kid.Description = e@Description
-            kid.sd_img = e@sd_img
-            kid.hd_img = e@hd_img
-            kid.Feed = e@feed
-            o.AddKid(kid)
-        end if
-    next
+    if(xml.GetBody() <> invalid) then
+        for each e in xml.GetBody()
+            if(e <> invalid) then
+                name = e.GetName()
+                if name = "category" then
+                    print "category: " + e@title + " [" + e@description + "]"
+                    kid = ParseCategoryNode(e)
+                    kid.Title = e@title
+                    kid.Description = e@Description
+                    kid.ShortDescriptionLine1 = xml@Description
+                    kid.SDPosterURL = xml@sd_img
+                    kid.HDPosterURL = xml@hd_img
+                    o.AddKid(kid)
+                else if name = "categoryLeaf" then
+                    print "categoryLeaf: " + e@title + " [" + e@description + "]"
+                    kid = ParseCategoryNode(e)
+                    kid.Title = e@title
+                    kid.Description = e@Description
+                    kid.Feed = e@feed
+                    o.AddKid(kid)
+                else if name = "specialCategory" then
+                    print "specialCategory: " + e@title + " [" + e@description + "]"
+                    kid = ParseCategoryNode(e)
+                    kid.Title = e@title
+                    kid.Description = e@Description
+                    kid.sd_img = e@sd_img
+                    kid.hd_img = e@hd_img
+                    kid.Feed = e@feed
+                    o.AddKid(kid)
+                end if
+            end if
+        next
+    end if
 
     return o
 End Function

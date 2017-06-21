@@ -26,6 +26,7 @@ Function OnChangeContent()
     m.gridScreen.setFocus(true)
     m.gridscreen.isLoaded = true
     m.loadingIndicator.visible = true
+    ?"*** OnChangeContent Complete ***"
 End Function
 
 ' Row item selected handler

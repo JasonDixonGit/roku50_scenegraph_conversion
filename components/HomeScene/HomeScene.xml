@@ -8,13 +8,10 @@
         <field id="itemID" type="string" />
 
         <!-- Content for RowLists in GridScreen on Home Scene -->
-        <field id="gridContent" type="node" alias="GridScreen.content" onChange="OnChangeContent"/>
+        <field id="content" type="node" alias="GridScreen.content" onChange="OnChangeContent"/>
 
          <!-- Row item selection handlers -->
-        <field id="rowItemSelected" type="intarray" alwaysNotify="true" alias="GridScreen.rowItemSelected" onChange="OnRowItemSelected"/>
-
-        <!-- Menu item selection handler -->
-        <field id="menuSelected" type="integer" alwaysnotify="true" alias="MenuButton.itemSelected" onChange="OnMenuSelected" />
+        <field id="CategoryListItemSelected" type="intarray" alwaysNotify="true" alias="GridScreen.CategoryListItemSelected" onChange="OnRowItemSelected"/>
 
         <!-- Menu item selection handler -->
         <field id="menuItemSelected" type="integer" alwaysnotify="true" alias="MenuButtons.itemSelected" onChange="OnMenuItemSelected" />

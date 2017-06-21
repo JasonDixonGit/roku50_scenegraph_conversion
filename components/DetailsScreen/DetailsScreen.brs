@@ -19,15 +19,10 @@ End Function
 
 Function setButtonListProperties(m)
 
-    m.buttonsWLF.font               = "font:LargeSystemFont"
-    m.buttonsWLF.font.size          = m.buttonsWLF.font.size + 20
-    m.buttonsWLF.focusedFont        = "font:LargeBoldSystemFont"
-    m.buttonsWLF.focusedFont.size   = m.buttonsWLF.focusedFont.size + 28
-
-    m.buttonsWLT.font               = "font:LargeSystemFont"
-    m.buttonsWLT.font.size          = m.buttonsWLT.font.size + 20
-    m.buttonsWLT.focusedFont        = "font:LargeBoldSystemFont"
-    m.buttonsWLT.focusedFont.size   = m.buttonsWLT.focusedFont.size + 28
+    m.buttons.font               = "font:LargeSystemFont"
+    m.buttons.font.size          = m.buttons.font.size + 20
+    m.buttons.focusedFont        = "font:LargeBoldSystemFont"
+    m.buttons.focusedFont.size   = m.buttons.focusedFont.size + 28
 
 End Function
 

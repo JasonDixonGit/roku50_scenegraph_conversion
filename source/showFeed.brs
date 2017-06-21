@@ -1,3 +1,8 @@
+'**********************************************************
+'**  Video Player Example Application - Show Feed 
+'**  November 2009
+'**  Copyright (c) 2009 Roku Inc. All Rights Reserved.
+'**********************************************************
 
 '******************************************************
 '** Set up the show feed connection object

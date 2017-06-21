@@ -11,7 +11,6 @@ sub RunUserInterface()
 end sub
 
 sub runApp()
-    ?"app running..."
     port = CreateObject("roMessagePort")
     screen = CreateObject("roSGScreen")
     homeScene = screen.CreateScene("HomeScene")
@@ -22,7 +21,7 @@ sub runApp()
     m.global.xfer = CreateObject("roUrlTransfer")
 
     screen.SetMessagePort(port)
-    'screen.Show()
+    screen.Show()
 
     ds   = homeScene.findNode("DetailsScreen")
     es   = homeScene.findNode("ExitScreen")
@@ -48,9 +47,7 @@ sub runApp()
 
     if(m.modelGeneration = 4 or m.modelGeneration > 5) then
         li.imageVisible = true
-        'li.control = "start"'<--- why?'
     end if
-
 
     'set global colors'
     homeScene.globalFocusedColor        = m.focusedColor
@@ -60,20 +57,16 @@ sub runApp()
     'set global font'
     homeScene.globalFontPath = m.appFont
 
-    homeScene.loadingVideoComplete = false
+   'm.landingPageRow = createObject("RoSGNode","ContentNode")
 
-    m.landingPageRow = createObject("RoSGNode","ContentNode")
-
-    homeScene.loadingVideoComplete = true
-
-    list0 = [{
-                ContentList : m.landingPageRow
-            }]
+ ''  list0 = [{
+ ''              ContentList : m.landingPageRow
+ ''          }]
 
     'initCategoryList()
     'screen.SetContentList(m.Categories.Kids)
-    
-    homeScene.gridContent0 = GridRowFactory().SetGridscreenContent(list0)
+    m.landingPageRow = GridRowFactory().SetGridscreenContent()'GridRowFactory().SetGridscreenContent(list0)
+    homeScene.content = m.landingPageRow
 
     while true
         msg = wait(0, port)
@@ -151,56 +144,15 @@ sub runApp()
                     end if
 
 
-                    if(isArray(thisContent.sceneList) = false) then
-                        'set flag for no-scenes-button-list on details screen'
-                        ds.movieHasScenes = false
 
-                        if(useResumeButtonset = true) then
-
-                            ds.buttonConfig = 0
-
-                            buttonList0 = ["Resume", "Restart", "Remove"]
-                            ds.buttonsWLTContent = ButtonListFactory().BuildButtonList(buttonList0)
-
-                            buttonList1 = ["Resume", "Restart", "Watch Later"]
-                            ds.buttonsWLFContent = ButtonListFactory().BuildButtonList(buttonList1)
-
-                        else
-                            ds.buttonConfig = 1
-
-                            buttonList0 = ["Preview", "Play", "Remove"]
-                            ds.buttonsWLTContent = ButtonListFactory().BuildButtonList(buttonList0)
-
-                            buttonList1 = ["Preview", "Play", "Watch Later"]
-                            ds.buttonsWLFContent = ButtonListFactory().BuildButtonList(buttonList1)
-
-                        end if
-
+                    if(useResumeButtonset = true) then
+                        ds.buttonConfig = 0
+                        buttonList = ["Resume", "Restart"]
+                        ds.buttonsContent = ButtonListFactory().BuildButtonList(buttonList)
                     else
-                        'set flag for scenes-button-list on details screen'
-                        ds.movieHasScenes = true
-
-                        if(useResumeButtonset = true) then
-                            ds.buttonConfig = 0
-
-                            buttonList2 = ["Resume", "Restart", "Remove", "View Scenes"]
-                            ds.buttonsWLTContent = ButtonListFactory().BuildButtonList(buttonList2)
-                            
-                            buttonList3 = ["Resume", "Restart", "Watch Later", "View Scenes"]
-                            ds.buttonsWLFContent = ButtonListFactory().BuildButtonList(buttonList3)
-
-                        else
-                            ds.buttonConfig = 1
-
-                            buttonList2 = ["Preview", "Play", "Remove", "View Scenes"]
-                            ds.buttonsWLTContent = ButtonListFactory().BuildButtonList(buttonList2)
-                            
-                            buttonList3 = ["Preview", "Play", "Watch Later", "View Scenes"]
-                            ds.buttonsWLFContent = ButtonListFactory().BuildButtonList(buttonList3)
-
-                        end if
-
-                        homeScene.sceneListContent = GridRowFactory().GetSceneList(thisContent.sceneList)                   
+                        ds.buttonConfig = 1
+                        buttonList = ["Play"]
+                        ds.buttonsContent = ButtonListFactory().BuildButtonList(buttonList)
                     end if
 
                     ds.ready = true

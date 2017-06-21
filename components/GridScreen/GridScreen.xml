@@ -1,30 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<component name="GridScreen" extends="Group" initialFocus="RowList0">
+<component name="GridScreen" extends="Group" initialFocus="CategoryList">
     <interface>
 
         <!-- Grid Content Nodes For Each Row -->
-        <field id="content0" type="node" alias="RowList0.content" onChange="onContentChange"/>
-        <field id="content1" type="node" alias="RowList1.content" onChange="onContentChange"/>
-        <field id="content2" type="node" alias="RowList2.content" onChange="onContentChange"/>
-        <field id="content3" type="node" alias="RowList3.content" onChange="onContentChange"/>
-
-        <field id="sceneContent" type="node" />
-
-        <!-- Button press handler -->
-        <field id="menuSelected" type="integer" alwaysnotify="true" alias="MenuButton.itemSelected" />
+        <field id="content" type="node" alias="CategoryList.content" onChange="onContentChange"/>
 
         <!-- Row item selection handlers -->
-        <field id="row0ItemSelected" type="intarray" alwaysnotify="true" alias="RowList0.rowItemSelected"/>
-        <field id="row1ItemSelected" type="intarray" alwaysnotify="true" alias="RowList1.rowItemSelected"/>
-        <field id="row2ItemSelected" type="intarray" alwaysnotify="true" alias="RowList2.rowItemSelected"/>
-        <field id="row3ItemSelected" type="intarray" alwaysnotify="true" alias="RowList3.rowItemSelected"/>
+        <field id="CategoryListItemSelected" type="intarray" alwaysnotify="true" alias="CategoryList.rowItemSelected"/>
 
         <!-- Row item focused handler 2 -->
-        <field id="itemFocused0" type="intarray" alias="RowList0.rowItemFocused" />
-        <field id="itemFocused1" type="intarray" alias="RowList1.rowItemFocused" />
-        <field id="itemFocused2" type="intarray" alias="RowList2.rowItemFocused" />
-        <field id="itemFocused3" type="intarray" alias="RowList3.rowItemFocused" />
+        <field id="itemFocused" type="intarray" alias="CategoryList.rowItemFocused" />
 
         <!-- Row item focused handler -->
         <field id="lastItemFocus" type="intarray"/>
@@ -37,18 +23,10 @@
         
 
         <!-- secondaryColor settings -->
-        <field id="row0LabelColor" type="string" alias="RowList0.rowLabelColor"/>
-        <field id="row1LabelColor" type="string" alias="RowList1.rowLabelColor"/>
-        <field id="row2LabelColor" type="string" alias="RowList2.rowLabelColor"/>
-        <field id="row3LabelColor" type="string" alias="RowList3.rowLabelColor"/>
-        <field id="labelColor" type="string" alias="MenuButton.focusedColor"/>
+        <field id="CategoryListLabelColor" type="string" alias="CategoryList.rowLabelColor"/>
 
         <!-- global font -->
         <field id="font" type="string" />
-
-        <!-- visibility indicators -->
-        <field id="MenuLabelVisibility" type="string" alwaysnotify="true" alias="MenuButton.visible" />
-        <!--field id="starIconVisibility" type="string" alwaysnotify="true" alias="starIcon.visible" />-->
 
     </interface>
 
@@ -67,7 +45,7 @@
         />
 
         <RowList
-            id="RowList0"
+            id="CategoryList"
             focusBitmapUri="pkg:/images/focus_button.9.png"
             translation="[-80, 350]"
             itemSize="[1400, 708]"
@@ -84,64 +62,6 @@
             showRowCounter="true"
             rowLabelOffset="[[148, 20]]"
         />
-
-         <RowList
-            id="RowList1"
-            focusBitmapUri="pkg:/images/focus_button.9.png"
-            translation="[-80, 350]"
-            itemSize="[1400, 708]"
-            numRows="1"
-            itemSpacing="[20, 0]"
-            focusXOffset="[148]"
-            vertFocusAnimationStyle="fixedFocus"
-            rowFocusAnimationStyle="fixedFocusWrap"
-            rowItemSize="[[184, 262]]"
-            rowItemSpacing="[[22, 2]]"
-            rowLabelFont="font:LargeSystemFont"
-            showRowLabel="true"
-            rowLabelColor="0xFFFFFFFF"
-            showRowCounter="true"
-            rowLabelOffset="[[148, 20]]"
-        />
-
-        <RowList
-            id="RowList2"
-            focusBitmapUri="pkg:/images/focus_button.9.png"
-            translation="[-80, 350]"
-            itemSize="[1400, 708]"
-            numRows="1"
-            itemSpacing="[20, 0]"
-            focusXOffset="[148]"
-            vertFocusAnimationStyle="fixedFocus"
-            rowFocusAnimationStyle="fixedFocusWrap"
-            rowItemSize="[[262,184]]"            
-            rowItemSpacing="[[22, 2]]"
-            rowLabelFont="font:LargeSystemFont"
-            showRowLabel="true"
-            rowLabelColor="0xFFFFFFFF"
-            showRowCounter="true"
-            rowLabelOffset="[[148, 20]]"
-        />
-
-        <RowList
-            id="RowList3"
-            focusBitmapUri="pkg:/images/focus_button.9.png"
-            translation="[-80, 350]"
-            itemSize="[1400, 708]"
-            numRows="1"
-            itemSpacing="[20, 0]"
-            focusXOffset="[148]"
-            vertFocusAnimationStyle="fixedFocus"
-            rowFocusAnimationStyle="fixedFocusWrap"
-            rowItemSize="[[184, 262]]"
-            rowItemSpacing="[[22, 2]]"
-            rowLabelFont="font:LargeSystemFont"
-            showRowLabel="true"
-            rowLabelColor="0xFFFFFFFF"
-            showRowCounter="true"
-            rowLabelOffset="[[148, 20]]"
-        />
-
 
         <Poster
             translation="[0, 650]"
@@ -155,25 +75,6 @@
             translation="[65, 120]"
             itemSpacings="[7,17]"
         />
-
-        <LabelList
-            id = "MenuButton"
-            vertFocusAnimationStyle = "floatingFocus"
-            drawFocusFeedback = "true"
-            drawFocusFeedbackOnTop = "false"
-            focusBitmapUri = "pkg:/Images/focus_button.9.png"
-            focusFootprintBitmapUri="pkg:/Images/focus_empty_square.png"
-            color = "0xFFFFFFFF"
-            focusedColor = "0xE40090FF"
-            textHorizAlign = "left"
-            itemSize = "[140, 50]"
-            translation = "[1040, 40]"
-            itemSpacing = "[0,10]">
-
-            <ContentNode role = "content">
-                <ContentNode title = " Menu" />
-            </ContentNode>
-        </LabelList>
 
     </children>
 </component>
