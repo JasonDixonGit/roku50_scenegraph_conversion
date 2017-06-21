@@ -54,7 +54,7 @@
     <field id="imageVisible" type="boolean" alias="image.visible" />
 </interface>
 
-<script type="text/brightscript" uri="pkg:/components/screens/LoadingIndicator/LoadingIndicator.brs"/>
+<script type="text/brightscript" uri="pkg:/components/LoadingIndicator/LoadingIndicator.brs"/>
 
 <children>
     <Group

@@ -20,7 +20,7 @@
     </interface>
 
     <!-- main handler -->
-    <script type="text/brightscript" uri="pkg:/components/screens/ExitScreen/ExitScreen.brs" />
+    <script type="text/brightscript" uri="pkg:/components/ExitScreen/ExitScreen.brs" />
 
     <children>
 

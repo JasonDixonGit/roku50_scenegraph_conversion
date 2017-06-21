@@ -26,7 +26,7 @@
     </interface>
     
     <!-- main handler -->
-    <script type="text/brightscript" uri="pkg:/components/screens/Description/Description.brs" />
+    <script type="text/brightscript" uri="pkg:/components/Description/Description.brs" />
     
     <children>
         

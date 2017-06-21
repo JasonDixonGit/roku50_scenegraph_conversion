@@ -137,6 +137,15 @@ Function GetProductDetail(content, origin, itemID)
     return productDetail
 end Function
 
+Function SetGridscreenContent(list)
+    initCategoryList()
+    m.Categories = conn.LoadCategoryFeed(conn)
+    m.CategoryNames = conn.GetCategoryNames(m.Categories)
+    PrintAny(0, "", m.Categories)
+    ?"=============================================="
+    PrintAny(0, "", m.CategoryNames)
+
+end Function
 '************************************************************
 '** initialize the category tree.  We fetch a category list
 '** from the server, parse it into a hierarchy of nodes and

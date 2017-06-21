@@ -37,7 +37,7 @@
     </interface>
 
     <!-- Main Scenegraph thread handler -->
-    <script type="text/brightscript" uri="pkg:/components/screens/HomeScene/HomeScene.brs" />
+    <script type="text/brightscript" uri="pkg:/components/HomeScene/HomeScene.brs" />
 
     <!-- rendevous to Main App thread -->
     <script type="text/brightscript" uri="pkg:/source/main.brs" />

@@ -3,12 +3,9 @@ Function initSiteSpecificSettings()
     
     m.BaseUrlAnalytics              = "roku.cs50.com"
     m.TrackingPrefix                = ""
-    m.SiteName                      = "Elegant Angel"
+    m.SiteName                      = "cs50"
     m.GoogleUA                      = "UA-54914523-54"
-    m.RegistryKeyName               = "EAAuth"
-
-
-    m.MP4StreamingServers           = getStreamingServersURL(m.SiteCode, m.BaseUrl)
+    m.RegistryKeyName               = "cs50"
 
     m.primaryColor                  = "#f1f1f1"
     m.secondaryColor                = "#E40090" 

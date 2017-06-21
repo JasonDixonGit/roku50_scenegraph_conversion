@@ -13,7 +13,7 @@
     </interface>
 
     <!-- main handler -->
-    <script type="text/brightscript" uri="pkg:/components/screens/MenuScreen/MenuScreen.brs" />
+    <script type="text/brightscript" uri="pkg:/components/MenuScreen/MenuScreen.brs" />
 
     <children>
         <Poster

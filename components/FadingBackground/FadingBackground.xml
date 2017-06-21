@@ -16,7 +16,7 @@ FadingBackground - Background for all nodes. It is basically poster that gets pi
     </interface>
 
     <!-- main handler -->
-    <script type="text/brightscript" uri="pkg:/components/screens/FadingBackground/FadingBackground.brs" />
+    <script type="text/brightscript" uri="pkg:/components/FadingBackground/FadingBackground.brs" />
 
     <children>
         <Rectangle

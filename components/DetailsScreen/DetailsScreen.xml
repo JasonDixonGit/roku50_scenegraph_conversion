@@ -57,7 +57,7 @@
     </interface>
     
     <!-- main handler -->
-    <script type="text/brightscript" uri="pkg:/components/screens/DetailsScreen/DetailsScreen.brs" />
+    <script type="text/brightscript" uri="pkg:/components/DetailsScreen/DetailsScreen.brs" />
 
     <script type="text/brightscript" uri="pkg:/source/main.brs" />
 

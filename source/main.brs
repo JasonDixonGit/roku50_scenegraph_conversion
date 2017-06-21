@@ -2,27 +2,27 @@ sub RunUserInterface()
     m.device = CreateObject("roDeviceInfo")
     m.maxWidth = m.device.GetDisplaySize().w
 
-    m.modelGeneration = getModelGeneration(m.device.getModel())
+    m.modelGeneration = 6'getModelGeneration(m.device.getModel())
 
     initSiteSpecificSettings()
-    InitGATracker(m.GoogleUA, m.BaseUrlAnalytics)
+    'InitGATracker(m.GoogleUA, m.BaseUrlAnalytics)
     'skip login thread if already logged in'
     runApp()
 end sub
 
 sub runApp()
-
+    ?"app running..."
     port = CreateObject("roMessagePort")
     screen = CreateObject("roSGScreen")
     homeScene = screen.CreateScene("HomeScene")
-    GATrackPageView("Home", "home")
+    ''GATrackPageView("Home", "home")
 
     m.global = screen.getGlobalNode()
     m.global.id = "GlobalNode"
     m.global.xfer = CreateObject("roUrlTransfer")
 
     screen.SetMessagePort(port)
-    screen.Show()
+    'screen.Show()
 
     ds   = homeScene.findNode("DetailsScreen")
     es   = homeScene.findNode("ExitScreen")
@@ -119,7 +119,7 @@ sub runApp()
                     end if
 
                     if(title <> previousTitle) then
-                        GATrackPageView("Movie Detail Page Viewed", title)
+                        'GATrackPageView("Movie Detail Page Viewed", title)
                     end if
                     previousTitle = title
 
@@ -208,7 +208,7 @@ sub runApp()
                 end if
            
             else if(msg.getNode() = "DetailsScreen" AND msg.getField() = "moviePlayed") then
-                GATrackPageView("Movie Watched: ", ds.moviePlayed)
+                'GATrackPageView("Movie Watched: ", ds.moviePlayed)
 
             end if
         end if
