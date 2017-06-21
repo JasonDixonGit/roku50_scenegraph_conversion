@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- main node which handles home screen children -->
+<component name="HomeScene" extends="Scene">
+
+    <interface>
+
+        <field id="itemID" type="string" />
+
+        <!-- Content for RowLists in GridScreen on Home Scene -->
+        <field id="gridContent0" type="node" alias="GridScreen.content0" />
+        <field id="gridContent1" type="node" alias="GridScreen.content1" />
+        <field id="gridContent2" type="node" alias="GridScreen.content2" />
+        <field id="gridContent3" type="node" alias="GridScreen.content3" onChange="OnChangeContent"/>
+
+         <!-- Row item selection handlers -->
+        <field id="row0ItemSelected" type="intarray" alwaysNotify="true" alias="GridScreen.row0ItemSelected" onChange="OnSceneClipItemSelected"/>
+        <field id="row1ItemSelected" type="intarray" alwaysNotify="true" alias="GridScreen.row1ItemSelected" onChange="OnRowItemSelected"/>
+        <field id="row2ItemSelected" type="intarray" alwaysNotify="true" alias="GridScreen.row2ItemSelected" onChange="OnSceneClipItemSelected"/>
+        <field id="row3ItemSelected" type="intarray" alwaysNotify="true" alias="GridScreen.row3ItemSelected" onChange="OnGridscreenPerformerRowItemSelected"/>
+
+        <!-- content for rowlist in SceneGridScreen -->
+        <field id="sceneListContent" type="node" alias="ScenesGridScreen.content" onChange="OnSceneListChangeContent" />
+        
+        <!-- Row item selection handler -->
+        <field id="sceneItemSelected" type="intarray" alwaysnotify="true" alias="ScenesRowList.rowItemSelected" onChange="OnSceneItemSelected"/>
+
+        <!-- WatchLater Row item selection handler -->
+        <field id="watchLaterRowItemSelected" type="intarray" alwaysnotify="true" alias="WLMovieRowList.rowItemSelected" onChange="OnWatchLaterRowItemSelected"/>
+        <field id="watchlaterSceneSelected" type="intarray" alwaysnotify="true" alias="WLSceneRowList.rowItemSelected" onChange="OnWatchLaterSceneSelected"/>
+
+        <!-- Row item selection handler -->
+        <field id="browsePerformerRowItemSelected" type="intarray" alwaysnotify="true" alias="BrowsePerformersRowList.rowItemSelected" onChange="OnBrowsePerformerItemSelected"/>
+
+        <!-- movie category item selection handler -->
+        <field id="MovieCategoryItemSelected" type="intarray" alwaysnotify="true" alias="MovieRowList.rowItemSelected" onChange="OnMovieCategoryItemSelected"/>
+        <field id="SceneTagItemSelected" type="intarray" alwaysnotify="true" alias="SceneRowList.rowItemSelected" onChange="OnSceneTagItemSelected"/>
+        
+        <!-- comment out either of these depending on browse screen requirements -->
+        <field id="movieCategorySelected" type="integer" alwaysnotify="true" alias="MovieCategoryLabelList.itemSelected" onChange="OnMovieCategorySelected"/>
+        <field id="sceneTagSelected" type="integer" alwaysnotify="true" alias="SceneTagLabelList.itemSelected" onChange="OnSceneTagSelected"/>
+        
+        <!-- browse lists configuration setting 1 == categories and scenetags, 2 == categories only, 3 == scenetags only -->
+        <field id="browseScreenConfigSetting" type="integer" />
+
+        <!-- Content for RowList in BrowseScreen -->
+        <field id="performerContent" type="node" alias="PerformerGridScreen.content" onChange="" />
+        <field id="performerSceneContent" type="node" alias="PerformerGridScreen.sceneContent" onChange=""/>
+
+        <!-- Row item selection handler -->
+        <field id="performerRowItemSelected" type="intarray" alwaysnotify="true" alias="PerformerRowList.rowItemSelected" onChange="OnPerformerRowItemSelected"/>
+        <field id="performerSceneItemSelected" type="intarray" alwaysnotify="true" alias="PerformerSceneRowList.rowItemSelected" onChange="OnPerformerSceneItemSelected"/>
+        
+        <field id="literalSearchItemSelected" type="intarray" alwaysnotify="true" alias="LiteralSearchRowList.rowItemSelected" onChange="OnLiteralSearchItemSelected"/>
+
+        <!-- view scenes button observer -->
+        <field id="viewScenes" type="boolean" alwaysnotify="true" alias="DetailsScreen.viewScenes" onChange="OnViewSceneListChange" />
+
+        <!-- literal search button observer -->
+        <field id="viewLiteralSearchResults" type="boolean" alwaysnotify="true" alias="SearchScreen.viewLiteralSearchResults" OnChange="OnViewLiteralSearchResults" />
+
+        <!-- Menu item selection handler -->
+        <field id="menuSelected" type="integer" alwaysnotify="true" alias="MenuButton.itemSelected" onChange="OnMenuSelected" />
+
+        <!-- Menu item selection handler -->
+        <field id="menuItemSelected" type="integer" alwaysnotify="true" alias="MenuButtons.itemSelected" onChange="OnMenuItemSelected" />
+
+        <!-- Settings item selection handler -->
+        <field id="settingsItemSelected" type="integer" alwaysnotify="true" alias="SettingsButtons.itemSelected" onChange="OnSettingsItemSelected" />
+
+        <!-- Parental Control Button Listener -->
+        <field id="parentalControlButtonSelected" type="integer" alwaysnotify="true" alias="ParentalControlButtons.itemSelected" onChange="OnParentalControlButtonSelected" />
+
+        <!-- ParentalPin Button Listener -->
+        <field id="parentalPinButtonSelected" type="integer" alwaysnotify="true" alias="PCPinButtons.itemSelected" onChange="OnParentalPinPadButtonSelected" />
+
+        <!-- number of current search suggestions shown in window. Current max value is 6 -->
+        <field id="numberOfSearchResults" type="integer" alwaysnotify="true" alias="SearchScreen.numberOfSearchResults" />
+
+        <!-- itemID of search suggestion selected -->
+        <field id="searchItemIndexSelected" type="Integer" alwaysnotify="true" alias="resultsList.itemSelected" onChange="onSearchResultSelected" />
+
+        <!-- Browse List Selector -->
+        <field id="browseListItemFocused" type="Integer" alwaysnotify="true" alias="BrowseListRowList.itemFocused" onChange="OnBrowseListItemFocused" />
+
+        <!-- full item selected from search suggestion list -->
+        <field id="fullItem" type="string" />
+
+        <!-- parentalPin set flag -->
+        <field id="newParentalPinSet" type="boolean" />
+
+        <!-- cancel exit flag -->
+        <field id="cancelFlag" type="boolean" alwaysnotify="true" alias="ExitScreen.cancelFlag" onChange="OnCancelFlagChange" />
+
+        <!-- loading screen complete -->
+        <field id="loadingVideoComplete" type="boolean" alwaysnotify="true" onChange="OnLoadingVideoComplete"/>
+
+        <!-- logo visibile flag -->
+        <field id="logoVisiblity" type="string" alwaysnotify="true" alias="logo.visible" />
+
+        <!-- global secondarycolor setting -->
+        <field id="globalSecondaryColor" type="string" />
+
+        <!-- global focusedColor setting -->
+        <field id="globalFocusedColor" type="string" />
+
+        <!-- global video player bar color -->
+        <field id="globalVideoPlayerBarColor" type="string" />
+
+        <!-- global font path -->
+        <field id="globalFontPath" type="string" />
+
+    </interface>
+
+    <!-- Main Scenegraph thread handler -->
+    <script type="text/brightscript" uri="pkg:/components/screens/HomeScene/HomeScene.brs" />
+
+    <!-- rendevous to Main App thread -->
+    <script type="text/brightscript" uri="pkg:/source/main.brs" />
+
+    <children>
+
+        <!-- Grid screen with RowList on Home Scene -->
+        <GridScreen
+            id="GridScreen"
+            visible="true"
+            translation="[0,0]"
+        />
+
+
+        <!-- Overhang logo -->
+        <Poster
+            id="logo"
+            translation="[65, 36]"
+            uri="pkg:/images/overhangLogo.png"
+            width="321"
+            height="56"
+            visible="false"
+        />
+
+        <!-- Menu screen -->
+        <MenuScreen
+            id="MenuScreen"
+            visible="false"
+        />
+
+        <!-- MyLists GridScreen -->
+        <MyListsScreen
+            id="MyListsScreen"
+            visible="false"
+            translation="[0,0]"
+        />
+
+        <!-- Search/Keyboard Screen -->
+        <SearchScreen
+            id="SearchScreen"
+            visible="false"
+            translation="[0,0]"
+        />
+
+        <!-- LiteralSearchScreen results screen -->
+        <LiteralSearchScreen
+            id="LiteralSearchScreen"
+            visible="false"
+            translation="[0,0]"
+        />
+
+        <!-- Browse GridScreen -->
+        <BrowseScreen
+            id="BrowseScreen"
+            visible="false"
+            translation="[0,0]"
+        />
+
+        <!-- Browse Performer GridScreen -->
+        <BrowsePerformersScreen
+            id="BrowsePerformersScreen"
+            visible="false"
+            translation="[0,0]"
+        />
+
+        <!-- movies categories screen -->
+        <MoviesByCategory
+            id="MovieCategoriesScreen"
+            visible="false"
+            translation="[0,0]"
+        />
+
+        <!-- scene tags screen -->
+        <SceneTagsScreen
+            id="SceneTagsScreen"
+            visible="false"
+            translation="[0,0]"
+        />
+
+        <!-- Performer GridScreen -->
+        <PerformerGridScreen
+            id="PerformerGridScreen"
+            visible="false"
+            translation="[0,0]"
+        />
+
+        <!-- Settings Buttons Screen -->
+        <SettingsScreen
+            id="SettingsScreen"
+            visible="false"
+            translation="[0,0]"
+        />
+
+         <!-- FeedbackAndSupportScreen -->
+        <FeedbackAndSupportScreen
+            id="FeedbackAndSupportScreen"
+            visible="false"
+            translation="[0,0]"
+        />
+
+        <!-- LegalNoticesScreen -->
+        <LegalNoticesScreen
+            id="LegalNoticesScreen"
+            visible="false"
+            translation="[0,0]"
+        />
+
+        <!-- ParentalControlScreen -->
+        <ParentalControlScreen
+            id="ParentalControlScreen"
+            visible="false"
+            translation="[0,0]"
+        />
+
+        <!-- SceneList GridScreen -->
+        <ScenesGridScreen
+            id="ScenesGridScreen"
+            visible="false"
+            translation="[0,0]"
+        />
+
+        <!-- SceneDetails screen -->
+        <SceneDetailsScreen
+            id="SceneDetailsScreen"
+            visible="false"
+        />
+
+        <!-- Details screen -->
+        <DetailsScreen
+            id="DetailsScreen"
+            visible="false"
+        />
+
+        <Video
+          id="VideoPlayer"
+          width="1280"
+          height="720"
+          translation="[0,0]"
+          visible="true"
+        />
+
+        <!-- exit screen -->
+        <ExitScreen
+            id="ExitScreen"
+            visible="false"
+        />
+
+        <!-- Parental Pin Screen -->
+        <ParentalPin
+            id="ParentalPin"
+            visible="false"
+            translation="[0,0]"
+        />
+
+        <!-- rotating loading indicator -->
+        <LoadingIndicator
+            id="loadingIndicator"
+            imageUri="pkg:/components/screens/LoadingIndicator/smoothloader.png"
+            clockwise="false"
+            spinInterval="1.5"
+            fadeInterval="0.25"
+            spacing="20"
+            imageWidth="100"
+            text="Loading..."
+            width="1280"
+            height="720"
+            centered="false"
+            translation="[0, 0]"
+            textPadding="10"
+            font="font:SmallBoldSystemFont"
+            backgroundColor="0x000000"
+            backgroundOpacity="0"
+        />
+
+
+    </children>
+</component>

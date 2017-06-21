@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="MenuScreen" extends="Group" initialFocus="MenuButtons">
+
+    <interface>
+        <!-- Button press handler -->
+        <!--field id="menuItemSelected" type="integer" alwaysnotify="true" alias="MenuButtons.itemSelected" onChange="OnMenuItemSelected" />-->
+        <!-- focusedColor setting -->
+        <field id="buttonsFocusedColor" type="string" alias="MenuButtons.focusedColor"/>
+
+        <!-- font path -->
+        <field id="font" type="string"/>
+    </interface>
+
+    <!-- main handler -->
+    <script type="text/brightscript" uri="pkg:/components/screens/MenuScreen/MenuScreen.brs" />
+
+    <children>
+        <Poster
+            translation="[0,0]"
+            uri="pkg:/images/menu_background1.jpg"
+            width="1280"
+            height="720"
+        />
+
+        <Rectangle
+            translation="[0,0]"
+            width="1280"
+            height="720"
+            color="0x000000"
+            opacity="0.72"
+        />
+
+        <!-- Menu buttons -->
+        <LabelList
+            id = "MenuButtons"
+            vertFocusAnimationStyle = "floatingFocus"
+            drawFocusFeedback = "true"
+            drawFocusFeedbackOnTop = "false"
+            focusBitmapUri = "pkg:/Images/focus_button.9.png"
+            focusFootprintBitmapUri="pkg:/Images/focus_empty_square.png"           
+            color = "0xFFFFFFFF"
+            focusedColor = "0xE40090FF"
+            textHorizAlign = "left"
+            translation = "[750,100]"
+            itemSize = "[330, 80]"
+            itemSpacing = "[0,40]">
+
+            <ContentNode role = "content">
+                <ContentNode title = " Watch Later" />
+                <ContentNode title = " Search"   />
+                <ContentNode title = " Browse"   />
+                <ContentNode title = " Performers" />
+                <ContentNode title = " Settings" />
+            </ContentNode>
+
+        </LabelList>
+
+        <!-- Overhang -->
+        <Poster
+            translation="[65, 36]"
+            uri="pkg:/images/overhangLogo.png"
+            width="321"
+            height="56"
+        />
+
+    </children>
+</component>
