@@ -70,7 +70,9 @@ sub runApp()
                 ContentList : m.landingPageRow
             }]
 
-
+    'initCategoryList()
+    'screen.SetContentList(m.Categories.Kids)
+    
     homeScene.gridContent0 = GridRowFactory().SetGridscreenContent(list0)
 
     while true

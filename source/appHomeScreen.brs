@@ -97,18 +97,4 @@ Function displaySpecialCategoryScreen() As Dynamic
     return 0
 End Function
 
-'************************************************************
-'** initialize the category tree.  We fetch a category list
-'** from the server, parse it into a hierarchy of nodes and
-'** then use this to build the home screen and pass to child
-'** screen in the heirarchy. Each node terminates at a list
-'** of content for the sub-category describing individual videos
-'************************************************************
-Function initCategoryList() As Void
 
-    conn = InitCategoryFeedConnection()
-
-    m.Categories = conn.LoadCategoryFeed(conn)
-    m.CategoryNames = conn.GetCategoryNames(m.Categories)
-
-End Function
