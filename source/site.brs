@@ -10,12 +10,12 @@ Function initSiteSpecificSettings()
 
     m.MP4StreamingServers           = getStreamingServersURL(m.SiteCode, m.BaseUrl)
 
-    m.primaryColor                  = "#ffffff"
+    m.primaryColor                  = "#f1f1f1"
     m.secondaryColor                = "#E40090" 
-    m.focusedColor                  = "#E40090"
+    m.focusedColor                  = "#ffffff"
     m.videoPlayerBarColor           = "0xE40090FF" 
     m.shadeColor                    = "200"
-    m.appFont                       = "pkg:/fonts/Helvetica.ttf"
+    m.appFont                       = "pkg:/fonts/SourceSansPro-Light.ttf"
 
     ' Theme
     m.theme = CreateObject("roAssociativeArray")

@@ -1,0 +1,3 @@
+font: Source Sans Pro
+https://fonts.google.com/specimen/Source+Sans+Pro?selection.family=Source+Sans+Pro
+Light or regular, there is also "Extra-Light"
