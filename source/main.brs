@@ -64,7 +64,6 @@ sub runApp()
 
     m.landingPageRow = createObject("RoSGNode","ContentNode")
 
-
     homeScene.loadingVideoComplete = true
 
     list0 = [{

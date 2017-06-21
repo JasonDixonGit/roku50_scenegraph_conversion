@@ -4,8 +4,7 @@
 
     <interface>
         <!-- Button press handler -->
-        <field id="itemSelected0" type="integer" alwaysnotify="true" alias="ButtonsWatchLaterFalse.itemSelected" onChange="onItemSelected" />
-        <field id="itemSelected1" type="integer" alwaysnotify="true" alias="ButtonsWatchLaterTrue.itemSelected" onChange="onItemSelected" />
+        <field id="itemSelected" type="integer" alwaysnotify="true" alias="Buttons.itemSelected" onChange="onItemSelected" />
 
         <!-- Playback flag -->
         <field id="videoPlayerVisible" type="bool" alwaysnotify="true" alias="VideoPlayer.visible"  onChange="onVideoVisibleChange" />
@@ -16,30 +15,16 @@
         <field id="content" type="node" alwaysnotify="true" onChange="OnContentChange" />
 
         <!-- buttonlist content node -->
-        <field id="buttonsWLFContent" type="node" alias="ButtonsWatchLaterFalse.content" />
-        <field id="buttonsWLTContent" type="node" alias="ButtonsWatchLaterTrue.content" />
+        <field id="buttonsContent" type="node" alias="Buttons.content" />
 
         <!-- tracks where DetailsScreen was launched from, so on back button press app returns to correct page -->
         <field id="origin" type="string" />
 
-        <!-- observable field to detect view scenes button click -->
-        <field id="viewScenes" type="boolean" alwaysnotify="true"/>
-
         <!-- wtf is this? I've forgotten now -->
         <field id = "uri" type = "uri" />
 
-        <!-- temp content vars -->
-        <field id="preview" type="boolean" />
-        <field id="previewURL" type="string" />
-        <field id="movieURL" type="string" />
-        <field id="hdbifurl" type="string" />
-        <field id="sdbifurl" type="string" />
-
-        <!-- ItemID. You really need this -->
+        <!-- ItemID -->
         <field id="itemID" type="string" />
-
-        <!-- watchlater flag -->
-        <field id="isWatchlater" type="boolean" />
 
         <!-- playback position markers -->
         <field id="markPlaybackPosition" type="string" />
@@ -60,17 +45,8 @@
         <!-- stops user from playing video before content data / video stream is loaded -->
         <field id="readyToExit" type="boolean" />
 
-        <!-- preview stream type -->
-        <field id="previewFormat" type="string" />
-
-        <!-- hasScenes flag to toggle button set -->
-        <field id="movieHasScenes" type="boolean" />
-
         <!-- focusedColor setting -->
-        <field id="buttons1FocusedColor" type="string" alias="ButtonsWatchLaterFalse.focusedColor"/>
-
-        <!-- focusedColor setting -->
-        <field id="buttons2FocusedColor" type="string" alias="ButtonsWatchLaterTrue.focusedColor"/>
+        <field id="buttonsFocusedColor" type="string" alias="Buttons.focusedColor"/>
 
         <!-- video player secondary colors -->
         <field id="VideoPlayerColor" type="string" />
@@ -92,24 +68,24 @@
             id="Background"
             width="1280"
             height="720"
-            />
+         />
+         
         <Rectangle
             translation="[0,0]"
             width="1280"
             height="720"
             color="0x000000"
             opacity="0.72"
-            />
+        />
 
         <!-- Control buttons -->
         <LabelList
-            id = "ButtonsWatchLaterFalse"
+            id = "Buttons"
             vertFocusAnimationStyle = "floatingFocus"
             drawFocusFeedback = "true"
             drawFocusFeedbackOnTop = "false"
-            focusBitmapUri = "pkg:/Images/focus_button.9.png"
             color = "0xFFFFFFFF"
-            focusedColor = "0xE40090FF"
+            focusedColor = "0xF1F1F1FF"
             textHorizAlign = "left"
             translation = "[825,120]"
             itemSize = "[320, 75]"
@@ -121,32 +97,6 @@
 
         </LabelList>
 
-        <LabelList
-            id = "ButtonsWatchLaterTrue"
-            vertFocusAnimationStyle = "floatingFocus"
-            drawFocusFeedback = "true"
-            drawFocusFeedbackOnTop = "false"
-            focusBitmapUri = "pkg:/Images/focus_button.9.png"
-            color = "0xFFFFFFFF"
-            focusedColor = "0xE40090FF"
-            textHorizAlign = "left"
-            translation = "[825,120]"
-            itemSize = "[320, 75]"
-            itemSpacing = "[0,20]">
-
-            <ContentNode role = "content" >
-
-          </ContentNode>
-
-        </LabelList>
-
-        <!-- Black hud at bottom of the Details Screen
-        <Rectangle
-            id="testRectangle"
-            color="0x0000007F"
-            width="1280"
-            height="251"
-            translation="[0, 462]"  />-->
 
         <!-- Item description -->
         <Description
@@ -160,16 +110,8 @@
         <Poster
             id="Poster"
             translation="[66, 396]"
-            width="185"
-            height="262"
-        />
-
-        <!-- Overhang -->
-        <Poster
- 	        translation="[65, 36]"
-                uri="pkg:/images/overhangLogo.png"
-            width="321"
-            height="56"
+            width="262"
+            height="185"
         />
 
         <!-- Playback node -->
@@ -178,8 +120,7 @@
             visible="false"
             translation="[0, 0]"
             width="1280"
-            height="720"
-            
+            height="720"  
         />
 
     </children>

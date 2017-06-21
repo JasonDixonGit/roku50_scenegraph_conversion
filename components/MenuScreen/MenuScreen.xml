@@ -18,7 +18,7 @@
     <children>
         <Poster
             translation="[0,0]"
-            uri="pkg:/images/menu_background1.jpg"
+            uri="pkg:/images/menu_background.jpg"
             width="1280"
             height="720"
         />
@@ -36,22 +36,16 @@
             id = "MenuButtons"
             vertFocusAnimationStyle = "floatingFocus"
             drawFocusFeedback = "true"
-            drawFocusFeedbackOnTop = "false"
-            focusBitmapUri = "pkg:/Images/focus_button.9.png"
-            focusFootprintBitmapUri="pkg:/Images/focus_empty_square.png"           
+            drawFocusFeedbackOnTop = "false"          
             color = "0xFFFFFFFF"
-            focusedColor = "0xE40090FF"
+            focusedColor = "0xF1F1F1FF"
             textHorizAlign = "left"
             translation = "[750,100]"
             itemSize = "[330, 80]"
             itemSpacing = "[0,40]">
 
             <ContentNode role = "content">
-                <ContentNode title = " Watch Later" />
-                <ContentNode title = " Search"   />
-                <ContentNode title = " Browse"   />
-                <ContentNode title = " Performers" />
-                <ContentNode title = " Settings" />
+
             </ContentNode>
 
         </LabelList>

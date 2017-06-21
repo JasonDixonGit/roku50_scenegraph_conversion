@@ -8,8 +8,8 @@ End Function
 Function setButtonListProperties(m)
     m.buttons.font = "font:LargeSystemFont"
     m.buttons.font.size = m.buttons.font.size+24
-    m.buttons.focusedFont = "font:LargeSystemFont"
-    m.buttons.focusedFont.size = m.buttons.focusedFont.size+24
+    m.buttons.focusedFont = "font:LargeBoldSystemFont"
+    m.buttons.focusedFont.size = m.buttons.focusedFont.size+32
 End Function
 
 ' set proper focus to buttons if opening or returning to this screen

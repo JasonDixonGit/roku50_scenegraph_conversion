@@ -9,61 +9,27 @@ Function Init()
     m.description       =   m.top.findNode("Description")
     m.background        =   m.top.findNode("Background")
 
-    m.top.viewScenes    = false
-    m.top.movieHasScenes = false
-
-    m.buttonsWLF        = m.top.findNode("ButtonsWatchLaterFalse")
-    m.buttonsWLT        = m.top.findNode("ButtonsWatchlaterTrue")
-    
+    m.buttons           = m.top.findNode("Buttons")
+     
     setButtonListProperties(m)
-    
-    m.buttons = m.buttonsWLF
-    'AutoSelectButtonSet() 
 
     m.top.ready          = false
     m.top.readyToExit    = false
-    m.buttonsWLF.visible = false
-    m.buttonsWLT.visible = false
-
-    'empty content object'
-    m.emptyContent              = createObject("RoSGNode", "ContentNode")
-    m.emptyContent.streamFormat = "hls"
-    m.emptyContent.url          = ""
-
 End Function
 
 Function setButtonListProperties(m)
-    'maybe control button list members from here depending on what data comes back from api call in Init() ???'
 
     m.buttonsWLF.font               = "font:LargeSystemFont"
     m.buttonsWLF.font.size          = m.buttonsWLF.font.size + 20
-    m.buttonsWLF.focusedFont        = "font:LargeSystemFont"
-    m.buttonsWLF.focusedFont.size   = m.buttonsWLF.focusedFont.size + 20
+    m.buttonsWLF.focusedFont        = "font:LargeBoldSystemFont"
+    m.buttonsWLF.focusedFont.size   = m.buttonsWLF.focusedFont.size + 28
 
     m.buttonsWLT.font               = "font:LargeSystemFont"
     m.buttonsWLT.font.size          = m.buttonsWLT.font.size + 20
-    m.buttonsWLT.focusedFont        = "font:LargeSystemFont"
-    m.buttonsWLT.focusedFont.size   = m.buttonsWLT.focusedFont.size + 20
+    m.buttonsWLT.focusedFont        = "font:LargeBoldSystemFont"
+    m.buttonsWLT.focusedFont.size   = m.buttonsWLT.focusedFont.size + 28
 
 End Function
-
-Function SetWatchLaterButtonProperties()
-    if(m.top.isWatchlater = true) then
-        '?"Watch Later Set"
-        'give control to button group 1'
-        m.buttons               = m.buttonsWLT
-        m.buttonsWLF.visible    = false
-        m.buttonsWLT.visible    = true
-        m.buttons.setFocus(true)
-    else
-        '?"Watch Later NOT Set"
-        'give control to button group 0'
-        m.buttons               = m.buttonsWLF
-        m.buttonsWLF.visible    = true
-        m.buttonsWLT.visible    = false
-        m.buttons.setFocus(true)
-    end if
-end Function
 
 Function OnReady()
     if(m.top.ready = true) then
@@ -93,26 +59,19 @@ End Function
 
 ' set proper focus to buttons if Details opened and stops Video if Details closed
 Sub onVisibleChange()
-    '? "[DetailsScreen] onVisibleChange"
 
     if m.top.visible = true then
         'clear buttons'
-        m.buttonsWLF.visible = false
-        m.buttonsWLT.visible = false
-        'if returning from scenes gridscreen'
-        if(m.top.ready = true)
-            SetWatchLaterButtonProperties()
-        end if
+        'm.buttons.visible = false'?????????????????????????
     else
         m.videoPlayer.visible = false
         m.videoPlayer.control = "stop"
-        m.videoPlayer.content = m.emptyContent
         m.poster.uri=""
         m.background.uri=""
     end if
 End Sub
 
-' set proper focus to Buttons in case if return from Video PLayer
+'set proper focus to Buttons in case if return from Video PLayer
 Sub OnFocusedChildChange()
     '?"OnFocusedChildChange"
     if m.top.isInFocusChain() and not m.buttons.hasFocus() and not m.videoPlayer.hasFocus() then
@@ -120,7 +79,7 @@ Sub OnFocusedChildChange()
     end if
 End Sub
 
-' set proper focus on buttons and stops video if return from Playback to details
+'set proper focus on buttons and stops video if return from Playback to details
 Sub onVideoVisibleChange()
     if m.videoPlayer.visible = false and m.top.visible = true
         m.buttons.setFocus(true)
@@ -157,26 +116,15 @@ Sub onItemSelected()
     
     setVideoPlayerColors()
 
-    if(m.buttons.id = "ButtonsWatchLaterFalse") then
-        m.itemSelected = m.top.itemSelected0
-    else
-        m.itemSelected = m.top.itemSelected1
-    end if
+    m.itemSelected = m.top.itemSelected
 
     'first button is preview or resume
     if m.itemSelected = 0
         'preview movie
         if(m.top.ready = true) then
             if(m.top.buttonConfig = 0) then
-                setVideoPlayerColors()
+                'setVideoPlayerColors()
                 '?"Play Selected"
-                if(m.top.preview = true) then
-                    m.top.preview = false
-                    m.top.content.url = m.top.movieURL
-                    m.top.content.streamFormat = "hls"
-                    m.top.content.hdbifurl = m.top.hdbifurl
-                    m.top.content.sdbifurl = m.top.sdbifurl
-                end if
                 m.top.content.playstart = m.top.bookmarkPosition
                 m.videoPlayer.visible = true
                 m.videoPlayer.setFocus(true)
@@ -186,41 +134,27 @@ Sub onItemSelected()
                 m.top.moviePlayed = m.top.content.title
 
             else if(m.top.buttonConfig = 1) then
-                setVideoPlayerColors()
-                '?"Preview Selected"
-                m.top.preview = true
-                m.top.content.url = m.top.previewURL
-                m.top.content.streamFormat = m.top.previewFormat
-
-                m.top.hdbifurl = m.top.content.hdbifurl
-                m.top.sdbifurl = m.top.content.sdbifurl
-
-                m.top.content.hdbifurl = ""
-                m.top.content.sdbifurl = ""
-                'type should be present in the content object, overwriting any previous mp4 setting from a preview'
-                'Print(m.top.content)
+                'setVideoPlayerColors()
+                '?"Play Selected - first time on item"
+         
                 m.top.content.playstart = 0
                 m.videoPlayer.visible = true
                 m.videoPlayer.setFocus(true)
                 m.videoPlayer.control = "play"
                 m.videoPlayer.observeField("state", "OnVideoPlayerStateChange")
+                m.videoPlayer.observeField("position", "OnVideoPlaybackPositionChange")'track playback position'
+                m.top.moviePlayed = m.top.content.title
             else
                 Print "Error in details screen button config. Value is: ", m.top.buttonConfig
             end if
         end if
     end if
-    ' second button is Play
+    
+    ' second button is Restart if resume is set
     if m.itemSelected = 1
         if(m.top.ready = true) then
             setVideoPlayerColors()
             '?"Play Selected"
-            if(m.top.preview = true) then
-                m.top.preview = false
-                m.top.content.url = m.top.movieURL
-                m.top.content.streamFormat = "hls"
-                m.top.content.hdbifurl = m.top.hdbifurl
-                m.top.content.sdbifurl = m.top.sdbifurl
-            end if
             m.top.content.playstart = 0
             m.videoPlayer.visible = true
             m.videoPlayer.setFocus(true)
@@ -229,26 +163,6 @@ Sub onItemSelected()
             m.videoPlayer.observeField("position", "OnVideoPlaybackPositionChange")'track playback position'
             m.top.moviePlayed = m.top.content.title
         end if
-    end if
-    'third button is watch later
-    if m.itemSelected = 2
-        if(m.top.ready = true) then
-            if(m.top.isWatchlater = true) then
-                m.top.isWatchlater = false
-                SetWatchLaterButtonProperties()
-                m.top.WatchLaterFlagAction = "clear"
-            else
-                m.top.isWatchlater = true
-                SetWatchLaterButtonProperties()
-                m.top.WatchLaterFlagAction = "set"
-            end if
-        end if
-    end if
-    'fourth button is view scenes
-    if m.itemSelected = 3
-        if(m.top.ready = true) then
-            m.top.viewScenes = true
-       end if
     end if
 End Sub
 
