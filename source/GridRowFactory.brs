@@ -126,7 +126,7 @@ Function GetApiArray()
     rsp = url.GetToString()
     'rsp = GetGlobalAA().API.getRokuXMLCategories()
     responseXML = ParseXML2(rsp)
-    'printAny(0, "", rsp)
+    printAny(0, "", rsp)
 
     'responseXML = rsp.GetChildElements()
     responseArray = responseXML.GetChildElements()
@@ -135,9 +135,13 @@ Function GetApiArray()
 
     for each xmlItem in responseArray
         if xmlItem.getName() = "category"
+            ?"================================= item ====================================="
+            Print xmlItem.getAttributes().title, xmlItem.getAttributes().hd_img
             itemAA = xmlItem.GetChildElements()
+            'item[xmlItem.getName()] = xmlItem.getAttributes.title
+            'item["hd_img"] = xmlItem.getAttributes.hd_img
+            'item["sd_img"] = xmlItem.getAttributes.sd_img
             if itemAA <> invalid
-                ?"============= item ================"
                 item = {}
                 for each xmlItem in itemAA
                     item[xmlItem.getName()] = xmlItem.getText()
