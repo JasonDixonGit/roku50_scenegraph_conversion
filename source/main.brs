@@ -1,6 +1,6 @@
 sub RunUserInterface()
     m.device = CreateObject("roDeviceInfo")
-    m.maxWidth = m.device.GetDisplaySize().w
+    'm.maxWidth = m.device.GetDisplaySize().w
 
     m.modelGeneration = 6'getModelGeneration(m.device.getModel())
 
@@ -63,8 +63,6 @@ sub runApp()
  ''              ContentList : m.landingPageRow
  ''          }]
 
-    'initCategoryList()
-    'screen.SetContentList(m.Categories.Kids)
     m.landingPageRow = GridRowFactory().SetGridscreenContent()'GridRowFactory().SetGridscreenContent(list0)
     homeScene.content = m.landingPageRow
  

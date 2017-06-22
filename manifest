@@ -11,4 +11,4 @@ splash_screen_hd=pkg:/images/splash.jpg
 splash_screen_sd=pkg:/images/splash.jpg
 splash_color=#000000
 splash_min_time=0
-ui_resolutions=fhd
+ui_resolutions=hd

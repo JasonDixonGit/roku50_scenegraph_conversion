@@ -118,6 +118,7 @@ Function ParseXMLContent(list As Object)
 
     return RowItems
 End Function
+
 'Function ParseXMLContent(list As Object)
 '    RowItems = createObject("RoSGNode","ContentNode")
 '    
@@ -163,6 +164,9 @@ Function GetApiArray()
             item["Title"] = xmlItem.getAttributes().title
             item["HDPosterUrl"] = xmlItem.getAttributes().hd_img
             item["SDPosterUrl"] = xmlItem.getAttributes().sd_img
+            'item["DESCRIPTION"] = xmlItem.getAttributes().title
+            item["HDBackgroundImageUrl"] = "pkg:/images/background.jpg"
+            item["SDBackgroundImageUrl"] = "pkg:/images/background.jpg"
             
             'if itemAA <> invalid
             '    item = {}
