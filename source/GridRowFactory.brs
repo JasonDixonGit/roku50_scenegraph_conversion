@@ -61,13 +61,14 @@ End Function
 Function SetGridscreenContent()
     
     oneRow = GetApiArray()
-        list = [
-        {
-            Title:"Categories"
-            ContentList : oneRow
-        }]
-     return ParseXMLContent(list)
+    list = [
+    {
+        Title:"Categories"
+        ContentList : oneRow
+    }]
+    return ParseXMLContent(list)
 end Function
+
  ''   conn = InitCategoryFeedConnection()
  ''   m.Categories = conn.LoadCategoryFeed(conn)
     'm.CategoryNames = conn.GetCategoryNames(m.Categories)
@@ -117,6 +118,26 @@ Function ParseXMLContent(list As Object)
 
     return RowItems
 End Function
+'Function ParseXMLContent(list As Object)
+'    RowItems = createObject("RoSGNode","ContentNode")
+'    
+'    for each rowAA in list
+'        row = createObject("RoSGNode","ContentNode")
+'        row.Title = rowAA.Title
+'
+'        for each itemAA in rowAA.ContentList
+'            item = createObject("RoSGNode","ContentNode")
+'            ' We don't use item.setFields(itemAA) as doesn't cast streamFormat to proper value
+'            for each key in itemAA
+'                item[key] = itemAA[key]
+'            end for
+'            row.appendChild(item)
+'        end for
+'        RowItems.appendChild(row)
+'    end for
+'
+'    return RowItems
+'End Function
 
 
 Function GetApiArray()
@@ -124,9 +145,9 @@ Function GetApiArray()
 
     url.SetUrl("http://cs50.tv/?output=roku")
     rsp = url.GetToString()
-    'rsp = GetGlobalAA().API.getRokuXMLCategories()
+ 
     responseXML = ParseXML2(rsp)
-    printAny(0, "", rsp)
+    'printAny(0, "", rsp)
 
     'responseXML = rsp.GetChildElements()
     responseArray = responseXML.GetChildElements()
@@ -136,19 +157,22 @@ Function GetApiArray()
     for each xmlItem in responseArray
         if xmlItem.getName() = "category"
             ?"================================= item ====================================="
-            Print xmlItem.getAttributes().title, xmlItem.getAttributes().hd_img
-            itemAA = xmlItem.GetChildElements()
-            'item[xmlItem.getName()] = xmlItem.getAttributes.title
-            'item["hd_img"] = xmlItem.getAttributes.hd_img
-            'item["sd_img"] = xmlItem.getAttributes.sd_img
-            if itemAA <> invalid
-                item = {}
-                for each xmlItem in itemAA
-                    item[xmlItem.getName()] = xmlItem.getText()
-                    Print xmlItem.getAttributes().title, xmlItem.getAttributes().feed, xmlItem.getAttributes().hd_img
-                end for
+            Print xmlItem.getAttributes().title, xmlItem.getAttributes().hd_img, xmlItem.getAttributes.sd_img
+            'itemAA = xmlItem.GetChildElements()
+            item = {}
+            item["Title"] = xmlItem.getAttributes().title
+            item["HDPosterUrl"] = xmlItem.getAttributes().hd_img
+            item["SDPosterUrl"] = xmlItem.getAttributes().sd_img
+            
+            'if itemAA <> invalid
+            '    item = {}
+            '    for each xmlItem in itemAA
+            '        item[xmlItem.getName()] = xmlItem.getText()
+            '        Print xmlItem.getAttributes().title, xmlItem.getAttributes().feed, xmlItem.getAttributes().hd_img
+            '    end for
+            Print item
                 result.push(item)
-            end if
+            'end if
         end if
     end for
 

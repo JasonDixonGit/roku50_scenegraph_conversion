@@ -1,6 +1,5 @@
 Function Init()
-''    ? "Init - [GridScreen]"
-    
+   
     m.CategoryList       =   m.top.findNode("CategoryList")
 
     'set screen focus onto first list'
@@ -27,6 +26,7 @@ End Function
 
 ' handler of focused item in RowList
 Sub OnItemFocused()
+
     m.CategoryList.rowLabelFont.uri = m.top.font
 
     m.itemFocused   = m.top.itemFocused

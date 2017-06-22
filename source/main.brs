@@ -57,7 +57,7 @@ sub runApp()
     'set global font'
     homeScene.globalFontPath = m.appFont
 
-   'm.landingPageRow = createObject("RoSGNode","ContentNode")
+   m.landingPageRow = createObject("RoSGNode","ContentNode")
 
  ''  list0 = [{
  ''              ContentList : m.landingPageRow
@@ -67,7 +67,7 @@ sub runApp()
     'screen.SetContentList(m.Categories.Kids)
     m.landingPageRow = GridRowFactory().SetGridscreenContent()'GridRowFactory().SetGridscreenContent(list0)
     homeScene.content = m.landingPageRow
-
+ 
     while true
         msg = wait(0, port)
         msgType = type(msg)
