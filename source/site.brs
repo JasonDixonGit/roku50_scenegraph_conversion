@@ -1,10 +1,6 @@
 Function initSiteSpecificSettings()
     app = CreateObject("roAppManager")
-    
-    m.BaseUrlAnalytics              = "roku.cs50.com"
-    m.TrackingPrefix                = ""
-    m.SiteName                      = "cs50"
-    m.GoogleUA                      = "UA-54914523-54"
+  
     m.RegistryKeyName               = "cs50"
 
     m.primaryColor                  = "#f1f1f1"

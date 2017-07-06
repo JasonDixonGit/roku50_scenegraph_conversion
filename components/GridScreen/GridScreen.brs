@@ -13,7 +13,7 @@ Function Init()
     m.top.observeField("focusedChild", "OnFocusedChildChange")
 
     m.top.observeField("itemFocused", "OnItemFocused")
-    
+    m.top.observeField("needsRefreshed", "runTask")
     'm.rowList0.setFocus(true) 'set focus to first row on load after clearing out button background'
     m.CategoryList.rowLabelFont.size = m.CategoryList.rowLabelFont.size + 8
 
@@ -24,6 +24,24 @@ Function Init()
 
 End Function
 
+'retrieve data from API with async task node
+sub runTask()
+  ?'"runTask() called"
+  'if(m.top.needsRefreshed = true)  then
+    'call api for data
+    '?"Running https TASK"
+    m.readGridTask = createObject("roSGNode","fetchDataFromAPI")
+    m.readGridTask.postergriduri = "http://cs50.tv/?output=roku"
+    m.readGridTask.observeField("gridscreencontent","showGridScreen")
+    m.readGridTask.control = "RUN"
+  'end if
+end sub
+
+'assign retrieved data to postergrid
+sub showGridScreen()
+  m.top.content = m.readPosterGridTask.postergridcontent
+  m.top.contentSet = true
+end sub
 ' handler of focused item in RowList
 Sub OnItemFocused()
 

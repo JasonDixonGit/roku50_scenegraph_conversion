@@ -31,7 +31,6 @@ Function BuildRow(row)
 
 end function
 
-'Function GetGridRow(q, fq, fl, pagesize, sortArg)
 Function GetRow()
     url = CreateObject("roUrlTransfer")
 
@@ -157,8 +156,8 @@ Function GetApiArray()
 
     for each xmlItem in responseArray
         if xmlItem.getName() = "category"
-            ?"================================= item ====================================="
-            Print xmlItem.getAttributes().title, xmlItem.getAttributes().hd_img, xmlItem.getAttributes.sd_img
+            '?"================================= item ====================================="
+            'Print xmlItem.getAttributes().title, xmlItem.getAttributes().hd_img, xmlItem.getAttributes.sd_img
             'itemAA = xmlItem.GetChildElements()
             item = {}
             item["Title"] = xmlItem.getAttributes().title
