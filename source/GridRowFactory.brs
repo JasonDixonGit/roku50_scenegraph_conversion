@@ -57,7 +57,7 @@ End Function
 ''        item["STREAMFORMAT"] = "hls"
 
 
-Function SetGridscreenContent()
+Function SetGridscreenContent(xmlIn)
     
     oneRow = GetApiArray()
     list = [

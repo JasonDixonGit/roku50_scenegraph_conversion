@@ -19,11 +19,7 @@ sub getContent()
     readInternet.setUrl(m.top.postergriduri)
 
     xmlDataIn = readInternet.GetToString()
-    
-    list0 = [{
-              ContentList : landingPageRow
-            }] 
-            
-    m.top.gridscreencontent = m.GridRowFactory().SetGridscreenContent()
+      Print xmlDataIn      
+    m.top.gridscreencontent = m.GridRowFactory().SetGridscreenContent(xmlDataIn)
 
 end sub
