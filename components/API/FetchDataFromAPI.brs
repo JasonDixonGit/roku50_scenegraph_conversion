@@ -37,7 +37,7 @@ sub getContent()
             item["HDBackgroundImageUrl"] = "pkg:/images/background.jpg"
             item["SDBackgroundImageUrl"] = "pkg:/images/background.jpg"
             'Print item
-           result.push(item)'
+           result.push(item)
         end if
     end for
     

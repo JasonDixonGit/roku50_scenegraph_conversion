@@ -21,7 +21,9 @@ Function Init()
 
     'default setup'
     m.CategoryList.visible = true
+
     runTask()
+
 End Function
 
 'retrieve data from API with async task node
@@ -72,7 +74,7 @@ End Sub
 
 ' set proper focus to RowList in case if return from Details Screen
 Sub onVisibleChange()
-    '?"onVisibleChange"
+    ?"onVisibleChange"
     'm.MenuButton.font.uri = m.top.font
     'm.rowLabelFont = m.top.font
     
