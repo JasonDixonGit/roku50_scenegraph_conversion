@@ -24,9 +24,8 @@ sub showChannelSGScreen()
     homeScene = screen.CreateScene("HomeScene")
     screen.show()
 
-    'ds   = homeScene.findNode("DetailsScreen")
     'es   = homeScene.findNode("ExitScreen")
-    gs   = homeScene.findNode("GridScreen")
+
     loadingIndicator   = homeScene.findNode("loadingIndicator")
 
     'ds.observeField("visible", port)
@@ -58,19 +57,6 @@ sub showChannelSGScreen()
     homeScene.globalFocusedColor        = m.focusedColor
     homeScene.globalSecondaryColor      = m.secondaryColor
     homeScene.globalVideoPlayerBarColor = m.videoPlayerBarColor
-
-''    'set global font'
-    homeScene.globalFontPath = m.appFont
-
-'   m.landingPageRow = createObject("RoSGNode","ContentNode")
-
-'  list0 = [{
-'              ContentList : m.landingPageRow
-'          }]
-'
-'    m.landingPageRow = GridRowFactory().SetGridscreenContent()
-'    homeScene.content = m.landingPageRow
-    
     
     while(true)
         msg = wait(0, m.port)
