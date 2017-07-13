@@ -34,30 +34,10 @@ end function
 Function GetRow()
     url = CreateObject("roUrlTransfer")
 
-End Function
+End Function    
 
 
-''    if(origin = "SearchScreen") then
-''        item = createObject("RoSGNode","ContentNode")
-''        item["id"] = productContent.BasicResponseGroup.id
-''        item["Title"] = productContent.BasicResponseGroup.title
-''        item["LENGTH"] = productContent.BasicResponseGroup.length
-''        item["HDPosterUrl"] = productContent.BasicResponseGroup.boxcover
-''        if(productContent.BasicResponseGroup.description = "No Description") then
-''            item["DESCRIPTION"] = " "
-''        else
-''            item["DESCRIPTION"] = productContent.BasicResponseGroup.description
-''        end if
-''        item["ReleaseDate"] = productContent.BasicResponseGroup.resleaseDate
-''        item["url"] = productContent.BasicResponseGroup.contentURL
-''        item["HDBackgroundImageUrl"] = productContent.BasicResponseGroup.backgroundUrl
-''        item["SDBackgroundImageUrl"] = productContent.BasicResponseGroup.backgroundUrl
-''        item["shortdescriptionline2"] = productContent.BasicResponseGroup.master_item_id_content
-''        'item["Actors"] = movie.BasicResponseGroup.actors
-''        item["STREAMFORMAT"] = "hls"
-
-
-Function SetGridscreenContent()
+Function BuildGridscreenContent()
     
     oneRow = GetApiArray()
     list = [
@@ -67,35 +47,6 @@ Function SetGridscreenContent()
     }]
     return ParseXMLContent(list)
 end Function
-
- ''   conn = InitCategoryFeedConnection()
- ''   m.Categories = conn.LoadCategoryFeed(conn)
-    'm.CategoryNames = conn.GetCategoryNames(m.Categories)
-    'PrintAny(-0, "====================================================================", m.Categories)
-    'PrintAny(5, "CATEGORY NAMES ----->", m.CategoryNames)
-    
-''    for each k in m.Categories.kids
-''        item = createObject("RoSGNode","ContentNode")
-''
-''        item["id"] = productContent.BasicResponseGroup.id
-''        item["Title"] = productContent.BasicResponseGroup.title
-''        item["LENGTH"] = productContent.BasicResponseGroup.length
-''        item["HDPosterUrl"] = productContent.BasicResponseGroup.boxcover
-''        if(productContent.BasicResponseGroup.description = "No Description") then
-''            item["DESCRIPTION"] = " "
-''        else
-''            item["DESCRIPTION"] = productContent.BasicResponseGroup.description
-''        end if
-''        item["ReleaseDate"] = productContent.BasicResponseGroup.resleaseDate
-''        item["url"] = productContent.BasicResponseGroup.contentURL
-''        item["HDBackgroundImageUrl"] = ""
-''        item["SDBackgroundImageUrl"] = ""
-''        item["shortdescriptionline2"] = ""
-''        'item["Actors"] = movie.BasicResponseGroup.actors
-''        item["STREAMFORMAT"] = "mp4"
-''    next
-''    return m.Categories.kids
-'end Function
 
 Function ParseXMLContent(list As Object)
     RowItems = createObject("RoSGNode","ContentNode")
@@ -174,7 +125,34 @@ Function GetApiArray()
             '        Print xmlItem.getAttributes().title, xmlItem.getAttributes().feed, xmlItem.getAttributes().hd_img
             '    end for
             Print item
-                result.push(item)
+                result.push(item) ''   conn = InitCategoryFeedConnection()
+ ''   m.Categories = conn.LoadCategoryFeed(conn)
+    'm.CategoryNames = conn.GetCategoryNames(m.Categories)
+    'PrintAny(-0, "====================================================================", m.Categories)
+    'PrintAny(5, "CATEGORY NAMES ----->", m.CategoryNames)
+    
+''    for each k in m.Categories.kids
+''        item = createObject("RoSGNode","ContentNode")
+''
+''        item["id"] = productContent.BasicResponseGroup.id
+''        item["Title"] = productContent.BasicResponseGroup.title
+''        item["LENGTH"] = productContent.BasicResponseGroup.length
+''        item["HDPosterUrl"] = productContent.BasicResponseGroup.boxcover
+''        if(productContent.BasicResponseGroup.description = "No Description") then
+''            item["DESCRIPTION"] = " "
+''        else
+''            item["DESCRIPTION"] = productContent.BasicResponseGroup.description
+''        end if
+''        item["ReleaseDate"] = productContent.BasicResponseGroup.resleaseDate
+''        item["url"] = productContent.BasicResponseGroup.contentURL
+''        item["HDBackgroundImageUrl"] = ""
+''        item["SDBackgroundImageUrl"] = ""
+''        item["shortdescriptionline2"] = ""
+''        'item["Actors"] = movie.BasicResponseGroup.actors
+''        item["STREAMFORMAT"] = "mp4"
+''    next
+''    return m.Categories.kids
+'end Function
             'end if
         end if
     end for

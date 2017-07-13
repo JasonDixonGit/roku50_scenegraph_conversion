@@ -47,20 +47,20 @@
         <RowList
             id="CategoryList"
             focusBitmapUri="pkg:/images/focus_button.9.png"
-            translation="[-80, 350]"
+            translation="[20, 350]"
             itemSize="[1400, 708]"
             numRows="1"
             itemSpacing="[20, 0]"
-            focusXOffset="[148]"
+            focusXOffset="[0]"
             vertFocusAnimationStyle="fixedFocus"
             rowFocusAnimationStyle="fixedFocusWrap"
-            rowItemSize="[[262,184]]"            
+            rowItemSize="[[394,276]]"            
             rowItemSpacing="[[22, 2]]"
             rowLabelFont="font:LargeSystemFont"
             showRowLabel="true"
             rowLabelColor="0xFFFFFFFF"
             showRowCounter="true"
-            rowLabelOffset="[[148, 20]]"
+            rowLabelOffset="[[0, 40]]"
         />
 
         <Poster
