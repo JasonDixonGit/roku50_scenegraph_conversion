@@ -8,5 +8,7 @@
   </interface> 
 
   <script type="text/brightscript" uri="pkg:/components/API/FetchDataFromAPI.brs" />
+  <script type="text/brightscript" uri="pkg:/components/API/API_Utils.brs" />
+  <script type="text/brightscript" uri="pkg:/components/API/GridRowFactory.brs" />
 
 </component>
