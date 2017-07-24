@@ -19,7 +19,7 @@ sub getContent()
     readInternet.setUrl(m.top.postergriduri)
 
     xmlDataIn = readInternet.GetToString()
-    
+    'Print xmlDataIn
     m.top.gridscreencontent = GridrowFactory().BuildCategoryGridRow(xmlDataIn)' = API_Utils().ParseXMLContent(list)
 
 end sub

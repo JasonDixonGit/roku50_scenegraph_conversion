@@ -16,11 +16,7 @@
         <field id="lastItemFocus" type="intarray"/>
 
         <!-- Interface to focused item (Content Node) -->
-        <field id="focusedContent"  type="node"/>
-
-        <!-- loaded flag until I figure out how to detect loaded list -->
-        <field id="isLoaded" type="boolean"/>
-        
+        <field id="focusedContent"  type="node"/>        
 
         <!-- secondaryColor settings -->
         <field id="CategoryListLabelColor" type="string" alias="CategoryList.rowLabelColor"/>
@@ -47,7 +43,7 @@
         <RowList
             id="CategoryList"
             focusBitmapUri="pkg:/images/focus_button.9.png"
-            translation="[20, 350]"
+            translation="[60, 300]"
             itemSize="[1400, 708]"
             numRows="1"
             itemSpacing="[20, 0]"
@@ -60,7 +56,7 @@
             showRowLabel="true"
             rowLabelColor="0xFFFFFFFF"
             showRowCounter="true"
-            rowLabelOffset="[[0, 40]]"
+            rowLabelOffset="[[0, 30]]"
         />
 
         <Poster

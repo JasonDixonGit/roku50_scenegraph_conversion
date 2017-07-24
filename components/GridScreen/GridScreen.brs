@@ -45,7 +45,7 @@ sub showGridScreen()
   m.top.contentSet = true
 end sub
 
-' handler of focused item in RowList
+'handler of focused item in RowList
 Sub OnItemFocused()
 
     m.CategoryList.rowLabelFont.uri = m.top.font

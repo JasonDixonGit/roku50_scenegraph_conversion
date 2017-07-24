@@ -13,8 +13,11 @@ Function GridRowFactory_BuildCategoryGridRow(xmlDataIn)
     responseArray = responseXML.GetChildElements()
     result = []
 
+    categoryFeedLinks = []
+
     for each xmlItem in responseArray
         if xmlItem.getName() = "category"
+
             item = {}
             'item["Title"] = xmlItem.getAttributes().title
             item["HDPosterUrl"] = xmlItem.getAttributes().hd_img
@@ -22,7 +25,18 @@ Function GridRowFactory_BuildCategoryGridRow(xmlDataIn)
             item["DESCRIPTION"] = xmlItem.getAttributes().title
             item["HDBackgroundImageUrl"] = "pkg:/images/background.jpg"
             item["SDBackgroundImageUrl"] = "pkg:/images/background.jpg"
-            'Print item
+
+            leaves = xmlItem.GetChildElements()
+            for each leaf in leaves
+                titles = []
+                feedLinks = []
+                titles.push(leaf.getAttributes().title)
+                feedLinks.push(leaf.getAttributes().feed)
+            next
+
+            item["Actors"] = titles 'this is a string array content meta variable -- use to pass titles
+            item["Directors"] = feedLinks 'this is a string array content meta variable -- use to pass feed urls
+            
            result.push(item)
         end if
     end for
