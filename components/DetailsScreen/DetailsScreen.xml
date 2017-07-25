@@ -1,58 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<component name="DetailsScreen" extends="Group" initialFocus="Buttons">
+<component name="DetailsScreen" extends="Group">
 
     <interface>
-        <!-- Button press handler -->
-        <field id="itemSelected" type="integer" alwaysnotify="true" alias="Buttons.itemSelected" onChange="onItemSelected" />
-
-        <!-- Playback flag -->
-        <field id="videoPlayerVisible" type="bool" alwaysnotify="true" alias="VideoPlayer.visible"  onChange="onVideoVisibleChange" />
-
-        <field id="videoPlayerState" type="string" alwaysnotify="true" alias="VideoPlayer.state" />
-
         <!-- Content fields -->
         <field id="content" type="node" alwaysnotify="true" onChange="OnContentChange" />
-
-        <!-- buttonlist content node -->
-        <field id="buttonsContent" type="node" alias="Buttons.content" />
-
-        <!-- tracks where DetailsScreen was launched from, so on back button press app returns to correct page -->
-        <field id="origin" type="string" />
-
-        <!-- wtf is this? I've forgotten now -->
-        <field id = "uri" type = "uri" />
-
-        <!-- ItemID -->
-        <field id="itemID" type="string" />
-
-        <!-- playback position markers -->
-        <field id="markPlaybackPosition" type="string" />
-        <field id="bookmarkPosition" type="string" />
-
-        <!-- button configuration -->
-        <field id="buttonConfig" type="integer" />
-
-        <!-- movie played flag for GA tracking, holds movie title-->
-        <field id="moviePlayed" type="string" alwaysnotify="true"/>
-
-        <!-- watch later flag -->
-        <field id="WatchLaterFlagAction" type="string" />
-
-        <!-- stops user from playing video before content data / video stream is loaded -->
-        <field id="ready" type="boolean" alwaysnotify="true" onChange="OnReady"/>
-
-        <!-- stops user from playing video before content data / video stream is loaded -->
-        <field id="readyToExit" type="boolean" />
-
-        <!-- focusedColor setting -->
-        <field id="buttonsFocusedColor" type="string" alias="Buttons.focusedColor"/>
-
-        <!-- video player secondary colors -->
-        <field id="VideoPlayerColor" type="string" />
-
-        <!-- font path -->
-        <field id="font" type="string"/>
 
     </interface>
     
@@ -78,26 +30,6 @@
             opacity="0.72"
         />
 
-        <!-- Control buttons -->
-        <LabelList
-            id = "Buttons"
-            vertFocusAnimationStyle = "floatingFocus"
-            drawFocusFeedback = "true"
-            drawFocusFeedbackOnTop = "false"
-            color = "0xFFFFFFFF"
-            focusedColor = "0xF1F1F1FF"
-            textHorizAlign = "left"
-            translation = "[825,120]"
-            itemSize = "[320, 75]"
-            itemSpacing = "[0,20]">
-
-            <ContentNode role = "content" >
-
-          </ContentNode>
-
-        </LabelList>
-
-
         <!-- Item description -->
         <Description
             id="Description"
@@ -105,22 +37,12 @@
             itemSpacings="[7, 16]"
         />
 
-
         <!-- Item poster -->
         <Poster
             id="Poster"
             translation="[66, 396]"
             width="262"
             height="185"
-        />
-
-        <!-- Playback node -->
-        <Video
-            id="VideoPlayer"
-            visible="false"
-            translation="[0, 0]"
-            width="1280"
-            height="720"  
         />
 
     </children>

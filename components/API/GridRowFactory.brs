@@ -27,16 +27,18 @@ Function GridRowFactory_BuildCategoryGridRow(xmlDataIn)
             item["SDBackgroundImageUrl"] = "pkg:/images/background.jpg"
 
             leaves = xmlItem.GetChildElements()
+            titles = []
+            feedLinks = []
+
             for each leaf in leaves
-                titles = []
-                feedLinks = []
+                'print leaf.getAttributes().title, leaf.getAttributes().feed
                 titles.push(leaf.getAttributes().title)
                 feedLinks.push(leaf.getAttributes().feed)
             next
 
             item["Actors"] = titles 'this is a string array content meta variable -- use to pass titles
             item["Directors"] = feedLinks 'this is a string array content meta variable -- use to pass feed urls
-            
+
            result.push(item)
         end if
     end for
