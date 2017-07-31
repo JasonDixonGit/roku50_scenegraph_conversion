@@ -7,11 +7,11 @@
 
         <field id="itemID" type="string" />
 
-        <!-- Content for RowLists in GridScreen on Home Scene -->
-        <field id="content" type="node" alias="GridScreen.content" onChange="OnChangeContent"/>
+        <!-- Content for RowLists in CategoriesScreen on Home Scene -->
+        <field id="content" type="node" alias="CategoriesScreen.content" onChange="OnChangeContent"/>
 
          <!-- Row item selection handlers -->
-        <field id="CategoryListItemSelected" type="intarray" alwaysNotify="true" alias="GridScreen.CategoryListItemSelected" onChange="OnRowItemSelected"/>
+        <field id="CategoryListItemSelected" type="intarray" alwaysNotify="true" alias="CategoriesScreen.CategoryListItemSelected" onChange="OnRowItemSelected"/>
 
 
     </interface>
@@ -25,15 +25,15 @@
     <children>
 
         <!-- Grid screen with RowList on Home Scene -->
-        <GridScreen
-            id="GridScreen"
+        <CategoriesScreen
+            id="CategoriesScreen"
             visible="true"
             translation="[0,0]"
         />
 
         <!-- Details screen -->
-        <DetailsScreen
-            id="DetailsScreen"
+        <YearSubCategories
+            id="YearSubCategories"
             visible="false"
         />
 

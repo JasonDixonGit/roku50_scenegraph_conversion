@@ -1,29 +1,35 @@
 Function Init()
 
-    ' GridScreen node with RowList
-    m.gridScreen               = m.top.findNode("GridScreen")
+    ' CategoriesScreen node with RowList
+    m.CategoriesScreen               = m.top.findNode("CategoriesScreen")
 
-    ' DetailsScreen Node with description, Video Player
-    m.detailsScreen            = m.top.findNode("DetailsScreen")
+    ' YearSubCategories Node with description, Video Player
+    m.YearSubCategories            = m.top.findNode("YearSubCategories")
 
 End Function
 
-' if content set, focus on GridScreen
+' if content set, focus on CategoriesScreen
 Function OnChangeContent()
-    m.gridScreen.setFocus(true)
-    m.gridscreen.isLoaded = true
+    m.CategoriesScreen.setFocus(true)
+    m.CategoriesScreen.isLoaded = true
 End Function
 
 ' Row item selected handler
 Function OnRowItemSelected()
-    'm.gridScreen.visible = false
-    m.detailsScreen.content = m.gridScreen.focusedContent
-    m.detailsScreen.itemID  = m.gridscreen.focusedContent.id
-    m.detailsScreen.origin  = "gridscreen"
-    m.detailsScreen.ready = false
-    m.gridScreen.visible = false
-    m.detailsScreen.visible = true
-    m.detailsScreen.setFocus(true)
+    'm.CategoriesScreen.visible = false
+
+
+    for each link in m.CategoriesScreen.focusedContent.Directors
+        Print link
+    next
+
+   '' m.YearSubCategories.content = m.CategoriesScreen.focusedContent
+   '' m.YearSubCategories.itemID  = m.CategoriesScreen.focusedContent.id
+   '' m.YearSubCategories.origin  = "CategoriesScreen"
+   '' m.YearSubCategories.ready = false
+   '' m.CategoriesScreen.visible = false
+   '' m.YearSubCategories.visible = true
+   '' m.YearSubCategories.setFocus(true)
 End Function
 
 ' Main Remote keypress event loop
@@ -34,16 +40,16 @@ Function OnKeyEvent(key, press) as Boolean
 
         if key = "back"
             
-            'catch back press while loading main gridscreen'
-            if(m.gridscreen.visible = true and m.gridscreen.isLoaded = false) then
+            'catch back press while loading main CategoriesScreen'
+            if(m.CategoriesScreen.visible = true and m.CategoriesScreen.isLoaded = false) then
                 ?"1 - caught"
                 result = true
 
-            else if(m.detailsScreen.visible = true)
+            else if(m.YearSubCategories.visible = true)
 
-                m.detailsScreen.visible = false
-                m.gridscreen.setFocus(true)
-                m.gridScreen.visible = true
+                m.YearSubCategories.visible = false
+                m.CategoriesScreen.setFocus(true)
+                m.CategoriesScreen.visible = true
                 result = true                    
 
             else

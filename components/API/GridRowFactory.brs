@@ -44,7 +44,7 @@ Function GridRowFactory_BuildCategoryGridRow(xmlDataIn)
     end for
     
     categoriesList = [{
-              Title: "Categories"
+              Title: "Course Years"
               ContentList : result
             }] 
     
