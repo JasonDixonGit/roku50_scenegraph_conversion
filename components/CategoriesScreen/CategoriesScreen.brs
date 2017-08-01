@@ -13,10 +13,11 @@ Function Init()
     m.top.observeField("focusedChild", "OnFocusedChildChange")
 
     m.top.observeField("itemFocused", "OnItemFocused")
+    m.top.observeField("CategoryListItemSelected", "OnCategoryListItemSelected")
     'm.top.observeField("needsRefreshed", "runTask")
     'm.rowList0.setFocus(true) 'set focus to first row on load after clearing out button background'
     m.CategoryList.rowLabelFont.size = m.CategoryList.rowLabelFont.size + 8
-
+    m.description.title.font.size = m.description.title.font.size + 30
     m.top.isLoaded = false
 
     'default setup'
@@ -102,3 +103,46 @@ Sub OnFocusedChildChange()
         m.currentRowList.setFocus(true)
     end if
 End Sub
+
+' Row item selected handler
+Function OnCategoryListItemSelected()
+
+    populateSubCategoryLabelList()
+    AnimateToSubCategories = m.top.FindNode("AnimateToSubCategories")
+    AnimateToSubCategories.control = "start"
+End Function
+
+Function populateSubCategoryLabelList()
+    ?"Running labellist TASK"
+    m.labellistTask = createObject("roSGNode","BuildSubcategoryLabelList")
+    m.labellistTask.subCategoryContent = m.top.focusedContent
+    m.labellistTask.observeField("buttonListAA","AssignLabelListData")
+    m.labellistTask.control = "RUN"
+End Function
+
+sub AssignLabelListData()
+  m.top.buttonsContent = m.labellistTask.buttonListAA
+  'm.top.contentSet = true
+end sub
+
+Function OnKeyEvent(key, press) as Boolean
+    result = false
+    if press then
+        'print(key)
+
+        if key = "back"
+            
+            'catch back press while loading main CategoriesScreen'
+            if(1 < 2) then
+                AnimateBackToCategories = m.top.FindNode("AnimateBackToCategories")
+                AnimateBackToCategories.control = "start"
+                result = true                   
+
+            else
+                ?"ERROR -- CATCH BACK-BUTTON CASE HIT"
+                result = false
+            end if
+        end if
+    end if
+    return result
+End Function

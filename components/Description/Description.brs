@@ -5,6 +5,8 @@ Sub Init()
     m.top.Description       = m.top.findNode("Description")
     m.top.ReleaseDate       = m.top.findNode("ReleaseDate")
     'm.top.length            = m.top.findNode("length")
+    m.top.Description.font = "font:LargeSystemFont"
+    
 End Sub
 
 ' Content change handler

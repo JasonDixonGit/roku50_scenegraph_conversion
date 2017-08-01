@@ -6,6 +6,9 @@
         <!-- Grid Content Nodes For Each Row -->
         <field id="content" type="node" alias="CategoryList.content" onChange="onContentChange"/>
 
+        <!-- buttonlist content node -->
+        <field id="buttonsContent" type="node" alias="SubCategoryLabelList.content" />
+
         <!-- Row item selection handlers -->
         <field id="CategoryListItemSelected" type="intarray" alwaysnotify="true" alias="CategoryList.rowItemSelected"/>
 
@@ -30,7 +33,6 @@
     <script type="text/brightscript" uri="pkg:/components/CategoriesScreen/CategoriesScreen.brs" />
 
 
-
     <children>
         <FadingBackground
             id="Background"
@@ -38,6 +40,12 @@
             height="720"
             color="0x000000"
             ShadeOpacity="0.72"
+        />
+
+        <Description
+            id="Description"
+            translation="[65, 120]"
+            itemSpacings="[7,17]"
         />
 
         <RowList
@@ -59,18 +67,85 @@
             rowLabelOffset="[[0, 30]]"
         />
 
+        <!-- subcategory buttons -->
+        <LabelList
+            id = "SubCategoryLabelList"
+            vertFocusAnimationStyle = "floatingFocus"
+            drawFocusFeedback = "true"
+            drawFocusFeedbackOnTop = "false"
+            focusBitmapUri = "pkg:/Images/focus_button.9.png"
+            focusFootprintBitmapUri="pkg:/Images/focus_empty_square.png"           
+            color = "0xFFFFFFFF"
+            focusedColor = "0xE40090FF"
+            textHorizAlign = "left"
+            translation = "[300,1500]"
+            itemSize = "[500, 40]"
+            itemSpacing = "[0,60]">
+
+            <ContentNode role = "content">
+
+            </ContentNode>
+
+        </LabelList>
+
         <Poster
             translation="[0, 650]"
             uri="pkg:/images/BG_dark_down.png"
-            width="2000"
+            width="3000"
             height="95"
         />
 
-        <Description
-            id="Description"
-            translation="[65, 120]"
-            itemSpacings="[7,17]"
-        />
 
+
+        <!-- ==================================================================================================================== -->
+        <!-- ==================================================================================================================== -->
+        <Animation 
+          id = "AnimateToSubCategories"
+          duration = "1.5"
+          easeFunction = "inOutCubic" >
+
+          <Vector2DFieldInterpolator 
+            id = "CategoryListVector2D"
+            key = "[ 0.0, 1.0 ]" 
+            keyValue = "[ [60, 300], [60,-500] ]"
+            fieldToInterp = "CategoryList.translation"
+
+          />
+
+          <Vector2DFieldInterpolator 
+            id = "SubCategoryLabelListVector2D"
+            key = "[ 0.0, 1.0 ]" 
+            keyValue = "[ [300,1500], [300,100] ]"
+            fieldToInterp = "SubCategoryLabelList.translation"
+          />
+          
+
+        </Animation>
+
+    <!-- ================= animate back to name capture =========================================== -->
+        <Animation 
+          id = "AnimateBackToCategories"
+          duration = "1.5"
+          easeFunction = "inOutCubic" >
+
+          <Vector2DFieldInterpolator 
+            id = "CategoryListVector2D"
+            key = "[ 0.0, 1.0 ]" 
+            keyValue = "[ [60,-500], [60, 300] ]"
+            fieldToInterp = "CategoryList.translation"
+
+          />
+
+          <Vector2DFieldInterpolator 
+            id = "SubCategoryLabelListVector2D"
+            key = "[ 0.0, 1.0 ]" 
+            keyValue = "[ [300,100], [300,1500] ]"
+            fieldToInterp = "SubCategoryLabelList.translation"
+          />
+
+        </Animation>
+
+<!-- ==================================================================================================================== -->
+<!-- ==================================================================================================================== -->
     </children>
 </component>

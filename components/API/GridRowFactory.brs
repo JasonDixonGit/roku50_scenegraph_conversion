@@ -1,8 +1,8 @@
 Function GridRowFactory() as Object
     this = {
         
-        BuildCategoryGridRow:   GridRowFactory_BuildCategoryGridRow
-
+        BuildCategoryGridRow:        GridRowFactory_BuildCategoryGridRow
+        
     }
     return this
 End Function
@@ -38,7 +38,7 @@ Function GridRowFactory_BuildCategoryGridRow(xmlDataIn)
 
             item["Actors"] = titles 'this is a string array content meta variable -- use to pass titles
             item["Directors"] = feedLinks 'this is a string array content meta variable -- use to pass feed urls
-
+            'Print item
            result.push(item)
         end if
     end for
@@ -49,4 +49,4 @@ Function GridRowFactory_BuildCategoryGridRow(xmlDataIn)
             }] 
     
     return API_Utils().ParseXMLContent(categoriesList)
-end function    
+end function

@@ -24,13 +24,13 @@ sub getContent()
 
 end sub
 
-Function BuildGridscreenContent()
-    
-    oneRow = GetApiArray()
-    list = [
-    {
-        Title:"Categories"
-        ContentList : oneRow
-    }]
-    return ParseXMLContent(list)
-end Function
+'Function BuildGridscreenContent()
+'    
+'    oneRow = GetApiArray()
+'    list = [
+'    {
+'        Title:"Categories"
+'        ContentList : oneRow
+'    }]
+'    return ParseXMLContent(list)
+'end Function

@@ -31,11 +31,5 @@
             translation="[0,0]"
         />
 
-        <!-- Details screen -->
-        <YearSubCategories
-            id="YearSubCategories"
-            visible="false"
-        />
-
     </children>
 </component>
