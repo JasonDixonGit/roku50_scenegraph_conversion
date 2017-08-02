@@ -1,7 +1,8 @@
 Function Init()
    
     m.CategoryList       =   m.top.findNode("CategoryList")
-
+    m.SubCategoryLabelList = m.top.findNode("SubCategoryLabelList")
+    
     'set screen focus onto first list'
     m.currentRowList =   m.CategoryList
 
@@ -20,9 +21,12 @@ Function Init()
     m.description.title.font.size = m.description.title.font.size + 30
     m.top.isLoaded = false
 
+
     'default setup'
     m.CategoryList.visible = true
-
+    
+    setButtonListProperties(m)
+    
     runTask()
 
 End Function
@@ -110,6 +114,7 @@ Function OnCategoryListItemSelected()
     populateSubCategoryLabelList()
     AnimateToSubCategories = m.top.FindNode("AnimateToSubCategories")
     AnimateToSubCategories.control = "start"
+    m.SubCategoryLabelList.setFocus(true)
 End Function
 
 Function populateSubCategoryLabelList()
@@ -136,6 +141,7 @@ Function OnKeyEvent(key, press) as Boolean
             if(1 < 2) then
                 AnimateBackToCategories = m.top.FindNode("AnimateBackToCategories")
                 AnimateBackToCategories.control = "start"
+                m.CategoryList.setFocus(true)
                 result = true                   
 
             else
@@ -146,3 +152,11 @@ Function OnKeyEvent(key, press) as Boolean
     end if
     return result
 End Function
+
+'set button size, and onfocus size for enlarging-focus effect
+Function setButtonListProperties(m)
+  m.SubCategoryLabelList.font = "font:MediumSystemFont"
+  m.SubCategoryLabelList.font.size = m.SubCategoryLabelList.font.size
+  m.SubCategoryLabelList.focusedFont = "font:MediumBoldSystemFont"
+  m.SubCategoryLabelList.focusedFont.size = m.SubCategoryLabelList.focusedFont.size+10
+end Function

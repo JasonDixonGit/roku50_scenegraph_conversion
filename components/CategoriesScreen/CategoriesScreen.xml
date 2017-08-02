@@ -71,16 +71,13 @@
         <LabelList
             id = "SubCategoryLabelList"
             vertFocusAnimationStyle = "floatingFocus"
-            drawFocusFeedback = "true"
-            drawFocusFeedbackOnTop = "false"
-            focusBitmapUri = "pkg:/Images/focus_button.9.png"
-            focusFootprintBitmapUri="pkg:/Images/focus_empty_square.png"           
+            drawFocusFeedback = "false"         
             color = "0xFFFFFFFF"
-            focusedColor = "0xE40090FF"
+            focusedColor = "0xc90016FF"
             textHorizAlign = "left"
-            translation = "[300,1500]"
-            itemSize = "[500, 40]"
-            itemSpacing = "[0,60]">
+            translation = "[200,1500]"
+            itemSize = "[600, 40]"
+            itemSpacing = "[0,44]">
 
             <ContentNode role = "content">
 
@@ -88,6 +85,13 @@
 
         </LabelList>
 
+        <Rectangle
+            id="leftDivider"
+            translation="[180,1500]"
+            color="0xFFFFFFFF"
+            width="1"
+            height="540"
+        />
         <Poster
             translation="[0, 650]"
             uri="pkg:/images/BG_dark_down.png"
@@ -115,10 +119,16 @@
           <Vector2DFieldInterpolator 
             id = "SubCategoryLabelListVector2D"
             key = "[ 0.0, 1.0 ]" 
-            keyValue = "[ [300,1500], [300,100] ]"
+            keyValue = "[ [200,1500], [200,100] ]"
             fieldToInterp = "SubCategoryLabelList.translation"
           />
           
+          <Vector2DFieldInterpolator 
+            id = "leftDividerVector2D"
+            key = "[ 0.0, 1.0 ]" 
+            keyValue = "[ [180,1500], [180, 106] ]"
+            fieldToInterp = "leftDivider.translation"
+          />
 
         </Animation>
 
@@ -139,10 +149,17 @@
           <Vector2DFieldInterpolator 
             id = "SubCategoryLabelListVector2D"
             key = "[ 0.0, 1.0 ]" 
-            keyValue = "[ [300,100], [300,1500] ]"
+            keyValue = "[ [200,100], [200,1500] ]"
             fieldToInterp = "SubCategoryLabelList.translation"
           />
 
+          <Vector2DFieldInterpolator 
+            id = "leftDividerVector2D"
+            key = "[ 0.0, 1.0 ]" 
+            keyValue = "[ [180, 106], [180,1500] ]"
+            fieldToInterp = "leftDivider.translation"
+          />
+          
         </Animation>
 
 <!-- ==================================================================================================================== -->
