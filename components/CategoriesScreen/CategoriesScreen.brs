@@ -2,6 +2,7 @@ Function Init()
    
     m.CategoryList       =   m.top.findNode("CategoryList")
     m.SubCategoryLabelList = m.top.findNode("SubCategoryLabelList")
+    m.posterGrid           = m.top.findNode("PosterGridScreen")
     
     'set screen focus onto first list'
     m.currentRowList =   m.CategoryList
@@ -14,6 +15,7 @@ Function Init()
     m.top.observeField("focusedChild", "OnFocusedChildChange")
 
     m.top.observeField("itemFocused", "OnItemFocused")
+    m.top.observeField("labelFocused", "OnLabelFocused")
     m.top.observeField("CategoryListItemSelected", "OnCategoryListItemSelected")
     'm.top.observeField("needsRefreshed", "runTask")
     'm.rowList0.setFocus(true) 'set focus to first row on load after clearing out button background'
@@ -77,6 +79,19 @@ Sub OnItemFocused()
     end if
 End Sub
 
+Sub OnLabelFocused()
+    '?"Running posterGrid TASK"
+    if(m.top.labelFocused >= 0) then
+        m.subCategoryItemFocused = m.top.labelFocused
+        Print m.top.subCategoryLinkArray[m.subCategoryItemFocused]
+        'm.SubCategoryLabelList()
+        'm.posterGridTask = createObject("roSGNode","FetchPosterGridData")
+        'm.posterGridTask.subCategoryContent = m.top.focusedContent
+        'm.posterGridTask.observeField("buttonListAA","AssignLabelListData")
+        'm.posterGridTask.control = "RUN"
+    end if
+end Sub
+
 ' set proper focus to RowList in case if return from Details Screen
 Sub onVisibleChange()
     ?"onVisibleChange"
@@ -122,12 +137,17 @@ Function populateSubCategoryLabelList()
     m.labellistTask = createObject("roSGNode","BuildSubcategoryLabelList")
     m.labellistTask.subCategoryContent = m.top.focusedContent
     m.labellistTask.observeField("buttonListAA","AssignLabelListData")
+    m.labellisttask.observeField("linkArray", "AssignLinkArray")
     m.labellistTask.control = "RUN"
 End Function
 
 sub AssignLabelListData()
   m.top.buttonsContent = m.labellistTask.buttonListAA
   'm.top.contentSet = true
+end sub
+
+sub AssignLinkArray()
+    m.top.subCategoryLinkArray = m.labellistTask.linkArray
 end sub
 
 Function OnKeyEvent(key, press) as Boolean
@@ -148,6 +168,16 @@ Function OnKeyEvent(key, press) as Boolean
                 ?"ERROR -- CATCH BACK-BUTTON CASE HIT"
                 result = false
             end if
+        else if key = "right"
+            if(m.SubCategoryLabelList.hasFocus()) then
+                m.posterGrid.setFocus(true)
+                result = true
+            end if
+        else if key = "left"
+            if(m.posterGrid.hasFocus() = true) then
+                m.SubCategoryLabelList.setFocus(true)
+                result = true
+            end if  
         end if
     end if
     return result

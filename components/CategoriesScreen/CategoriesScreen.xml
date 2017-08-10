@@ -8,12 +8,19 @@
 
         <!-- buttonlist content node -->
         <field id="buttonsContent" type="node" alias="SubCategoryLabelList.content" />
+		<field id = "subCategoryLinkArray" type = "stringarray" />
 
         <!-- Row item selection handlers -->
         <field id="CategoryListItemSelected" type="intarray" alwaysnotify="true" alias="CategoryList.rowItemSelected"/>
 
+		<!-- Postergrid content -->
+		<field id = "posterContent" type="node" alias="PosterGridScreen.content" onChange="onPosterContentChange"/>
+		
         <!-- Row item focused handler 2 -->
         <field id="itemFocused" type="intarray" alias="CategoryList.rowItemFocused" />
+        
+        <!-- labellist item focused -->
+        <field id="labelFocused" type="int" alias="SubCategoryLabelList.itemFocused" />
 
         <!-- Row item focused handler -->
         <field id="lastItemFocus" type="intarray"/>
@@ -39,7 +46,7 @@
             width="1280"
             height="720"
             color="0x000000"
-            ShadeOpacity="0.72"
+            ShadeOpacity="0.62"
         />
 
         <Description
@@ -84,6 +91,20 @@
             </ContentNode>
 
         </LabelList>
+
+	    <PosterGrid
+	      id = "PosterGridScreen"
+	      posterDisplayMode="scaleToZooom"
+	      useAtlas="true"
+	      loadingBitmapUri=""
+	      captionVertAlignment="bottom"
+	      translation = "[400,1500]"
+	      basePosterSize = "[276,156]"
+	      caption1NumLines = "1"
+	      numColumns = "1"
+	      numRows = "5"
+	      itemSpacing = "[18,20]" 
+	    />
 
         <Rectangle
             id="leftDivider"
@@ -130,6 +151,13 @@
             fieldToInterp = "leftDivider.translation"
           />
 
+          <Vector2DFieldInterpolator 
+            id = "PosterGridScreenVector2D"
+            key = "[ 0.0, 1.0 ]" 
+            keyValue = "[ [400,1500], [400, 106] ]"
+            fieldToInterp = "PosterGridScreen.translation"
+          />
+          
         </Animation>
 
     <!-- ================= animate back to name capture =========================================== -->
@@ -158,6 +186,13 @@
             key = "[ 0.0, 1.0 ]" 
             keyValue = "[ [180, 106], [180,1500] ]"
             fieldToInterp = "leftDivider.translation"
+          />
+          
+          <Vector2DFieldInterpolator 
+            id = "PosterGridScreenVector2D"
+            key = "[ 0.0, 1.0 ]" 
+            keyValue = "[ [400, 106], [400,1500] ]"
+            fieldToInterp = "PosterGridScreen.translation"
           />
           
         </Animation>

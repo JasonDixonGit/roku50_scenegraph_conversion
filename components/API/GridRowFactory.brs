@@ -2,7 +2,7 @@ Function GridRowFactory() as Object
     this = {
         
         BuildCategoryGridRow:        GridRowFactory_BuildCategoryGridRow
-        
+        BuildPosterGrid:             GridRowFactory_BuildPosterGrid
     }
     return this
 End Function
@@ -50,3 +50,30 @@ Function GridRowFactory_BuildCategoryGridRow(xmlDataIn)
     
     return API_Utils().ParseXMLContent(categoriesList)
 end function
+
+Function GridRowFactory_BuildPosterGrid(xmlDataIn)
+
+    responseXML = API_Utils().ParseXML2(xmlDataIn)
+    responseArray = responseXML.GetChildElements()
+    
+    'check that incoming JSON is not empty
+    if(results <> invalid) then
+        hasNext = true
+    end if
+ 
+    index = 0
+
+    for each xmlItem in responseArray
+        if xmlItem.getName() = "item"
+            rowItem = posterRow.createChild("ContentNode")
+            'rowItem["id"] = xmlItem.getAttributes().hd_img
+            'rowItem["Title"] = xmlItem.getAttributes().title
+            rowItem["SDPosterUrl"] = xmlItem.getAttributes().sdImg
+            rowItem["HDPosterUrl"] = xmlItem.getAttributes().hdImg
+            rowItem["shortdescriptionline1"] = xmlItem.getAttributes().title
+            'rowItem["shortdescriptionline2"] = results.data.getEntry(index).attributes.genre  
+       end if
+    next
+
+    return posterRow
+End Function

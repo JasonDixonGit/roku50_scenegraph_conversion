@@ -23,14 +23,3 @@ sub getContent()
     m.top.gridscreencontent = GridrowFactory().BuildCategoryGridRow(xmlDataIn)' = API_Utils().ParseXMLContent(list)
 
 end sub
-
-'Function BuildGridscreenContent()
-'    
-'    oneRow = GetApiArray()
-'    list = [
-'    {
-'        Title:"Categories"
-'        ContentList : oneRow
-'    }]
-'    return ParseXMLContent(list)
-'end Function

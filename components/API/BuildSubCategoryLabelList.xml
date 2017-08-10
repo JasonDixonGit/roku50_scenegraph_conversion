@@ -5,6 +5,7 @@
   <interface>
   	<field id = "subCategoryContent" type = "node" />
     <field id = "buttonListAA" type = "node" />
+    <field id = "linkArray" type = "stringarray" />
     
   </interface> 
 
