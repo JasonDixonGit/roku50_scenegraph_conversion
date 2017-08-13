@@ -1,5 +1,6 @@
 Function Init()
    
+    m.videoPlayer        =   m.top.findNode("VideoPlayer")
     m.CategoryList       =   m.top.findNode("CategoryList")
     m.SubCategoryLabelList = m.top.findNode("SubCategoryLabelList")
     m.posterGrid           = m.top.findNode("PosterGridScreen")
@@ -16,7 +17,9 @@ Function Init()
 
     m.top.observeField("itemFocused", "OnItemFocused")
     m.top.observeField("labelFocused", "OnLabelFocused")
+    m.top.observeField("videoFocused","OnVideoFocused")
     m.top.observeField("CategoryListItemSelected", "OnCategoryListItemSelected")
+    m.top.observeField("videoSelected", "OnVideoSelected")
     'm.top.observeField("needsRefreshed", "runTask")
     'm.rowList0.setFocus(true) 'set focus to first row on load after clearing out button background'
     m.CategoryList.rowLabelFont.size = m.CategoryList.rowLabelFont.size + 8
@@ -80,7 +83,7 @@ Sub OnItemFocused()
 End Sub
 
 Sub OnLabelFocused()
-    '?"Running posterGrid TASK"
+    '*********** CHECK IF LIST IS LOADED **************
     if(m.top.labelFocused >= 0) then
         ?"Running posterGrid TASK"
         'm.subCategoryItemFocused = m.top.labelFocused
@@ -155,6 +158,24 @@ end sub
 sub AssignLinkArray()
     m.top.subCategoryLinkArray = m.labellistTask.linkArray
 end sub
+
+Function OnVideoFocused()
+    m.focusedVideo  = m.top.posterContent.getChild(m.top.videoFocused)
+End Function
+
+Function OnVideoSelected()
+  ?"on video selected"
+  Print m.top.videoSelected
+  Print m.focusedVideo.url
+  
+  videoContent = createObject("RoSGNode", "ContentNode")
+  videoContent.url = m.focusedVideo.url
+  videoContent.streamformat = "mp4"
+ 
+  m.VideoPlayer.content = videoContent
+  m.VideoPlayer.visible = true
+  m.VideoPlayer.control = "play"
+end Function
 
 Function OnKeyEvent(key, press) as Boolean
     result = false

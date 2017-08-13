@@ -14,7 +14,10 @@
         <field id="CategoryListItemSelected" type="intarray" alwaysnotify="true" alias="CategoryList.rowItemSelected"/>
 
 		<!-- Postergrid content -->
-		<field id = "posterContent" type="node" alias="PosterGridScreen.content" onChange="onPosterContentChange"/>
+		<field id = "posterContent" type="node" alias="PosterGridScreen.content"/>
+		
+		<!--  -->
+		<field id = "videoSelected" type="int" alwaysnotify="true" alias="PosterGridScreen.itemSelected" />
 		
         <!-- Row item focused handler 2 -->
         <field id="itemFocused" type="intarray" alias="CategoryList.rowItemFocused" />
@@ -22,6 +25,9 @@
         <!-- labellist item focused -->
         <field id="labelFocused" type="int" alias="SubCategoryLabelList.itemFocused" />
 
+        <!-- labellist item focused -->
+        <field id="videoFocused" type="int" alias="PosterGridScreen.itemFocused" />
+        
         <!-- Row item focused handler -->
         <field id="lastItemFocus" type="intarray"/>
 
@@ -122,6 +128,13 @@
             height="95"
         />
 
+        <Video
+          id="VideoPlayer"
+          width="1280"
+          height="720"
+          translation="[0,0]"
+          visible="false"
+        />
 
 
         <!-- ==================================================================================================================== -->
