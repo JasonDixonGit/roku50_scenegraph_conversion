@@ -2,7 +2,7 @@ Function GridRowFactory() as Object
     this = {
         
         BuildCategoryGridRow:        GridRowFactory_BuildCategoryGridRow
-        BuildPosterGrid:             GridRowFactory_BuildPosterGrid
+        BuildPosterGridRow:          GridRowFactory_BuildPosterGridRow
     }
     return this
 End Function
@@ -51,25 +51,40 @@ Function GridRowFactory_BuildCategoryGridRow(xmlDataIn)
     return API_Utils().ParseXMLContent(categoriesList)
 end function
 
-Function GridRowFactory_BuildPosterGrid(xmlDataIn)
+Function GridRowFactory_BuildPosterGridRow(xmlDataIn)
 
     responseXML = API_Utils().ParseXML2(xmlDataIn)
     responseArray = responseXML.GetChildElements()
- 
-    index = 0
 
+    result = []
+    
     for each xmlItem in responseArray
+        'Print xmlItem
         if xmlItem.getName() = "item"
             rowItem = {}
-            'rowItem = posterRow.createChild("ContentNode")
-            'rowItem["id"] = xmlItem.getAttributes().hd_img
-            'rowItem["Title"] = xmlItem.getAttributes().title
-            rowItem["SDPosterUrl"] = xmlItem.getAttributes().sdImg
-            rowItem["HDPosterUrl"] = xmlItem.getAttributes().hdImg
-            rowItem["shortdescriptionline1"] = xmlItem.getAttributes().title
-            'rowItem["shortdescriptionline2"] = results.data.getEntry(index).attributes.genre  
+            rowItem["SDGRIDPOSTERURL"] = xmlItem.getAttributes().sdImg
+            rowItem["HDGRIDPOSTERURL"] = xmlItem.getAttributes().hdImg
+                
+            cmetadata = xmlItem.GetChildElements()
+            
+            for each cItem in cmetadata
+                if(cItem.getName() = "title") then
+                    'Print cItem.getName(), cItem.GetText()
+                    rowItem["shortdescriptionline1"] = cItem.GetText()
+                else if(cItem.getName() = "contentId") then
+                    rowItem["url"] = cItem.GetText()
+                end if
+                
+                'if cItem.getName() = "title" then
+                '    Print cItem
+                '    rowItem["shortdescriptionline1"] = cItem
+                'end if
+            next
+             
+            result.Push(rowItem)
+            'Print rowItem["HDGRIDPOSTERURL"]
        end if
     next
-
-    return posterRow
+            
+    return API_Utils().ParsePosterGridXMLContent(result)
 End Function

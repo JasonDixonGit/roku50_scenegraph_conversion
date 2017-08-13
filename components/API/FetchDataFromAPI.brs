@@ -20,6 +20,6 @@ sub getContent()
 
     xmlDataIn = readInternet.GetToString()
     'Print xmlDataIn
-    m.top.gridscreencontent = GridrowFactory().BuildCategoryGridRow(xmlDataIn)' = API_Utils().ParseXMLContent(list)
+    m.top.gridscreencontent = GridrowFactory().BuildCategoryGridRow(xmlDataIn)
 
 end sub

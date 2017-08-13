@@ -94,12 +94,13 @@
 
 	    <PosterGrid
 	      id = "PosterGridScreen"
+	      focusBitmapUri="pkg:/images/focus_button.9.png"
 	      posterDisplayMode="scaleToZooom"
 	      useAtlas="true"
 	      loadingBitmapUri=""
 	      captionVertAlignment="bottom"
-	      translation = "[400,1500]"
-	      basePosterSize = "[276,156]"
+	      translation = "[750,1500]"
+	      basePosterSize = "[414,234]"
 	      caption1NumLines = "1"
 	      numColumns = "1"
 	      numRows = "5"
@@ -155,7 +156,7 @@
           <Vector2DFieldInterpolator 
             id = "PosterGridScreenVector2D"
             key = "[ 0.0, 1.0 ]" 
-            keyValue = "[ [400,1500], [400, 106] ]"
+            keyValue = "[ [750,1500], [750, 106] ]"
             fieldToInterp = "PosterGridScreen.translation"
           />
           
@@ -192,7 +193,7 @@
           <Vector2DFieldInterpolator 
             id = "PosterGridScreenVector2D"
             key = "[ 0.0, 1.0 ]" 
-            keyValue = "[ [400, 106], [400,1500] ]"
+            keyValue = "[ [750, 106], [750,1500] ]"
             fieldToInterp = "PosterGridScreen.translation"
           />
           

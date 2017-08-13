@@ -20,6 +20,6 @@ sub getSubCategoryContent()
 
     xmlDataIn = readInternet.GetToString()
     'Print xmlDataIn
-    m.top.subCategoryContent = GridrowFactory().BuildPosterGrid(xmlDataIn)' = API_Utils().ParseXMLContent(list)
+    m.top.subCategoryContent = GridrowFactory().BuildPosterGridRow(xmlDataIn)
 
 end sub

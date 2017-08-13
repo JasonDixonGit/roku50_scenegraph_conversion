@@ -2,6 +2,7 @@ Function API_Utils() as Object
     this = {
         
         ParseXMLContent:        API_ParseXMLContent
+        ParsePosterGridXMLContent: API_ParsePosterGridXMLContent
         ParseXML2:              API_ParseXML2
     }
     return this
@@ -21,6 +22,24 @@ Function API_ParseXMLContent(list As Object)
                 item[key] = itemAA[key]
             end for
             row.appendChild(item)
+        end for
+        RowItems.appendChild(row)
+    end for
+
+    return RowItems
+End Function
+
+Function API_ParsePosterGridXMLContent(list As Object)
+    RowItems = createObject("RoSGNode","ContentNode")
+    
+    for each rowAA in list
+        row = createObject("RoSGNode","ContentNode")
+        'Print rowAA
+        
+        'row[rowAA] = list[rowAA]
+        for each itemAA in rowAA
+            'Print itemAA, rowAA.Lookup(itemAA)
+            row[itemAA] = rowAA.Lookup(itemAA)
         end for
         RowItems.appendChild(row)
     end for

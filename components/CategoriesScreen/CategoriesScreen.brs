@@ -84,10 +84,10 @@ Sub OnLabelFocused()
     if(m.top.labelFocused >= 0) then
         ?"Running posterGrid TASK"
         'm.subCategoryItemFocused = m.top.labelFocused
-        Print m.top.subCategoryLinkArray[m.top.labelFocused]
+        'Print m.top.subCategoryLinkArray[m.top.labelFocused]
         'm.SubCategoryLabelList()
         m.posterGridTask = createObject("roSGNode","FetchSubCategory")
-        m.posterGridTask.subCategoryUri = m.top.subCategoryLinkArray[m.top.labelFocused]'.toStr()
+        m.posterGridTask.subCategoryUri = m.top.subCategoryLinkArray[m.top.labelFocused]
         m.posterGridTask.observeField("subCategoryContent","updatePosterGrid")
         m.posterGridTask.control = "RUN"
     end if
