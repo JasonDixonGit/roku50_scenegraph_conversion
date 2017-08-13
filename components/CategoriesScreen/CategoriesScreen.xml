@@ -104,6 +104,7 @@
 	      numColumns = "1"
 	      numRows = "5"
 	      itemSpacing = "[18,20]" 
+	      visible = "true"
 	    />
 
         <Rectangle

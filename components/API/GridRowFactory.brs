@@ -55,17 +55,13 @@ Function GridRowFactory_BuildPosterGrid(xmlDataIn)
 
     responseXML = API_Utils().ParseXML2(xmlDataIn)
     responseArray = responseXML.GetChildElements()
-    
-    'check that incoming JSON is not empty
-    if(results <> invalid) then
-        hasNext = true
-    end if
  
     index = 0
 
     for each xmlItem in responseArray
         if xmlItem.getName() = "item"
-            rowItem = posterRow.createChild("ContentNode")
+            rowItem = {}
+            'rowItem = posterRow.createChild("ContentNode")
             'rowItem["id"] = xmlItem.getAttributes().hd_img
             'rowItem["Title"] = xmlItem.getAttributes().title
             rowItem["SDPosterUrl"] = xmlItem.getAttributes().sdImg

@@ -82,15 +82,22 @@ End Sub
 Sub OnLabelFocused()
     '?"Running posterGrid TASK"
     if(m.top.labelFocused >= 0) then
-        m.subCategoryItemFocused = m.top.labelFocused
-        Print m.top.subCategoryLinkArray[m.subCategoryItemFocused]
+        ?"Running posterGrid TASK"
+        'm.subCategoryItemFocused = m.top.labelFocused
+        Print m.top.subCategoryLinkArray[m.top.labelFocused]
         'm.SubCategoryLabelList()
-        'm.posterGridTask = createObject("roSGNode","FetchPosterGridData")
-        'm.posterGridTask.subCategoryContent = m.top.focusedContent
-        'm.posterGridTask.observeField("buttonListAA","AssignLabelListData")
-        'm.posterGridTask.control = "RUN"
+        m.posterGridTask = createObject("roSGNode","FetchSubCategory")
+        m.posterGridTask.subCategoryUri = m.top.subCategoryLinkArray[m.top.labelFocused]'.toStr()
+        m.posterGridTask.observeField("subCategoryContent","updatePosterGrid")
+        m.posterGridTask.control = "RUN"
     end if
 end Sub
+
+'assign retrieved data to postergrid
+sub updatePosterGrid()
+  m.top.posterContent = m.posterGridTask.subCategoryContent
+  'm.top.contentSet = true
+end sub
 
 ' set proper focus to RowList in case if return from Details Screen
 Sub onVisibleChange()
@@ -125,7 +132,6 @@ End Sub
 
 ' Row item selected handler
 Function OnCategoryListItemSelected()
-
     populateSubCategoryLabelList()
     AnimateToSubCategories = m.top.FindNode("AnimateToSubCategories")
     AnimateToSubCategories.control = "start"
