@@ -109,7 +109,7 @@
 	      basePosterSize = "[414,234]"
 	      caption1NumLines = "1"
 	      numColumns = "1"
-	      numRows = "5"
+	      numRows = "3"
 	      itemSpacing = "[18,20]" 
 	      visible = "true"
 	    />
@@ -133,6 +133,7 @@
           width="1280"
           height="720"
           translation="[0,0]"
+          enableTrickPlay="true"
           visible="false"
         />
 

@@ -175,7 +175,24 @@ Function OnVideoSelected()
   m.VideoPlayer.content = videoContent
   m.VideoPlayer.visible = true
   m.VideoPlayer.control = "play"
+  m.VideoPlayer.setFocus(true)
 end Function
+
+' event handler of Video player msg
+Sub OnVideoPlayerStateChange()
+    if m.videoPlayer.state  = "error"
+        ' error handling
+        ?"ERROR"
+        m.videoPlayer.visible = false
+    else if m.videoPlayer.state = "playing"
+        ' playback handling
+        '?"playing"
+    else if m.videoPlayer.state = "finished"
+        '?"finished"
+        m.videoPlayer.visible = false
+        'm.videoPlayer.control = "stop"
+    end if
+End Sub
 
 Function OnKeyEvent(key, press) as Boolean
     result = false
@@ -185,21 +202,25 @@ Function OnKeyEvent(key, press) as Boolean
         if key = "back"
             
             'catch back press while loading main CategoriesScreen'
-            if(1 < 2) then
+            if(m.VideoPlayer.visible = true) then
+                m.VideoPlayer.visible = false
+                m.VideoPlayer.control = "stop"
+                m.posterGrid.setFocus(true)
+                
+                result = true
+            else
                 AnimateBackToCategories = m.top.FindNode("AnimateBackToCategories")
                 AnimateBackToCategories.control = "start"
                 m.CategoryList.setFocus(true)
                 result = true                   
-
-            else
-                ?"ERROR -- CATCH BACK-BUTTON CASE HIT"
-                result = false
             end if
+            
         else if key = "right"
             if(m.SubCategoryLabelList.hasFocus()) then
                 m.posterGrid.setFocus(true)
                 result = true
             end if
+            
         else if key = "left"
             if(m.posterGrid.hasFocus() = true) then
                 m.SubCategoryLabelList.setFocus(true)
@@ -216,4 +237,14 @@ Function setButtonListProperties(m)
   m.SubCategoryLabelList.font.size = m.SubCategoryLabelList.font.size
   m.SubCategoryLabelList.focusedFont = "font:MediumBoldSystemFont"
   m.SubCategoryLabelList.focusedFont.size = m.SubCategoryLabelList.focusedFont.size+10
+end Function
+
+Function setVideoPlayerColors()
+    'm.videoPlayerColor = m.top.VideoPlayerColor
+
+    'rtBar = m.videoPlayer.retrievingBar
+    'rtBar.filledBarBlendColor = m.videoPlayerColor
+
+    'bfBar = m.videoPlayer.bufferingBar
+    'bfBar.filledBarBlendColor = m.videoPlayerColor
 end Function
