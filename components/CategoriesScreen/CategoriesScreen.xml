@@ -54,6 +54,29 @@
             color="0x000000"
             ShadeOpacity="0.62"
         />
+            
+        <PosterGrid
+          id = "PosterGridScreen"
+          focusBitmapUri="pkg:/images/focus_button.9.png"
+          posterDisplayMode="scaleToZooom"
+          useAtlas="true"
+          loadingBitmapUri=""
+          captionVertAlignment="bottom"
+          translation = "[750,1500]"
+          basePosterSize = "[414,234]"
+          caption1NumLines = "1"
+          numColumns = "1"
+          numRows = "3"
+          itemSpacing = "[18,20]" 
+          visible = "true"
+        />
+
+        <Rectangle
+            id="posterGridMask"
+            color="0x000000"
+            opacity="0.0"
+            visible="true"
+        />
 
         <Description
             id="Description"
@@ -98,21 +121,7 @@
 
         </LabelList>
 
-	    <PosterGrid
-	      id = "PosterGridScreen"
-	      focusBitmapUri="pkg:/images/focus_button.9.png"
-	      posterDisplayMode="scaleToZooom"
-	      useAtlas="true"
-	      loadingBitmapUri=""
-	      captionVertAlignment="bottom"
-	      translation = "[750,1500]"
-	      basePosterSize = "[414,234]"
-	      caption1NumLines = "1"
-	      numColumns = "1"
-	      numRows = "3"
-	      itemSpacing = "[18,20]" 
-	      visible = "true"
-	    />
+
 
         <Rectangle
             id="leftDivider"
@@ -215,5 +224,35 @@
 
 <!-- ==================================================================================================================== -->
 <!-- ==================================================================================================================== -->
+
+    <Animation   
+        id="fadeOut"  
+        duration=".25"
+        easeFunction="inCubic" >
+
+        <FloatFieldInterpolator    
+            id = "fadeOutFFI"
+            key="[0.0, 1.0]"
+            keyValue="[ 0.0, 1.0 ]"
+            fieldToInterp="posterGridMask.opacity"   
+        />
+    </Animation>
+
+    <Animation   
+        id="fadeIn"  
+        duration=".25"
+        easeFunction="outCubic" >
+
+        <FloatFieldInterpolator    
+            id = "fadeInFFI"
+            key="[0.0, 1.0]"
+            keyValue="[ 1.0, 0.0 ]"
+            fieldToInterp="posterGridMask.opacity"  
+        />
+    </Animation>
+
+<!-- ==================================================================================================================== -->
+<!-- ==================================================================================================================== -->
+
     </children>
 </component>
