@@ -71,13 +71,6 @@
           visible = "true"
         />
 
-        <Rectangle
-            id="posterGridMask"
-            color="0x000000"
-            opacity="0.0"
-            visible="true"
-        />
-
         <Description
             id="Description"
             translation="[65, 120]"
@@ -221,35 +214,6 @@
           />
           
         </Animation>
-
-<!-- ==================================================================================================================== -->
-<!-- ==================================================================================================================== -->
-
-    <Animation   
-        id="fadeOut"  
-        duration=".25"
-        easeFunction="inCubic" >
-
-        <FloatFieldInterpolator    
-            id = "fadeOutFFI"
-            key="[0.0, 1.0]"
-            keyValue="[ 0.0, 1.0 ]"
-            fieldToInterp="posterGridMask.opacity"   
-        />
-    </Animation>
-
-    <Animation   
-        id="fadeIn"  
-        duration=".25"
-        easeFunction="outCubic" >
-
-        <FloatFieldInterpolator    
-            id = "fadeInFFI"
-            key="[0.0, 1.0]"
-            keyValue="[ 1.0, 0.0 ]"
-            fieldToInterp="posterGridMask.opacity"  
-        />
-    </Animation>
 
 <!-- ==================================================================================================================== -->
 <!-- ==================================================================================================================== -->

@@ -85,10 +85,6 @@ End Sub
 Sub OnLabelFocused()
     '*********** CHECK IF LIST IS LOADED **************
     if(m.top.labelFocused >= 0) then
-          'animate out'
-          fadeOut = m.top.findNode("fadeOut")
-          fadeOut.control = "start"
-        ?"Running posterGrid TASK"
         'm.subCategoryItemFocused = m.top.labelFocused
         'Print m.top.subCategoryLinkArray[m.top.labelFocused]
         'm.SubCategoryLabelList()
@@ -103,10 +99,6 @@ end Sub
 sub updatePosterGrid()
 
   m.top.posterContent = m.posterGridTask.subCategoryContent
-
-    'animate in'
-  'fadeIn = m.top.findNode("fadeIn")
-  'fadeIn.control = "start"
   'm.top.contentSet = true
 end sub
 
