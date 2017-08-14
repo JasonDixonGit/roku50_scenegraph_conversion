@@ -4,7 +4,7 @@ Function Init()
     m.CategoryList       =   m.top.findNode("CategoryList")
     m.SubCategoryLabelList = m.top.findNode("SubCategoryLabelList")
     m.posterGrid           = m.top.findNode("PosterGridScreen")
-    
+    m.playIcon            = m.top.findNode("playIcon")
     'set screen focus onto first list'
     m.currentRowList =   m.CategoryList
 
@@ -31,7 +31,8 @@ Function Init()
     m.CategoryList.visible = true
     
     setButtonListProperties(m)
-    
+    setVideoPlayerColors()
+
     runTask()
 
 End Function
@@ -104,14 +105,13 @@ end sub
 
 ' set proper focus to RowList in case if return from Details Screen
 Sub onVisibleChange()
-    ?"onVisibleChange"
     'm.MenuButton.font.uri = m.top.font
     'm.rowLabelFont = m.top.font
     
     if m.top.visible = true then
         runTask()
+    
         if(m.top.lastItemFocus[0] = 0 AND m.top.lastItemFocus[1] = 0) then
-            ?"setting to item 0"
             'm.currentRowList.setFocus(true)
             m.CategoryList.setFocus(true)
             m.CategoryList.jumpToRowItem = [0, 0]
@@ -163,11 +163,7 @@ Function OnVideoFocused()
     m.focusedVideo  = m.top.posterContent.getChild(m.top.videoFocused)
 End Function
 
-Function OnVideoSelected()
-  ?"on video selected"
-  Print m.top.videoSelected
-  Print m.focusedVideo.url
-  
+Function OnVideoSelected()  
   videoContent = createObject("RoSGNode", "ContentNode")
   videoContent.url = m.focusedVideo.url
   videoContent.streamformat = "mp4"
@@ -209,6 +205,7 @@ Function OnKeyEvent(key, press) as Boolean
                 
                 result = true
             else
+                m.playIcon.visible = false
                 AnimateBackToCategories = m.top.FindNode("AnimateBackToCategories")
                 AnimateBackToCategories.control = "start"
                 m.CategoryList.setFocus(true)
@@ -218,11 +215,13 @@ Function OnKeyEvent(key, press) as Boolean
         else if key = "right"
             if(m.SubCategoryLabelList.hasFocus()) then
                 m.posterGrid.setFocus(true)
+                m.playIcon.visible = true
                 result = true
             end if
             
         else if key = "left"
             if(m.posterGrid.hasFocus() = true) then
+                m.playIcon.visible = false
                 m.SubCategoryLabelList.setFocus(true)
                 result = true
             end if  
@@ -240,11 +239,14 @@ Function setButtonListProperties(m)
 end Function
 
 Function setVideoPlayerColors()
-    'm.videoPlayerColor = m.top.VideoPlayerColor
+    m.videoPlayerColor = "#c90016"
 
-    'rtBar = m.videoPlayer.retrievingBar
-    'rtBar.filledBarBlendColor = m.videoPlayerColor
+    rtBar = m.videoPlayer.retrievingBar
+    rtBar.filledBarBlendColor = m.videoPlayerColor
 
-    'bfBar = m.videoPlayer.bufferingBar
-    'bfBar.filledBarBlendColor = m.videoPlayerColor
+    tpbar = m.videoPlayer.trickPlayBar
+    tpbar.filledBarBlendColor = m.videoPlayerColor
+
+    bfBar = m.videoPlayer.bufferingBar
+    bfBar.filledBarBlendColor = m.videoPlayerColor
 end Function

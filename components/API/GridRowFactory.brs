@@ -40,6 +40,7 @@ Function GridRowFactory_BuildCategoryGridRow(xmlDataIn)
             item["Directors"] = feedLinks 'this is a string array content meta variable -- use to pass feed urls
             'Print item
            result.push(item)
+
         end if
     end for
     
@@ -69,20 +70,13 @@ Function GridRowFactory_BuildPosterGridRow(xmlDataIn)
             
             for each cItem in cmetadata
                 if(cItem.getName() = "title") then
-                    'Print cItem.getName(), cItem.GetText()
                     rowItem["shortdescriptionline1"] = cItem.GetText()
                 else if(cItem.getName() = "contentId") then
                     rowItem["url"] = cItem.GetText()
                 end if
-                
-                'if cItem.getName() = "title" then
-                '    Print cItem
-                '    rowItem["shortdescriptionline1"] = cItem
-                'end if
             next
              
             result.Push(rowItem)
-            'Print rowItem["HDGRIDPOSTERURL"]
        end if
     next
             

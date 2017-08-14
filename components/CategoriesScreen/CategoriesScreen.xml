@@ -71,6 +71,15 @@
           visible = "true"
         />
 
+        <Poster
+            id="playIcon"
+            width="80"
+            height="80"
+            translation="[910, 180]"
+            uri="pkg:/images/play2.png"
+            visible="false"
+        />
+
         <Description
             id="Description"
             translation="[65, 120]"

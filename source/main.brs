@@ -33,36 +33,3 @@ sub showChannelSGScreen()
         end if  
     end while
 end sub
-
-''    m.global = screen.getGlobalNode()
-''    m.global.id = "GlobalNode"
-''    m.global.xfer = CreateObject("roUrlTransfer")
-''
-'
-
-'' 
-''    while true
-''        msg = wait(0, port)
-''        msgType = type(msg)
-''
-''        if msgType = "roSGNodeEvent"
-''            'print "node "; msg.getNode()
-''            'print "field name "; msg.getField()
-''
-''            'exit listener'
-''            if(msg.getNode() = "ExitScreen" AND msg.getField() = "exitFlag")
-''                if(es.exitFlag = true)
-''                    exitProgram()
-''                end if
-''
-''            end if
-''        end if
-''
-''    end while
-''
-''    if screen <> invalid then
-''        screen.Close()
-''        screen = invalid
-''    end if
-''end sub
-''
