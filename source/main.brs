@@ -1,8 +1,11 @@
 '******************************************************************
 ' Author: Jason Dixon
-' Description: Main Thread. 
+' Description: Main Thread - Creates HomeScene thread.
 '******************************************************************
 
+'******************************************************************
+' Description: 
+'******************************************************************
 sub Main()
     m.device = CreateObject("roDeviceInfo")
     m.maxWidth = m.device.GetDisplaySize().w
@@ -13,6 +16,9 @@ sub Main()
     showChannelSGScreen()
 end sub
 
+'******************************************************************
+' Description: 
+'******************************************************************
 sub showChannelSGScreen()
     m.device = CreateObject("roDeviceInfo")
     m.maxWidth = m.device.GetDisplaySize().w

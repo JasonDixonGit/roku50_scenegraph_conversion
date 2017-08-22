@@ -1,3 +1,12 @@
+'******************************************************************
+' Author: Jason Dixon
+' Description: 
+'******************************************************************
+
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function Init()
    
     m.videoPlayer        =   m.top.findNode("VideoPlayer")
@@ -37,6 +46,10 @@ Function Init()
 
 End Function
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 'retrieve data from API with async task node
 sub runTask()
   ?'"runTask() called"
@@ -50,12 +63,20 @@ sub runTask()
   'end if
 end sub
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 'assign retrieved data to postergrid
 sub showGridScreen()
   m.top.content = m.readGridTask.gridscreencontent
   m.top.contentSet = true
 end sub
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 'handler of focused item in RowList
 Sub OnItemFocused()
 
@@ -83,6 +104,10 @@ Sub OnItemFocused()
     end if
 End Sub
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Sub OnLabelFocused()
     '*********** CHECK IF LIST IS LOADED **************
     if(m.top.labelFocused >= 0) then
@@ -96,6 +121,10 @@ Sub OnLabelFocused()
     end if
 end Sub
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 'assign retrieved data to postergrid
 sub updatePosterGrid()
 
@@ -103,6 +132,10 @@ sub updatePosterGrid()
   'm.top.contentSet = true
 end sub
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 ' set proper focus to RowList in case if return from Details Screen
 Sub onVisibleChange()
     'm.MenuButton.font.uri = m.top.font
@@ -126,6 +159,10 @@ Sub onVisibleChange()
     end if
 End Sub
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 ' set proper focus to RowList in case if return from Details Screen
 Sub OnFocusedChildChange()
     if(m.top.visible = false and not m.currentRowList.hasFocus()) then
@@ -133,6 +170,10 @@ Sub OnFocusedChildChange()
     end if
 End Sub
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 ' Row item selected handler
 Function OnCategoryListItemSelected()
     populateSubCategoryLabelList()
@@ -141,6 +182,10 @@ Function OnCategoryListItemSelected()
     m.SubCategoryLabelList.setFocus(true)
 End Function
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function populateSubCategoryLabelList()
     ?"Running labellist TASK"
     m.labellistTask = createObject("roSGNode","BuildSubcategoryLabelList")
@@ -150,19 +195,35 @@ Function populateSubCategoryLabelList()
     m.labellistTask.control = "RUN"
 End Function
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 sub AssignLabelListData()
   m.top.buttonsContent = m.labellistTask.buttonListAA
   'm.top.contentSet = true
 end sub
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 sub AssignLinkArray()
     m.top.subCategoryLinkArray = m.labellistTask.linkArray
 end sub
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function OnVideoFocused()
     m.focusedVideo  = m.top.posterContent.getChild(m.top.videoFocused)
 End Function
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function OnVideoSelected()  
   videoContent = createObject("RoSGNode", "ContentNode")
   videoContent.url = m.focusedVideo.url
@@ -174,6 +235,10 @@ Function OnVideoSelected()
   m.VideoPlayer.setFocus(true)
 end Function
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 ' event handler of Video player msg
 Sub OnVideoPlayerStateChange()
     if m.videoPlayer.state  = "error"
@@ -190,6 +255,10 @@ Sub OnVideoPlayerStateChange()
     end if
 End Sub
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function OnKeyEvent(key, press) as Boolean
     result = false
     if press then
@@ -230,6 +299,10 @@ Function OnKeyEvent(key, press) as Boolean
     return result
 End Function
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 'set button size, and onfocus size for enlarging-focus effect
 Function setButtonListProperties(m)
   m.SubCategoryLabelList.font = "font:MediumSystemFont"
@@ -238,6 +311,10 @@ Function setButtonListProperties(m)
   m.SubCategoryLabelList.focusedFont.size = m.SubCategoryLabelList.focusedFont.size+10
 end Function
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function setVideoPlayerColors()
     m.videoPlayerColor = "#c90016"
 
