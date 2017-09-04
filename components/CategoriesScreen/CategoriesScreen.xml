@@ -37,9 +37,6 @@
         <!-- secondaryColor settings -->
         <field id="CategoryListLabelColor" type="string" alias="CategoryList.rowLabelColor"/>
 
-        <!-- global font -->
-        <field id="font" type="string" />
-
     </interface>
 
     <!-- main handler -->

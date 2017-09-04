@@ -2,7 +2,6 @@ Function Init()
 
     ' CategoriesScreen node with RowList
     m.CategoriesScreen               = m.top.findNode("CategoriesScreen")
-
 End Function
 
 ' if content set, focus on CategoriesScreen
@@ -36,7 +35,3 @@ End Function
 'function SetAppColors()
 
 'end function
-
-'function SetAppFont()
-
-'end Function

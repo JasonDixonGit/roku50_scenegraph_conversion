@@ -5,6 +5,7 @@ Function Init()
     m.SubCategoryLabelList = m.top.findNode("SubCategoryLabelList")
     m.posterGrid           = m.top.findNode("PosterGridScreen")
     m.playIcon            = m.top.findNode("playIcon")
+    
     'set screen focus onto first list'
     m.currentRowList =   m.CategoryList
 
@@ -26,6 +27,12 @@ Function Init()
     m.description.title.font.size = m.description.title.font.size + 30
     m.top.isLoaded = false
 
+    channel_font = "pkg:/Fonts/Quicksand-Regular.ttf"
+    'm.description.font = channel_font
+    m.SubCategoryLabelList.font.uri = channel_font
+    m.SubCategoryLabelList.focusedFont.uri = channel_font
+    m.posterGrid.caption1Font.uri = channel_font
+    m.CategoryList.rowLabelFont.uri = channel_font
 
     'default setup'
     m.CategoryList.visible = true
@@ -59,7 +66,7 @@ end sub
 'handler of focused item in RowList
 Sub OnItemFocused()
 
-    m.CategoryList.rowLabelFont.uri = m.top.font
+    'm.CategoryList.rowLabelFont.uri = "pkg:/Fonts/Quicksand-Regular.ttf"
 
     m.itemFocused   = m.top.itemFocused
     focusedContent  = m.top.content.getChild(m.itemFocused[0]).getChild(m.itemFocused[1])
