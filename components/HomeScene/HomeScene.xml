@@ -7,29 +7,12 @@
 
         <field id="itemID" type="string" />
 
-        <!-- Content for RowLists in GridScreen on Home Scene -->
-        <field id="content" type="node" alias="GridScreen.content" onChange="OnChangeContent"/>
+        <!-- Content for RowLists in CategoriesScreen on Home Scene -->
+        <field id="content" type="node" alias="CategoriesScreen.content" onChange="OnChangeContent"/>
 
          <!-- Row item selection handlers -->
-        <field id="CategoryListItemSelected" type="intarray" alwaysNotify="true" alias="GridScreen.CategoryListItemSelected" onChange="OnRowItemSelected"/>
+        <field id="CategoryListItemSelected" type="intarray" alwaysNotify="true" alias="CategoriesScreen.CategoryListItemSelected" onChange="OnRowItemSelected"/>
 
-        <!-- Menu item selection handler -->
-        <field id="menuItemSelected" type="integer" alwaysnotify="true" alias="MenuButtons.itemSelected" onChange="OnMenuItemSelected" />
-
-        <!-- cancel exit flag -->
-        <field id="cancelFlag" type="boolean" alwaysnotify="true" alias="ExitScreen.cancelFlag" onChange="OnCancelFlagChange" />
-
-        <!-- global secondarycolor setting -->
-        <field id="globalSecondaryColor" type="string" />
-
-        <!-- global focusedColor setting -->
-        <field id="globalFocusedColor" type="string" />
-
-        <!-- global video player bar color -->
-        <field id="globalVideoPlayerBarColor" type="string" />
-
-        <!-- global font path -->
-        <field id="globalFontPath" type="string" />
 
     </interface>
 
@@ -42,48 +25,10 @@
     <children>
 
         <!-- Grid screen with RowList on Home Scene -->
-        <GridScreen
-            id="GridScreen"
+        <CategoriesScreen
+            id="CategoriesScreen"
             visible="true"
             translation="[0,0]"
-        />
-
-        <!-- Menu screen -->
-        <MenuScreen
-            id="MenuScreen"
-            visible="false"
-        />
-
-        <!-- Details screen -->
-        <DetailsScreen
-            id="DetailsScreen"
-            visible="false"
-        />
-
-        <!-- exit screen -->
-        <ExitScreen
-            id="ExitScreen"
-            visible="false"
-        />
-
-        <!-- rotating loading indicator -->
-        <LoadingIndicator
-            id="loadingIndicator"
-            imageUri="pkg:/components/screens/LoadingIndicator/smoothloader.png"
-            clockwise="false"
-            spinInterval="1.5"
-            fadeInterval="0.25"
-            spacing="20"
-            imageWidth="100"
-            text="Loading..."
-            width="1280"
-            height="720"
-            centered="false"
-            translation="[0, 0]"
-            textPadding="10"
-            font="font:SmallBoldSystemFont"
-            backgroundColor="0x000000"
-            backgroundOpacity="0"
         />
 
     </children>
