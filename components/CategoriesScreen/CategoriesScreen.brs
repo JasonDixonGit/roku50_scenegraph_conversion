@@ -46,15 +46,11 @@ End Function
 
 'retrieve data from API with async task node
 sub runTask()
-  ?'"runTask() called"
-  'if(m.top.needsRefreshed = true)  then
-    'call api for data
     ?"Running https TASK"
     m.readGridTask = createObject("roSGNode","fetchDataFromAPI")
     m.readGridTask.postergriduri = "http://cs50.tv/?output=roku"
     m.readGridTask.observeField("gridscreencontent","showGridScreen")
     m.readGridTask.control = "RUN"
-  'end if
 end sub
 
 'assign retrieved data to postergrid
@@ -65,16 +61,9 @@ end sub
 
 'handler of focused item in RowList
 Sub OnItemFocused()
-
-    'm.CategoryList.rowLabelFont.uri = "pkg:/Fonts/Quicksand-Regular.ttf"
-
     m.itemFocused   = m.top.itemFocused
     focusedContent  = m.top.content.getChild(m.itemFocused[0]).getChild(m.itemFocused[1])
     m.top.lastItemFocus = [1, m.itemFocused[1]]
-
-
-    'm.itemFocused = m.top.itemFocused
-
 
     'When an item gains the key focus, set to a 2-element array,
     'where element 0 contains the index of the focused row,
@@ -92,6 +81,9 @@ End Sub
 
 Sub OnLabelFocused()
     '*********** CHECK IF LIST IS LOADED **************
+    'track last label focused, then if this label == last label then do nothing
+    'or catch return from left focus
+    Print m.top.labelFocused
     if(m.top.labelFocused >= 0) then
         'm.subCategoryItemFocused = m.top.labelFocused
         'Print m.top.subCategoryLinkArray[m.top.labelFocused]
