@@ -1,3 +1,12 @@
+'******************************************************************
+' Author: Jason Dixon
+' Description: 
+'******************************************************************
+
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function GridRowFactory() as Object
     this = {
         
@@ -7,6 +16,10 @@ Function GridRowFactory() as Object
     return this
 End Function
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function GridRowFactory_BuildCategoryGridRow(xmlDataIn)
     responseXML = API_Utils().ParseXML2(xmlDataIn)
     
@@ -52,6 +65,10 @@ Function GridRowFactory_BuildCategoryGridRow(xmlDataIn)
     return API_Utils().ParseXMLContent(categoriesList)
 end function
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function GridRowFactory_BuildPosterGridRow(xmlDataIn)
 
     responseXML = API_Utils().ParseXML2(xmlDataIn)

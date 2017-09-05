@@ -1,15 +1,32 @@
+'******************************************************************
+' Author: Jason Dixon
+' Description: 
+'******************************************************************
+
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function Init()
 
     ' CategoriesScreen node with RowList
     m.CategoriesScreen               = m.top.findNode("CategoriesScreen")
 End Function
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 ' if content set, focus on CategoriesScreen
 Function OnChangeContent()
     m.CategoriesScreen.setFocus(true)
     m.CategoriesScreen.isLoaded = true
 End Function
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 ' Main Remote keypress event loop
 Function OnKeyEvent(key, press) as Boolean
     result = false

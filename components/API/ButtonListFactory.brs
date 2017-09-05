@@ -1,3 +1,12 @@
+'******************************************************************
+' Author: Jason Dixon
+' Description: 
+'******************************************************************
+
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function ButtonListFactory() as Object
     this = {
         
@@ -7,6 +16,10 @@ Function ButtonListFactory() as Object
     return this
 End Function
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function BuildButtonList(titles)
     buttonListContent = createObject("RoSGNode","ContentNode")
     'buttonList = CreateObject("roArray", titles.Count(), false)
@@ -18,6 +31,10 @@ Function BuildButtonList(titles)
     return buttonListContent
 end function
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function BuildLabelListButtons(labellist as Object)
     'gridscreen node'
     LabelListItems = createObject("RoSGNode","ContentNode")

@@ -1,3 +1,12 @@
+'******************************************************************
+' Author: Jason Dixon
+' Description: 
+'******************************************************************
+
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function API_Utils() as Object
     this = {
         
@@ -8,6 +17,10 @@ Function API_Utils() as Object
     return this
 End Function
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function API_ParseXMLContent(list As Object)
     RowItems = createObject("RoSGNode","ContentNode")
     
@@ -29,6 +42,10 @@ Function API_ParseXMLContent(list As Object)
     return RowItems
 End Function
 
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function API_ParsePosterGridXMLContent(list As Object)
     RowItems = createObject("RoSGNode","ContentNode")
     
@@ -48,6 +65,9 @@ Function API_ParsePosterGridXMLContent(list As Object)
 End Function
 
 
+'******************************************************************
+' Description: 
+'******************************************************************
 Function API_ParseXML2(str As String) As dynamic
     if str = invalid return invalid
     xml = CreateObject("roXMLElement")
