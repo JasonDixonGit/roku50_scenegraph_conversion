@@ -34,9 +34,9 @@
         <!-- Interface to focused item (Content Node) -->
         <field id="focusedContent"  type="node"/>        
 
-        <!-- secondaryColor settings -->
-        <field id="CategoryListLabelColor" type="string" alias="CategoryList.rowLabelColor"/>
-
+		<!--  -->
+		<field id="titleAccentColor" type="string" alias="titleAccent.color" />
+		
 		<!--  -->
 		<field id="posterGridDataLoaded" type="boolean" />
     </interface>
@@ -85,6 +85,14 @@
             itemSpacings="[7,17]"
         />
 
+        <Rectangle
+            id="titleAccent"
+            translation="[60, 260]"
+            color="0xc90016FF"
+            width="80"
+            height="2"
+        />
+        
         <RowList
             id="CategoryList"
             focusBitmapUri="pkg:/images/focus_button.9.png"
@@ -121,8 +129,6 @@
             </ContentNode>
 
         </LabelList>
-
-
 
         <Rectangle
             id="leftDivider"
