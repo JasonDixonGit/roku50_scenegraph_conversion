@@ -30,8 +30,7 @@ Function Init()
     m.top.observeField("videoFocused","OnVideoFocused")
     m.top.observeField("CategoryListItemSelected", "OnCategoryListItemSelected")
     m.top.observeField("videoSelected", "OnVideoSelected")
-    'm.top.observeField("needsRefreshed", "runTask")
-    'm.rowList0.setFocus(true) 'set focus to first row on load after clearing out button background'
+
     m.CategoryList.rowLabelFont.size = m.CategoryList.rowLabelFont.size + 8
     m.description.title.font.size = m.description.title.font.size + 30
     m.top.isLoaded = false
