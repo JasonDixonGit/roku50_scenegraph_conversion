@@ -105,19 +105,16 @@ End Sub
 ' Description: 
 '******************************************************************
 Sub OnLabelFocused()
-    '*********** CHECK IF LIST IS LOADED **************
-    'track last label focused, then if this label == last label then do nothing
-    'or catch return from left focus
-    Print m.top.labelFocused
-    if(m.top.labelFocused >= 0) then
-        'm.subCategoryItemFocused = m.top.labelFocused
-        'Print m.top.subCategoryLinkArray[m.top.labelFocused]
-        'm.SubCategoryLabelList()
-        m.posterGridTask = createObject("roSGNode","FetchSubCategory")
-        m.posterGridTask.subCategoryUri = m.top.subCategoryLinkArray[m.top.labelFocused]
-        m.posterGridTask.observeField("subCategoryContent","updatePosterGrid")
-        m.posterGridTask.control = "RUN"
-    end if
+    if(m.top.posterGridDataLoaded = true) then
+        m.top.posterGridDataLoaded = false
+    else
+        if(m.top.labelFocused >= 0) then
+            m.posterGridTask = createObject("roSGNode","FetchSubCategory")
+            m.posterGridTask.subCategoryUri = m.top.subCategoryLinkArray[m.top.labelFocused]
+            m.posterGridTask.observeField("subCategoryContent","updatePosterGrid")
+            m.posterGridTask.control = "RUN"
+        end if
+   end if
 end Sub
 
 
@@ -137,8 +134,6 @@ end sub
 '******************************************************************
 ' set proper focus to RowList in case if return from Details Screen
 Sub onVisibleChange()
-    'm.MenuButton.font.uri = m.top.font
-    'm.rowLabelFont = m.top.font
     
     if m.top.visible = true then
         runTask()
@@ -282,6 +277,7 @@ Function OnKeyEvent(key, press) as Boolean
             
         else if key = "right"
             if(m.SubCategoryLabelList.hasFocus()) then
+                m.top.posterGridDataLoaded = true
                 m.posterGrid.setFocus(true)
                 m.playIcon.visible = true
                 result = true

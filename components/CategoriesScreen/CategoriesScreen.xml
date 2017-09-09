@@ -37,6 +37,8 @@
         <!-- secondaryColor settings -->
         <field id="CategoryListLabelColor" type="string" alias="CategoryList.rowLabelColor"/>
 
+		<!--  -->
+		<field id="posterGridDataLoaded" type="boolean" />
     </interface>
 
     <!-- main handler -->
