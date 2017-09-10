@@ -30,6 +30,7 @@ Function Init()
     m.top.observeField("videoFocused","OnVideoFocused")
     m.top.observeField("CategoryListItemSelected", "OnCategoryListItemSelected")
     m.top.observeField("videoSelected", "OnVideoSelected")
+    m.top.observeField("AnimateToSubCategoriesState", "OnAnimationComplete")
 
     m.CategoryList.rowLabelFont.size = m.CategoryList.rowLabelFont.size + 8
     m.description.title.font.size = m.description.title.font.size + 30
@@ -175,12 +176,16 @@ Function OnCategoryListItemSelected()
     m.SubCategoryLabelList.setFocus(true)
 End Function
 
+Function OnAnimationComplete()
+    if(m.top.AnimateToSubCategoriesState = "stopped") then
+        m.SubCategoryLabelList.visible = true
+    end if
+end function
 
 '******************************************************************
 ' Description: 
 '******************************************************************
 Function populateSubCategoryLabelList()
-    ?"Running labellist TASK"
     m.labellistTask = createObject("roSGNode","BuildSubcategoryLabelList")
     m.labellistTask.subCategoryContent = m.top.focusedContent
     m.labellistTask.observeField("buttonListAA","AssignLabelListData")
@@ -194,7 +199,6 @@ End Function
 '******************************************************************
 sub AssignLabelListData()
   m.top.buttonsContent = m.labellistTask.buttonListAA
-  'm.top.contentSet = true
 end sub
 
 
@@ -268,9 +272,11 @@ Function OnKeyEvent(key, press) as Boolean
                 result = true
             else
                 m.playIcon.visible = false
+                m.SubCategoryLabelList.visible = false
                 AnimateBackToCategories = m.top.FindNode("AnimateBackToCategories")
                 AnimateBackToCategories.control = "start"
                 m.CategoryList.setFocus(true)
+                '******** clear label list *******
                 result = true                   
             end if
             
