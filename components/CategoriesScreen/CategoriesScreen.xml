@@ -42,6 +42,16 @@
 		
 		<!--  -->
 		<field id="AnimateToSubCategoriesState" type="string" alwaysNotify="true" alias="AnimateToSubCategories.state" />
+		
+		        <!-- is mask currently covering the screen -->
+        <field id="maskIsVisible" type="boolean" />
+
+        <!-- mask label text -->
+        <field id="ExitMaskLabelText" type="string" alias="ExitMaskLabel.text" />
+
+		<field id="exitButtonClicked" type="integer" alwaysnotify="true" alias="exitDialogButtons.itemSelected" />
+		
+		<field id="exitFlag" type="boolean" alwaysnotify="true" />
     </interface>
 
     <!-- main handler -->
@@ -54,7 +64,7 @@
             width="1280"
             height="720"
             color="0x000000"
-            ShadeOpacity="0.62"
+            ShadeOpacity="0.5"
         />
             
         <PosterGrid
@@ -157,7 +167,44 @@
           visible="false"
         />
 
+      <Rectangle
+        id="ExitMask"
+        translation="[1300,0]"
+        width="1280"
+        height="720"
+        color="0x000000"
+        opacity="1"
+        visible = "true"
+      />
 
+      <Label 
+        id = "ExitMaskLabel"
+        height = "44"
+        width = "1280"
+        font = "font:LargeSystemFont"
+        text = "Are you sure you want to exit?"
+        horizAlign = "center"
+        vertAlign = "center"
+        translation = "[4000,200]" 
+        visible = "true"
+      />
+
+      <LabelList
+        id = "exitDialogButtons"
+        vertFocusAnimationStyle = "floatingFocus"
+        drawFocusFeedback = "false"
+        color = "0xFFFFFFFF"
+        focusedColor = "0xc90016FF"
+        textHorizAlign = "center"
+        itemSize = "[1280, 60]"
+        translation = "[4000,330]"
+        itemSpacing = "[0,40]">
+
+        <ContentNode role = "content">
+          <ContentNode title = "Exit" />
+          <ContentNode title = "Cancel" />
+        </ContentNode>
+      </LabelList>
         <!-- ==================================================================================================================== -->
         <!-- ==================================================================================================================== -->
         <Animation 
@@ -196,7 +243,7 @@
           
         </Animation>
 
-    <!-- ================= animate back to name capture =========================================== -->
+    <!-- ================= animate back to categories =========================================== -->
         <Animation 
           id = "AnimateBackToCategories"
           duration = "1"
@@ -235,6 +282,64 @@
 
 <!-- ==================================================================================================================== -->
 <!-- ==================================================================================================================== -->
+
+      <Animation 
+        id = "AnimateToShowExitMask"
+        duration = "1"
+        easeFunction = "inOutCubic" >
+
+        <Vector2DFieldInterpolator 
+          id = "ExitMaskVector2D"
+          key = "[ 0.0, 1.0 ]" 
+          keyValue = "[ [1300,0], [0,0] ]"
+          fieldToInterp = "ExitMask.translation"
+
+        />
+
+        <Vector2DFieldInterpolator 
+          id = "ExitMaskLabelVector2D"
+          key = "[ 0.0, 1.0 ]" 
+          keyValue = "[ [4000,200], [0,200] ]"
+          fieldToInterp = "ExitMaskLabel.translation"
+        />
+        
+        <Vector2DFieldInterpolator
+        	id = "exitDialogButtonsVector2D"
+          	key = "[ 0.0, 1.0 ]" 
+          	keyValue = "[ [4000,330], [0,330] ]"
+        	fieldToInterp = "exitDialogButtons.translation"
+        />
+        
+      </Animation>
+
+      <Animation 
+        id = "AnimateToHideExitMask"
+        duration = "1"
+        easeFunction = "inOutCubic" >
+
+        <Vector2DFieldInterpolator 
+          id = "ExitMaskVector2D"
+          key = "[ 0.0, 1.0 ]" 
+          keyValue = "[ [0,0],[1300,0] ]"
+          fieldToInterp = "ExitMask.translation"
+
+        />
+
+      <Vector2DFieldInterpolator 
+        id = "ExitMaskLabelVector2D"
+        key = "[ 0.0, 1.0 ]" 
+        keyValue = "[ [0,200], [4000,200] ]"
+        fieldToInterp = "ExitMaskLabel.translation"
+      />
+      
+        <Vector2DFieldInterpolator
+        	id = "exitDialogButtonsVector2D"
+          	key = "[ 0.0, 1.0 ]" 
+          	keyValue = "[ [0,330], [4000,330] ]"
+        	fieldToInterp = "exitDialogButtons.translation"
+        />
+             
+    </Animation>
 
     </children>
 </component>

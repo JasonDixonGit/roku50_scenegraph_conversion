@@ -14,6 +14,7 @@ Function Init()
     m.SubCategoryLabelList = m.top.findNode("SubCategoryLabelList")
     m.posterGrid           = m.top.findNode("PosterGridScreen")
     m.playIcon            = m.top.findNode("playIcon")
+    m.exitDialogButtons   = m.top.findNode("exitDialogButtons")
     
     'set screen focus onto first list'
     m.currentRowList =   m.CategoryList
@@ -31,6 +32,7 @@ Function Init()
     m.top.observeField("CategoryListItemSelected", "OnCategoryListItemSelected")
     m.top.observeField("videoSelected", "OnVideoSelected")
     m.top.observeField("AnimateToSubCategoriesState", "OnAnimationComplete")
+    m.top.observeField("exitButtonClicked", "OnExitSelection")
 
     m.CategoryList.rowLabelFont.size = m.CategoryList.rowLabelFont.size + 8
     m.description.title.font.size = m.description.title.font.size + 30
@@ -257,6 +259,20 @@ End Sub
 '******************************************************************
 ' Description: 
 '******************************************************************
+Function OnExitSelection()
+    if(m.top.exitButtonClicked = 0) then
+        m.top.exitFlag = true
+    else if(m.top.exitButtonClicked = 1) then
+        AnimateToHideExitMask = m.top.FindNode("AnimateToHideExitMask")
+        AnimateToHideExitMask.control = "start"
+        m.CategoryList.setFocus(true)   
+   end if     
+End Function
+
+
+'******************************************************************
+' Description: 
+'******************************************************************
 Function OnKeyEvent(key, press) as Boolean
     result = false
     if press then
@@ -269,8 +285,16 @@ Function OnKeyEvent(key, press) as Boolean
                 m.VideoPlayer.visible = false
                 m.VideoPlayer.control = "stop"
                 m.posterGrid.setFocus(true)
-                
                 result = true
+                
+            'this will trigger exit screen    
+            else if(m.SubCategoryLabelList.visible = false) then
+                AnimateToShowExitMask = m.top.FindNode("AnimateToShowExitMask")
+                AnimateToShowExitMask.control = "start"
+                m.exitDialogButtons.setFocus(true)
+                'do nothing
+                result = true
+            
             else
                 m.playIcon.visible = false
                 m.SubCategoryLabelList.visible = false
@@ -310,6 +334,11 @@ Function setButtonListProperties(m)
   m.SubCategoryLabelList.font.size = m.SubCategoryLabelList.font.size
   m.SubCategoryLabelList.focusedFont = "font:MediumBoldSystemFont"
   m.SubCategoryLabelList.focusedFont.size = m.SubCategoryLabelList.focusedFont.size+10
+  
+  m.exitDialogButtons.font = "font:LargeSystemFont"
+  m.exitDialogButtons.font.size = m.exitDialogButtons.font.size + 14
+  m.exitDialogButtons.focusedFont = "font:LargeBoldSystemFont"
+  m.exitDialogButtons.focusedFont.size = m.exitDialogButtons.focusedFont.size + 36
 end Function
 
 
