@@ -143,7 +143,6 @@ Sub onVisibleChange()
             m.CategoryList.setFocus(true)
             m.CategoryList.jumpToRowItem = [0, 0]
         else
-            
             if(m.CategoryList.hasFocus()) then
                m.lastElement = m.top.lastItemFocus[1]
                m.CategoryList.setFocus(true)
@@ -155,9 +154,9 @@ End Sub
 
 
 '******************************************************************
-' Description: 
+' Description: set proper focus to RowList in case if return 
+' from Details Screen
 '******************************************************************
-' set proper focus to RowList in case if return from Details Screen
 Sub OnFocusedChildChange()
     if(m.top.visible = false and not m.currentRowList.hasFocus()) then
         m.currentRowList.setFocus(true)
@@ -166,9 +165,8 @@ End Sub
 
 
 '******************************************************************
-' Description: 
+' Description: Row item selected handler
 '******************************************************************
-' Row item selected handler
 Function OnCategoryListItemSelected()
     populateSubCategoryLabelList()
     AnimateToSubCategories = m.top.FindNode("AnimateToSubCategories")
@@ -176,6 +174,9 @@ Function OnCategoryListItemSelected()
     m.SubCategoryLabelList.setFocus(true)
 End Function
 
+'******************************************************************
+' Description: 
+'******************************************************************
 Function OnAnimationComplete()
     if(m.top.AnimateToSubCategoriesState = "stopped") then
         m.SubCategoryLabelList.visible = true
