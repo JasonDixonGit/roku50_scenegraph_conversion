@@ -5,7 +5,9 @@ Sub Init()
     m.top.Description       = m.top.findNode("Description")
     m.top.ReleaseDate       = m.top.findNode("ReleaseDate")
     'm.top.length            = m.top.findNode("length")
-    m.top.Description.font = "font:LargeSystemFont"
+    m.top.Description.font.uri = "pkg:/Fonts/Quicksand-Regular.ttf"
+    m.top.Title.font = "font:LargeSystemFont"
+    m.top.Description.font.size = m.top.Title.font.size + 10
     
 End Sub
 
