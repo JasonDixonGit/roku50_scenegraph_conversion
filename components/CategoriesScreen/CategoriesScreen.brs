@@ -15,6 +15,7 @@ Function Init()
     m.posterGrid           = m.top.findNode("PosterGridScreen")
     m.playIcon            = m.top.findNode("playIcon")
     m.exitDialogButtons   = m.top.findNode("exitDialogButtons")
+    m.ExitMaskLabel       = m.top.findNode("ExitMaskLabel")
     
     'set screen focus onto first list'
     m.currentRowList =   m.CategoryList
@@ -318,7 +319,15 @@ Function OnKeyEvent(key, press) as Boolean
                 m.playIcon.visible = false
                 m.SubCategoryLabelList.setFocus(true)
                 result = true
-            end if  
+            end if
+        
+        else if key = "OK"
+            if(m.SubCategoryLabelList.hasFocus()) then
+                m.top.posterGridDataLoaded = true
+                m.posterGrid.setFocus(true)
+                m.playIcon.visible = true
+                result = true
+           end if     
         end if
     end if
     return result
@@ -330,15 +339,19 @@ End Function
 '******************************************************************
 'set button size, and onfocus size for enlarging-focus effect
 Function setButtonListProperties(m)
-  m.SubCategoryLabelList.font = "font:MediumSystemFont"
-  m.SubCategoryLabelList.font.size = m.SubCategoryLabelList.font.size
-  m.SubCategoryLabelList.focusedFont = "font:MediumBoldSystemFont"
+  m.SubCategoryLabelList.font.uri = "pkg:/Fonts/Quicksand-Regular.ttf"
+  m.SubCategoryLabelList.font.size = m.SubCategoryLabelList.font.size + 4
+  m.SubCategoryLabelList.focusedFont.uri= "pkg:/Fonts/Quicksand-Regular.ttf"
   m.SubCategoryLabelList.focusedFont.size = m.SubCategoryLabelList.focusedFont.size+10
   
-  m.exitDialogButtons.font = "font:LargeSystemFont"
+  m.exitDialogButtons.font.uri = "pkg:/Fonts/Quicksand-Regular.ttf"
   m.exitDialogButtons.font.size = m.exitDialogButtons.font.size + 14
-  m.exitDialogButtons.focusedFont = "font:LargeBoldSystemFont"
-  m.exitDialogButtons.focusedFont.size = m.exitDialogButtons.focusedFont.size + 36
+  m.exitDialogButtons.focusedFont.uri = "pkg:/Fonts/Quicksand-Regular.ttf"
+  m.exitDialogButtons.focusedFont.size = m.exitDialogButtons.focusedFont.size + 48
+  
+  m.ExitMaskLabel.font.uri = "pkg:/Fonts/Quicksand-Regular.ttf"
+  m.ExitMaskLabel.font.size = m.ExitMaskLabel.font.size + 36
+
 end Function
 
 

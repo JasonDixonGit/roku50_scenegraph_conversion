@@ -100,9 +100,9 @@
 
         <Rectangle
             id="titleAccent"
-            translation="[60, 260]"
+            translation="[62, 280]"
             color="0xc90016FF"
-            width="80"
+            width="92"
             height="2"
         />
         
@@ -181,7 +181,6 @@
         id = "ExitMaskLabel"
         height = "44"
         width = "1280"
-        font = "font:LargeSystemFont"
         text = "Are you sure you want to exit?"
         horizAlign = "center"
         vertAlign = "center"
