@@ -1,32 +1,31 @@
 '******************************************************************
 ' Author: Jason Dixon
-' Description: 
+' Description: Main scene graph component. All action on this page
 '******************************************************************
 
 
 '******************************************************************
-' Description: 
+' Description: initalize all variables and observers
 '******************************************************************
 Function Init()
    
-    m.videoPlayer        =   m.top.findNode("VideoPlayer")
-    m.CategoryList       =   m.top.findNode("CategoryList")
-    m.SubCategoryLabelList = m.top.findNode("SubCategoryLabelList")
-    m.posterGrid           = m.top.findNode("PosterGridScreen")
-    m.playIcon            = m.top.findNode("playIcon")
-    m.exitDialogButtons   = m.top.findNode("exitDialogButtons")
-    m.ExitMaskLabel       = m.top.findNode("ExitMaskLabel")
+    m.videoPlayer           = m.top.findNode("VideoPlayer")
+    m.CategoryList          = m.top.findNode("CategoryList")
+    m.SubCategoryLabelList  = m.top.findNode("SubCategoryLabelList")
+    m.posterGrid            = m.top.findNode("PosterGridScreen")
+    m.playIcon              = m.top.findNode("playIcon")
+    m.exitDialogButtons     = m.top.findNode("exitDialogButtons")
+    m.ExitMaskLabel         = m.top.findNode("ExitMaskLabel")
     
     'set screen focus onto first list'
-    m.currentRowList =   m.CategoryList
+    m.currentRowList        = m.CategoryList
 
-    m.description    =   m.top.findNode("Description")
-    m.background     =   m.top.findNode("Background")
+    m.description           = m.top.findNode("Description")
+    m.background            = m.top.findNode("Background")
 
 
     m.top.observeField("visible", "onVisibleChange")
     m.top.observeField("focusedChild", "OnFocusedChildChange")
-
     m.top.observeField("itemFocused", "OnItemFocused")
     m.top.observeField("labelFocused", "OnLabelFocused")
     m.top.observeField("videoFocused","OnVideoFocused")
@@ -35,12 +34,14 @@ Function Init()
     m.top.observeField("AnimateToSubCategoriesState", "OnAnimationComplete")
     m.top.observeField("exitButtonClicked", "OnExitSelection")
 
+
     m.CategoryList.rowLabelFont.size = m.CategoryList.rowLabelFont.size + 8
     m.description.title.font.size = m.description.title.font.size + 30
     m.top.isLoaded = false
 
+
     channel_font = "pkg:/Fonts/Quicksand-Regular.ttf"
-    'm.description.font = channel_font
+
     m.SubCategoryLabelList.font.uri = channel_font
     m.SubCategoryLabelList.focusedFont.uri = channel_font
     m.posterGrid.caption1Font.uri = channel_font
@@ -58,11 +59,9 @@ End Function
 
 
 '******************************************************************
-' Description: 
+' Description: retrieve data from API with async task node
 '******************************************************************
-'retrieve data from API with async task node
 sub runTask()
-    ?"Running https TASK"
     m.readGridTask = createObject("roSGNode","fetchDataFromAPI")
     m.readGridTask.postergriduri = "http://cs50.tv/?output=roku"
     m.readGridTask.observeField("gridscreencontent","showGridScreen")
@@ -71,9 +70,8 @@ end sub
 
 
 '******************************************************************
-' Description: 
+' Description: assign retrieved data to postergrid
 '******************************************************************
-'assign retrieved data to postergrid
 sub showGridScreen()
   m.top.content = m.readGridTask.gridscreencontent
   m.top.contentSet = true
@@ -81,9 +79,8 @@ end sub
 
 
 '******************************************************************
-' Description: 
+' Description: handler of focused item in RowList
 '******************************************************************
-'handler of focused item in RowList
 Sub OnItemFocused()
     m.itemFocused   = m.top.itemFocused
     focusedContent  = m.top.content.getChild(m.itemFocused[0]).getChild(m.itemFocused[1])
@@ -105,7 +102,10 @@ End Sub
 
 
 '******************************************************************
-' Description: 
+' Description: event handler for subcategory label focus change
+' fetches new label's column of videos from async task on focus.
+' Prevents duplicate calls when returning from video column to 
+' originating label.
 '******************************************************************
 Sub OnLabelFocused()
     if(m.top.posterGridDataLoaded = true) then
@@ -122,27 +122,22 @@ end Sub
 
 
 '******************************************************************
-' Description: 
+' Description: assign retrieved data to postergrid
 '******************************************************************
-'assign retrieved data to postergrid
 sub updatePosterGrid()
-
   m.top.posterContent = m.posterGridTask.subCategoryContent
-  'm.top.contentSet = true
 end sub
 
 
 '******************************************************************
-' Description: 
+' Description: set proper focus to RowList in case if return from Details Screen
 '******************************************************************
-' set proper focus to RowList in case if return from Details Screen
 Sub onVisibleChange()
     
     if m.top.visible = true then
         runTask()
     
         if(m.top.lastItemFocus[0] = 0 AND m.top.lastItemFocus[1] = 0) then
-            'm.currentRowList.setFocus(true)
             m.CategoryList.setFocus(true)
             m.CategoryList.jumpToRowItem = [0, 0]
         else
@@ -178,7 +173,7 @@ Function OnCategoryListItemSelected()
 End Function
 
 '******************************************************************
-' Description: 
+' Description: if category to sub category animation is complete, show label list
 '******************************************************************
 Function OnAnimationComplete()
     if(m.top.AnimateToSubCategoriesState = "stopped") then
@@ -187,7 +182,7 @@ Function OnAnimationComplete()
 end function
 
 '******************************************************************
-' Description: 
+' Description: fetch data from async task to populate label list
 '******************************************************************
 Function populateSubCategoryLabelList()
     m.labellistTask = createObject("roSGNode","BuildSubcategoryLabelList")
@@ -199,7 +194,7 @@ End Function
 
 
 '******************************************************************
-' Description: 
+' Description: assign label list data to label list object
 '******************************************************************
 sub AssignLabelListData()
   m.top.buttonsContent = m.labellistTask.buttonListAA
@@ -207,7 +202,8 @@ end sub
 
 
 '******************************************************************
-' Description: 
+' Description: store associated link array that is indexed to label
+' list text labels in method above
 '******************************************************************
 sub AssignLinkArray()
     m.top.subCategoryLinkArray = m.labellistTask.linkArray
@@ -215,7 +211,7 @@ end sub
 
 
 '******************************************************************
-' Description: 
+' Description: assign data from currently focused video
 '******************************************************************
 Function OnVideoFocused()
     m.focusedVideo  = m.top.posterContent.getChild(m.top.videoFocused)
@@ -223,7 +219,7 @@ End Function
 
 
 '******************************************************************
-' Description: 
+' Description: play video
 '******************************************************************
 Function OnVideoSelected()  
   videoContent = createObject("RoSGNode", "ContentNode")
@@ -238,9 +234,8 @@ end Function
 
 
 '******************************************************************
-' Description: 
+' Description: event handler of Video player msg
 '******************************************************************
-' event handler of Video player msg
 Sub OnVideoPlayerStateChange()
     if m.videoPlayer.state  = "error"
         ' error handling
@@ -258,7 +253,7 @@ End Sub
 
 
 '******************************************************************
-' Description: 
+' Description: if back press on homescreen, show exit dialog
 '******************************************************************
 Function OnExitSelection()
     if(m.top.exitButtonClicked = 0) then
@@ -272,7 +267,7 @@ End Function
 
 
 '******************************************************************
-' Description: 
+' Description: local remote key press handler
 '******************************************************************
 Function OnKeyEvent(key, press) as Boolean
     result = false
@@ -335,9 +330,8 @@ End Function
 
 
 '******************************************************************
-' Description: 
+' Description: set button size, and onfocus size for enlarging-focus effect
 '******************************************************************
-'set button size, and onfocus size for enlarging-focus effect
 Function setButtonListProperties(m)
   m.SubCategoryLabelList.font.uri = "pkg:/Fonts/Quicksand-Regular.ttf"
   m.SubCategoryLabelList.font.size = m.SubCategoryLabelList.font.size + 4
@@ -351,12 +345,11 @@ Function setButtonListProperties(m)
   
   m.ExitMaskLabel.font.uri = "pkg:/Fonts/Quicksand-Regular.ttf"
   m.ExitMaskLabel.font.size = m.ExitMaskLabel.font.size + 36
-
 end Function
 
 
 '******************************************************************
-' Description: 
+' Description: custom colors for video player features
 '******************************************************************
 Function setVideoPlayerColors()
     m.videoPlayerColor = "#c90016"

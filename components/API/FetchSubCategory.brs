@@ -1,20 +1,20 @@
 '******************************************************************
 ' Author: Jason Dixon
-' Description:
+' Description: Task Node for fetching data for subcategories
 '******************************************************************
 
 
 '******************************************************************
-' Description: 
+' Description: initialize task node
 '******************************************************************
 sub init()
-    'm.top.contentSet = false
     m.top.functionName = "getSubCategoryContent"
 end sub
 
 
 '******************************************************************
-' Description: 
+' Description: (Loads column of videos) -- takes in xml data, returns
+' poster grid row from gridrowfactory to content node in main gridscreen 
 '******************************************************************
 sub getSubCategoryContent()
 
@@ -27,7 +27,6 @@ sub getSubCategoryContent()
     readInternet.setUrl(m.top.subCategoryUri)
 
     xmlDataIn = readInternet.GetToString()
-    'Print xmlDataIn
     m.top.subCategoryContent = GridrowFactory().BuildPosterGridRow(xmlDataIn)
 
 end sub

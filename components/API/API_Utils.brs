@@ -1,25 +1,26 @@
 '******************************************************************
 ' Author: Jason Dixon
-' Description: 
+' Description: Functions to help parse xml content into content nodes
 '******************************************************************
 
 
 '******************************************************************
-' Description: 
+' Description: Accessor Function for API_Utils file
 '******************************************************************
 Function API_Utils() as Object
     this = {
         
-        ParseXMLContent:        API_ParseXMLContent
+        ParseXMLContent:           API_ParseXMLContent
         ParsePosterGridXMLContent: API_ParsePosterGridXMLContent
-        ParseXML2:              API_ParseXML2
+        ParseXML2:                 API_ParseXML2
     }
     return this
 End Function
 
 
 '******************************************************************
-' Description: 
+' Description: takes in XML object and returns ContentNode object
+' for RowList content
 '******************************************************************
 Function API_ParseXMLContent(list As Object)
     RowItems = createObject("RoSGNode","ContentNode")
@@ -44,20 +45,19 @@ End Function
 
 
 '******************************************************************
-' Description: 
+' Description: Takes in XML object and returns ContentNode object
+' for postergrid content
 '******************************************************************
 Function API_ParsePosterGridXMLContent(list As Object)
     RowItems = createObject("RoSGNode","ContentNode")
     
     for each rowAA in list
         row = createObject("RoSGNode","ContentNode")
-        'Print rowAA
-        
-        'row[rowAA] = list[rowAA]
+
         for each itemAA in rowAA
-            'Print itemAA, rowAA.Lookup(itemAA)
             row[itemAA] = rowAA.Lookup(itemAA)
         end for
+
         RowItems.appendChild(row)
     end for
 
@@ -66,7 +66,8 @@ End Function
 
 
 '******************************************************************
-' Description: 
+' Description: parses string into xml object - ad hoc method 
+' overriding via renaming
 '******************************************************************
 Function API_ParseXML2(str As String) As dynamic
     if str = invalid return invalid

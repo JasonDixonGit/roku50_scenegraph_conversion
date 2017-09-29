@@ -1,11 +1,11 @@
 '******************************************************************
 ' Author: Jason Dixon
-' Description: 
+' Description: Builds and Returns GridRows and PosterGridRows
 '******************************************************************
 
 
 '******************************************************************
-' Description: 
+' Description: Accessor function for GridRowFactory
 '******************************************************************
 Function GridRowFactory() as Object
     this = {
@@ -18,7 +18,8 @@ End Function
 
 
 '******************************************************************
-' Description: 
+' Description: takes in xml data and returns content node structured
+' for RowList object. ContentMeta fields are defined and assigned here
 '******************************************************************
 Function GridRowFactory_BuildCategoryGridRow(xmlDataIn)
     responseXML = API_Utils().ParseXML2(xmlDataIn)
@@ -67,7 +68,8 @@ end function
 
 
 '******************************************************************
-' Description: 
+' Description: takes in xml data and returns content node structured
+' for PosterGrid object. ContentMeta fields are defined and assigned here
 '******************************************************************
 Function GridRowFactory_BuildPosterGridRow(xmlDataIn)
 

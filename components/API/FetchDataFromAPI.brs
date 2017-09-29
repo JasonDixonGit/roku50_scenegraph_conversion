@@ -1,11 +1,11 @@
 '******************************************************************
 ' Author: Jason Dixon
-' Description:
+' Description: Task Node for fetching data for inital channel load
 '******************************************************************
 
 
 '******************************************************************
-' Description: 
+' Description: initializes task node
 '******************************************************************
 sub init()
     m.top.contentSet = false
@@ -14,7 +14,8 @@ end sub
 
 
 '******************************************************************
-' Description: 
+' Description: takes in xml data, returns grid row from gridrowfactory
+' to content node in main gridscreen
 '******************************************************************
 sub getContent()
 
