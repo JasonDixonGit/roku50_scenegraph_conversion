@@ -8,16 +8,16 @@
 
         <!-- buttonlist content node -->
         <field id="buttonsContent" type="node" alias="SubCategoryLabelList.content" />
-		<field id = "subCategoryLinkArray" type = "stringarray" />
+		    <field id = "subCategoryLinkArray" type = "stringarray" />
 
         <!-- Row item selection handlers -->
         <field id="CategoryListItemSelected" type="intarray" alwaysnotify="true" alias="CategoryList.rowItemSelected"/>
 
-		<!-- Postergrid content -->
-		<field id = "posterContent" type="node" alias="PosterGridScreen.content"/>
+		    <!-- Postergrid content -->
+		    <field id = "posterContent" type="node" alias="PosterGridScreen.content"/>
 		
-		<!--  -->
-		<field id = "videoSelected" type="int" alwaysnotify="true" alias="PosterGridScreen.itemSelected" />
+		    <!-- index of video selected -->
+		    <field id = "videoSelected" type="int" alwaysnotify="true" alias="PosterGridScreen.itemSelected" />
 		
         <!-- Row item focused handler 2 -->
         <field id="itemFocused" type="intarray" alias="CategoryList.rowItemFocused" />
@@ -34,24 +34,26 @@
         <!-- Interface to focused item (Content Node) -->
         <field id="focusedContent"  type="node"/>        
 
-		<!--  -->
-		<field id="titleAccentColor" type="string" alias="titleAccent.color" />
+		    <!-- title Accent Color -->
+		    <field id="titleAccentColor" type="string" alias="titleAccent.color" />
 		
-		<!--  -->
-		<field id="posterGridDataLoaded" type="boolean" />
+		    <!-- flag for postergrid being fully loaded -->
+		    <field id="posterGridDataLoaded" type="boolean" />
 		
-		<!--  -->
-		<field id="AnimateToSubCategoriesState" type="string" alwaysNotify="true" alias="AnimateToSubCategories.state" />
+		    <!-- trigger to animate to subcategories -->
+		    <field id="AnimateToSubCategoriesState" type="string" alwaysNotify="true" alias="AnimateToSubCategories.state" />
 		
-		        <!-- is mask currently covering the screen -->
+		    <!-- is mask currently covering the screen -->
         <field id="maskIsVisible" type="boolean" />
 
         <!-- mask label text -->
         <field id="ExitMaskLabelText" type="string" alias="ExitMaskLabel.text" />
 
-		<field id="exitButtonClicked" type="integer" alwaysnotify="true" alias="exitDialogButtons.itemSelected" />
+        <!-- exit button clicked trigger -->
+		    <field id="exitButtonClicked" type="integer" alwaysnotify="true" alias="exitDialogButtons.itemSelected" />
 		
-		<field id="exitFlag" type="boolean" alwaysnotify="true" />
+        <!-- flag to trigger exit action -->
+		    <field id="exitFlag" type="boolean" alwaysnotify="true" />
     </interface>
 
     <!-- main handler -->

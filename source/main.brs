@@ -4,26 +4,17 @@
 '******************************************************************
 
 '******************************************************************
-' Description: 
+' Description: Launch App
 '******************************************************************
 sub Main()
-    m.device = CreateObject("roDeviceInfo")
-    m.maxWidth = m.device.GetDisplaySize().w
-
-    m.modelGeneration = 6'getModelGeneration(m.device.getModel())
-
     initSiteSpecificSettings()
     showChannelSGScreen()
 end sub
 
 '******************************************************************
-' Description: 
+' Description: create instance of HomeScene
 '******************************************************************
 sub showChannelSGScreen()
-    m.device = CreateObject("roDeviceInfo")
-    m.maxWidth = m.device.GetDisplaySize().w
-    'm.modelGeneration = Utils().getModelGeneration(m.device.getModel())
-
     screen = CreateObject("roSGScreen")
     m.port = CreateObject("roMessagePort")
     screen.setMessagePort(m.port)

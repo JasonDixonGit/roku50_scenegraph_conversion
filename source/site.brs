@@ -6,7 +6,7 @@
 Function initSiteSpecificSettings()
     app = CreateObject("roAppManager")
   
-    m.RegistryKeyName               = "cs50"
+    m.RegistryKeyName = "cs50"
 
     ' Globals
     m.device = CreateObject("roDeviceInfo") 'for future development'

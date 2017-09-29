@@ -1,11 +1,11 @@
 '******************************************************************
 ' Author: Jason Dixon
-' Description:
+' Description: Label List for SubCategoriesScreen
 '******************************************************************
 
 
 '******************************************************************
-' Description: 
+' Description: Init component
 '******************************************************************
 sub init()
     m.top.contentSet = false
@@ -14,7 +14,8 @@ end sub
 
 
 '******************************************************************
-' Description: 
+' Description: Build vertical button list and associated links
+' for each button
 '******************************************************************
 sub buildSubcategoryButtonList()
     LinkArray = []

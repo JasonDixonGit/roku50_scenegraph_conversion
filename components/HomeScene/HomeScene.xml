@@ -12,8 +12,6 @@
 
          <!-- Row item selection handlers -->
         <field id="CategoryListItemSelected" type="intarray" alwaysNotify="true" alias="CategoriesScreen.CategoryListItemSelected" onChange="OnRowItemSelected"/>
-
-
     </interface>
 
     <!-- Main Scenegraph thread handler -->
