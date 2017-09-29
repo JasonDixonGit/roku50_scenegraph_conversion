@@ -1,23 +1,21 @@
 '******************************************************************
 ' Author: Jason Dixon
-' Description: 
+' Description: Home Scene - creates all children scene graph
+' components'
 '******************************************************************
 
 
 '******************************************************************
-' Description: 
+' Description: initializes CategoriesScreen node with RowList
 '******************************************************************
 Function Init()
-
-    ' CategoriesScreen node with RowList
     m.CategoriesScreen               = m.top.findNode("CategoriesScreen")
 End Function
 
 
 '******************************************************************
-' Description: 
+' Description: if content set, focus on CategoriesScreen
 '******************************************************************
-' if content set, focus on CategoriesScreen
 Function OnChangeContent()
     m.CategoriesScreen.setFocus(true)
     m.CategoriesScreen.isLoaded = true
@@ -25,9 +23,8 @@ End Function
 
 
 '******************************************************************
-' Description: 
+' Description: Main Remote keypress event loop
 '******************************************************************
-' Main Remote keypress event loop
 Function OnKeyEvent(key, press) as Boolean
     result = false
     if press then
@@ -48,7 +45,3 @@ Function OnKeyEvent(key, press) as Boolean
     end if
     return result
 End Function
-
-'function SetAppColors()
-
-'end function
