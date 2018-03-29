@@ -63,8 +63,8 @@
     <children>
         <FadingBackground
             id="Background"
-            width="1280"
-            height="720"
+            width="1920"
+            height="1080"
             color="0x000000"
             ShadeOpacity="0.5"
         />
@@ -76,8 +76,8 @@
           useAtlas="true"
           loadingBitmapUri=""
           captionVertAlignment="bottom"
-          translation = "[750,1500]"
-          basePosterSize = "[414,234]"
+          translation = "[1125,2250]"
+          basePosterSize = "[621,352]"
           caption1NumLines = "1"
           numColumns = "1"
           numRows = "3"
@@ -87,44 +87,44 @@
 
         <Poster
             id="playIcon"
-            width="80"
-            height="80"
-            translation="[910, 180]"
+            width="120"
+            height="120"
+            translation="[1365, 270]"
             uri="pkg:/images/play2.png"
             visible="false"
         />
 
         <Description
             id="Description"
-            translation="[65, 120]"
+            translation="[98, 180]"
             itemSpacings="[7,17]"
         />
 
         <Rectangle
             id="titleAccent"
-            translation="[62, 280]"
+            translation="[93, 420]"
             color="0xc90016FF"
-            width="92"
+            width="138"
             height="2"
         />
         
         <RowList
             id="CategoryList"
             focusBitmapUri="pkg:/images/focus_button.9.png"
-            translation="[60, 300]"
-            itemSize="[1400, 708]"
+            translation="[90, 450]"
+            itemSize="[2100, 1062]"
             numRows="1"
             itemSpacing="[20, 0]"
             focusXOffset="[0]"
             vertFocusAnimationStyle="fixedFocus"
             rowFocusAnimationStyle="fixedFocusWrap"
-            rowItemSize="[[394,276]]"            
+            rowItemSize="[[591,414]]"            
             rowItemSpacing="[[22, 2]]"
             rowLabelFont="font:LargeSystemFont"
             showRowLabel="true"
             rowLabelColor="0xFFFFFFFF"
             showRowCounter="true"
-            rowLabelOffset="[[0, 30]]"
+            rowLabelOffset="[[0, 45]]"
         />
 
         <!-- subcategory buttons -->
@@ -135,8 +135,8 @@
             color = "0xFFFFFFFF"
             focusedColor = "0xc90016FF"
             textHorizAlign = "left"
-            translation = "[200,1500]"
-            itemSize = "[600, 40]"
+            translation = "[300,2250]"
+            itemSize = "[900, 60]"
             itemSpacing = "[0,44]"
             visible = "false">
 
@@ -148,13 +148,13 @@
 
         <Rectangle
             id="leftDivider"
-            translation="[180,1500]"
+            translation="[270,2250]"
             color="0xFFFFFFFF"
             width="1"
-            height="540"
+            height="810"
         />
         <Poster
-            translation="[0, 650]"
+            translation="[0, 975]"
             uri="pkg:/images/BG_dark_down.png"
             width="3000"
             height="95"
@@ -162,8 +162,8 @@
 
         <Video
           id="VideoPlayer"
-          width="1280"
-          height="720"
+          width="1920"
+          height="1080"
           translation="[0,0]"
           enableTrickPlay="true"
           visible="false"
@@ -171,9 +171,9 @@
 
       <Rectangle
         id="ExitMask"
-        translation="[1300,0]"
-        width="1280"
-        height="720"
+        translation="[1950,0]"
+        width="1920"
+        height="1080"
         color="0x000000"
         opacity="1"
         visible = "true"
@@ -181,12 +181,12 @@
 
       <Label 
         id = "ExitMaskLabel"
-        height = "44"
-        width = "1280"
+        height = "66"
+        width = "1920"
         text = "Are you sure you want to exit?"
         horizAlign = "center"
         vertAlign = "center"
-        translation = "[4000,200]" 
+        translation = "[6000,300]" 
         visible = "true"
       />
 
@@ -197,8 +197,8 @@
         color = "0xFFFFFFFF"
         focusedColor = "0xc90016FF"
         textHorizAlign = "center"
-        itemSize = "[1280, 60]"
-        translation = "[4000,330]"
+        itemSize = "[1920, 90]"
+        translation = "[6000,496]"
         itemSpacing = "[0,40]">
 
         <ContentNode role = "content">
@@ -216,7 +216,7 @@
           <Vector2DFieldInterpolator 
             id = "CategoryListVector2D"
             key = "[ 0.0, 1.0 ]" 
-            keyValue = "[ [60, 300], [60,-500] ]"
+            keyValue = "[ [90, 450], [90,-750] ]"
             fieldToInterp = "CategoryList.translation"
 
           />
@@ -224,21 +224,21 @@
           <Vector2DFieldInterpolator 
             id = "SubCategoryLabelListVector2D"
             key = "[ 0.0, 1.0 ]" 
-            keyValue = "[ [200,1500], [200,100] ]"
+            keyValue = "[ [300,2250], [300,150] ]"
             fieldToInterp = "SubCategoryLabelList.translation"
           />
           
           <Vector2DFieldInterpolator 
             id = "leftDividerVector2D"
             key = "[ 0.0, 1.0 ]" 
-            keyValue = "[ [180,1500], [180, 106] ]"
+            keyValue = "[ [270,2250], [270, 160] ]"
             fieldToInterp = "leftDivider.translation"
           />
 
           <Vector2DFieldInterpolator 
             id = "PosterGridScreenVector2D"
             key = "[ 0.0, 1.0 ]" 
-            keyValue = "[ [750,1500], [750, 106] ]"
+            keyValue = "[ [1125,2250], [1125, 160] ]"
             fieldToInterp = "PosterGridScreen.translation"
           />
           
@@ -253,7 +253,7 @@
           <Vector2DFieldInterpolator 
             id = "CategoryListVector2D"
             key = "[ 0.0, 1.0 ]" 
-            keyValue = "[ [60,-500], [60, 300] ]"
+            keyValue = "[ [90,-750], [90, 450] ]"
             fieldToInterp = "CategoryList.translation"
 
           />
@@ -261,21 +261,21 @@
           <Vector2DFieldInterpolator 
             id = "SubCategoryLabelListVector2D"
             key = "[ 0.0, 1.0 ]" 
-            keyValue = "[ [200,100], [200,1500] ]"
+            keyValue = "[ [300,150], [300,2250] ]"
             fieldToInterp = "SubCategoryLabelList.translation"
           />
 
           <Vector2DFieldInterpolator 
             id = "leftDividerVector2D"
             key = "[ 0.0, 1.0 ]" 
-            keyValue = "[ [180, 106], [180,1500] ]"
+            keyValue = "[ [270, 160], [270,2250] ]"
             fieldToInterp = "leftDivider.translation"
           />
           
           <Vector2DFieldInterpolator 
             id = "PosterGridScreenVector2D"
             key = "[ 0.0, 1.0 ]" 
-            keyValue = "[ [750, 106], [750,1500] ]"
+            keyValue = "[ [1125, 160], [1125,2250] ]"
             fieldToInterp = "PosterGridScreen.translation"
           />
           
@@ -292,7 +292,7 @@
         <Vector2DFieldInterpolator 
           id = "ExitMaskVector2D"
           key = "[ 0.0, 1.0 ]" 
-          keyValue = "[ [1300,0], [0,0] ]"
+          keyValue = "[ [1950,0], [0,0] ]"
           fieldToInterp = "ExitMask.translation"
 
         />
@@ -300,14 +300,14 @@
         <Vector2DFieldInterpolator 
           id = "ExitMaskLabelVector2D"
           key = "[ 0.0, 1.0 ]" 
-          keyValue = "[ [4000,200], [0,200] ]"
+          keyValue = "[ [6000,300], [0,300] ]"
           fieldToInterp = "ExitMaskLabel.translation"
         />
         
         <Vector2DFieldInterpolator
         	id = "exitDialogButtonsVector2D"
           	key = "[ 0.0, 1.0 ]" 
-          	keyValue = "[ [4000,330], [0,330] ]"
+          	keyValue = "[ [6000,496], [0,496] ]"
         	fieldToInterp = "exitDialogButtons.translation"
         />
         
@@ -321,7 +321,7 @@
         <Vector2DFieldInterpolator 
           id = "ExitMaskVector2D"
           key = "[ 0.0, 1.0 ]" 
-          keyValue = "[ [0,0],[1300,0] ]"
+          keyValue = "[ [0,0],[1950,0] ]"
           fieldToInterp = "ExitMask.translation"
 
         />
@@ -329,14 +329,14 @@
       <Vector2DFieldInterpolator 
         id = "ExitMaskLabelVector2D"
         key = "[ 0.0, 1.0 ]" 
-        keyValue = "[ [0,200], [4000,200] ]"
+        keyValue = "[ [0,300], [6000,300] ]"
         fieldToInterp = "ExitMaskLabel.translation"
       />
       
         <Vector2DFieldInterpolator
         	id = "exitDialogButtonsVector2D"
           	key = "[ 0.0, 1.0 ]" 
-          	keyValue = "[ [0,330], [4000,330] ]"
+          	keyValue = "[ [0,496], [6000,496] ]"
         	fieldToInterp = "exitDialogButtons.translation"
         />
              

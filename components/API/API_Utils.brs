@@ -69,9 +69,21 @@ End Function
 ' Description: parses string into xml object - ad hoc method 
 ' overriding via renaming
 '******************************************************************
-Function API_ParseXML2(str As String) As dynamic
-    if str = invalid return invalid
+Function API_ParseXML2(xmlString As String) As dynamic
+    '?">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    '    Print xmlString
+    '?"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+    if(xmlString = invalid) then 
+        return invalid
+    end if
+
     xml = CreateObject("roXMLElement")
-    if not xml.Parse(str) return invalid
-    return xml
+    if(xml.Parse(xmlString)) then
+        return xml
+    else
+        '?">>>>>>>>>>>>>>>> HIT INVALID <<<<<<<<<<<<<<<"
+        '    Print xmlString
+        '?">>>>>>>>>>>>>>>>>>>>>>>> INVALID >>>>>>>>>>>>>>"
+         return invalid
+    end if
 End Function

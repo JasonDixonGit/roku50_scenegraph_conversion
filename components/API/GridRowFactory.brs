@@ -74,6 +74,7 @@ end function
 Function GridRowFactory_BuildPosterGridRow(xmlDataIn)
 
     responseXML = API_Utils().ParseXML2(xmlDataIn)
+    Print responseXML
     responseArray = responseXML.GetChildElements()
 
     result = []

@@ -26,9 +26,8 @@ sub getContent()
     readInternet.SetMessagePort(taskPort)
     readInternet.EnableFreshConnection(true) 'Don't reuse existing connections
     readInternet.setUrl(m.top.postergriduri)
-
+    readInternet.SetCertificatesFile("common:/certs/ca-bundle.crt")
     xmlDataIn = readInternet.GetToString()
-    'Print xmlDataIn
     m.top.gridscreencontent = GridrowFactory().BuildCategoryGridRow(xmlDataIn)
 
 end sub
